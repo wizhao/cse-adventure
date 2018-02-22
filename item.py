@@ -4,7 +4,6 @@ class Item(object):
         self.description = description
         self.ilk = ilk
         self.subilk = subilk
-        self.held = False
 
 # pencil = Item('pencil', 'used to write stuff', 'utensil', 'lead-based')
 # print pencil.description
