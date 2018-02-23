@@ -1,5 +1,6 @@
 #Post-apocalyptic World
 b = None #stores backpack
+lives = None #stores num of lives
 
 #select and get_answer are temporary for string input
 def select(options):
@@ -26,12 +27,14 @@ def get_answer(options):
         return get_answer(options)
 
 #called by main
-def run(backpack):
+def run(backpack, life):
     global b
+    global lives
     b = backpack #sets global backpack
-    print "post-apocalyptic description"
+    lives = life #sets num of lives
+    print "You enter this fallow, dystopian world gasping for your breath as the dust invades your nostrils."
     start() #run game
-    return b #return the backpack
+    return b, lives #return the backpack and lives
 
 #starting point
 def start():

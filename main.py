@@ -8,8 +8,9 @@ import future
 import postApocWorld
 
 b = Backpack()
-p = Player()
+lives = 5
 count = 0
+b.add("seashell necklace")
 
 def select(options):
     print "\n"
@@ -35,9 +36,9 @@ def get_answer(options):
         return get_answer(options)
         
 def start():
-    global count
     global b
-    global switches
+    global lives
+    global count
     while (True):
         if (count == 0):
             print 'Welcome to Dimensions. At the start of our story, you wake up on a deserted planet in a world unlike your own. As you slowly regain consciousness, you realize that you are indeed on a different universe than you came from. You take out your portal gun and try to decipher the coordinates; however you can\xe2\x80\x99t seem to make out where you are. You notice in the distance a dimension hub. The hub may be able to take you home, if your universe is in range.\n\nYou walk into the dimension hub and gather information on your location. You find out your on an abandoned planet in dimension K33, but, unfortunately, you notice your home dimension is not within range. You do have a way of getting home using your portal gun, but its currently out of charge. Luckily, you notice 6 dimensions within range that each have a power crystal you need to recharge it. The only way to get home now is to find those six power crystals and make it home alive.\n\nYou will have to travel through six different universes and interact with the people and environment on each of them. You will have five lives to spare, and each mistake you make will take away one of those lives. Now, make us all proud and get back to your home.\n'
@@ -46,17 +47,18 @@ def start():
             print 'Choose a world to visit:'
         ans = select(['Dino World', 'Atlantis', 'War World', 'Ice World', 'Future World', 'Post-Apocalyptic World'])
         if (ans == 1):
-            b = dinoWorld.run(b)
+            b, lives = dinoWorld.run(b, lives)
             b.list_items()
+            print lives
         if (ans == 2):
-            b = atlantis.run(b)
+            b, lives = atlantis.run(b, lives)
         if (ans == 3):
-            b = warWorld.run(b)
+            b, lives = warWorld.run(b, lives)
         if (ans == 4):
-            b = iceWorld.run(b)
+            b, lives = iceWorld.run(b, lives)
         if (ans == 5):
-            b = future.run(b)
+            b, lives = future.run(b, lives)
         if (ans == 6):
-            b = postApocWorld.run(b)
+            b, lives = postApocWorld.run(b, lives)
         count += 1
 start()
