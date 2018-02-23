@@ -21,7 +21,7 @@ class Backpack(object):
         mms = Item('M&Ms', None, 'food')
         armor = Item('armor', None, 'weapon')
         skis = Item('skis', None, 'tool')
-        parka = Item('parkas', None, 'tool')
+        parka = Item('parka', None, 'tool')
         coal = Item('coal', None, 'tool')
         human_meat = Item('human meat', None, 'food')
 
@@ -48,6 +48,13 @@ class Backpack(object):
         names = []
         for key, value in self.contents.iteritems():
             if value.ilk == category:
+                names.append(key)
+        return names
+    
+    def get_items(self, category, subcategory):
+        names = []
+        for key, value in self.contents.iteritems():
+            if value.ilk == category and value.subilk == subcategory:
                 names.append(key)
         return names
     
