@@ -15,13 +15,13 @@ class Backpack(object):
         trident = Item('trident', None, 'weapon')
         crossbow = Item('crossbow', None, 'weapon', 'long-range')
         key = Item('key', None, 'tool')
-        note = Item('note w/ password', None, 'tool')
+        note = Item('note w/ password', 'The note reads: "The password is 01000101" (Hint: Dino World)', 'tool')
         photo = Item('jisoo photo', None, 'tool')
         gravy = Item('gravy', None, 'food')
         mms = Item('M&Ms', None, 'food')
         armor = Item('armor', None, 'weapon')
         skis = Item('skis', None, 'tool')
-        parkas = Item('parkas', None, 'tool')
+        parka = Item('parkas', None, 'tool')
         coal = Item('coal', None, 'tool')
         human_meat = Item('human meat', None, 'food')
 
@@ -34,7 +34,7 @@ class Backpack(object):
                             crossbow.name: crossbow, key.name: key, note.name:
                             note, photo.name: photo, gravy.name: gravy,
                             mms.name: mms, armor.name: armor, skis.name: skis,
-                            parkas.name: parkas, coal.name: coal,
+                            parka.name: parka, coal.name: coal,
                             human_meat.name: human_meat}
         self.contents = {}
 
@@ -44,16 +44,20 @@ class Backpack(object):
     def remove(self, name):
         self.contents.pop(name)
 
-    def get_items(self, type):
+    def get_items(self, category):
         names = []
         for key, value in self.contents.iteritems():
-            if value.ilk == 'weapon':
+            if value.ilk == category:
                 names.append(key)
         return names
+    
+    def list_items(self):
+        for key, value in self.contents.iteritems():
+            print key
 
-b = Backpack()
-b.add('key')
-b.add('armor')
-b.add('coal')
-b.add('crossbow')
-print b.get_items('weapon')
+#b = Backpack()
+#b.add('key')
+#b.add('armor')
+#b.add('coal')
+#b.add('crossbow')
+#print b.get_items('weapon')
