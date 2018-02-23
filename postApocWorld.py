@@ -6,25 +6,25 @@ lives = None #stores num of lives
 def select(options):
     print "\n"
     i = 1;
-    for option in options:
+    for option in options: #print all options
         print str(i) + ') ' + option;
         i+=1;
     return get_answer(options)
 
 def get_answer(options):
-    answer = raw_input('> ')
+    answer = raw_input('> ') #get answer
     print "\n"
     isInt = True
     val = 0
     try:
-        val = int(answer)
+        val = int(answer) #check if answer is an integer, set to int
     except ValueError:
         isInt = False
     if (isInt and val <= len(options) and val > 0):
-        return val
-    else:
+        return val #return user's answer as a number
+    else: #ask user for proper answer if not integer and within a range
         print 'Please enter a valid response (number 1-' + str(len(options)) + ')'
-        return get_answer(options)
+        return get_answer(options) #return next valid response
 
 #called by main
 def run(backpack, life):
