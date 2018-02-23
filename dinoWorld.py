@@ -61,7 +61,7 @@ def op1():
 def op1_1():
     global done
     global b
-    if (done==True):
+    if (done==False):
         print 'The eight switches seem to be placed in a random order. If only you had a code that could tell you the right order to put them in.'
         ans = raw_input('> ')
         if (ans == '01000101'):
