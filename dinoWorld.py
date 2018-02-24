@@ -8,8 +8,15 @@ chest = False
 darkRoom = False
 tRex = False
 raptor = False
-fireplace = False
+campfire = False
 necklace = False
+
+#checks number of lives
+def check_lives():
+    global lives
+    if (lives <= 0):
+        print "YOU LOSE"
+        exit()
 
 #select and get_answer are temporary for string input
 def select(options):
@@ -76,8 +83,8 @@ def op1_1():
         ans = raw_input('> ')
         print '\n'
         if (ans == '01000101'):
-            print ('Correct combination! A part of the wall retracts and a bone pick is dispensed!\n')
-            b.add("bone pick")
+            print ('Correct combination! A part of the wall retracts and a bone shiv is dispensed!\n')
+            b.add("bone shiv")
             switches = True
         else:
             print ('That combination does nothing.\n')
@@ -118,9 +125,11 @@ def op1_3():
         if (ans == 1):
             print 'You try walking but unfortunately hit a few traps on the floor to the lightswitch. (-1 life)'
             lives-=1
+            check_lives()
         if (ans == 2):
             print 'You try crawling but unfortunately hit a few traps on the floor to the lightswtich. (-1 life)'
             lives-=1
+            check_lives()
         if (ans == 3):
             print 'You successfully make it to the other side of the room without getting hurt'
         if (ans == 4):
@@ -138,7 +147,7 @@ def op2():
     if (tRex == False):
         print 'You decide it would be a good idea to kill this sleeping dinosaur to get its skull.'
         if (b.get_items('weapon') != []):
-            print 'You take out your ' + b.get_items('weapon')[0] + ' and attack the dinosaur, killing it. You recieved its skull as a reward.'
+            print 'You take out your ' + random.choice(b.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.'
             b.add('skull')
             tRex = True
         else:
@@ -149,12 +158,12 @@ def op3():
     global necklace
     if (necklace == False):
         print 'At the abandoned campsite, you see a shaggy man with a wispy beard. The insane-looking man tells you that he has a power crystal to give you if you get him a **Seashell Necklace**. You decide to trust the man\'s word.'
-    print 'Throughout the rest of the campsite, you see two tents and a fireplace. What do you do?'
+    print 'Throughout the rest of the campsite, you see two tents and a campfire. What do you do?'
     ans = 0
     if (b.has('seashell necklace')):
-        ans = select(['Search first tent', 'Search second tent', 'Search fireplace', 'Back', 'Give necklace'])
+        ans = select(['Search first tent', 'Search second tent', 'Search campfire', 'Back', 'Give necklace'])
     else:
-        ans = select(['Search first tent', 'Search second tent', 'Search fireplace', 'Back'])
+        ans = select(['Search first tent', 'Search second tent', 'Search campfire', 'Back'])
     if (ans == 1):
         op3_1()
     if (ans == 2):
@@ -175,12 +184,13 @@ def op3_2():
     if (raptor == False):
         print 'A baby raptor jumps out of the tent and starts attacking you.'
         if (b.get_items('weapon') != []):
-            print 'You kill the raptor with your ' + b.get_items('weapon')[0] + '.'
+            print 'You kill the raptor with your ' + random.choice(b.get_items('weapon')) + '.'
         else:
             chance = random.randint(0,1)
             if (chance == 0):
                 print 'The raptor hits you with a devastating strike. (-1 life)'
                 lives-=1
+                check_lives()
             if (chance == 1):
                 print 'Luckily, you are able to kill the raptor with your bare fists without a scratch.'
         raptor = True
@@ -189,13 +199,13 @@ def op3_2():
     op3()
     
 def op3_3():
-    global fireplace
-    if (fireplace == False):
-        print 'You find coal in the fireplace'
+    global campfire
+    if (campfire == False):
+        print 'You find coal in the campfire'
         b.add('coal')
-        fireplace = True
+        campfire = True
     else:
-        print 'You find nothing else in the fireplace.'
+        print 'You find nothing else in the campfire.'
     op3()
 def op3_4():
     global necklace

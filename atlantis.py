@@ -2,6 +2,13 @@
 b = None #stores backpack
 lives = None #stores num of lives
 
+#checks number of lives
+def check_lives():
+    global lives
+    if (lives <= 0):
+        print "YOU LOSE"
+        exit()
+
 #select and get_answer are temporary for string input
 def select(options):
     print "\n"

@@ -8,7 +8,7 @@ class Backpack(object):
         lettuce = Item('lettuce', None, 'food')
         daniel = Item('steamed hams and macaroni', None, 'food')
         icicle = Item('icicle', None, 'tool')
-        bone_pick = Item('bone pick', None, 'weapon', 'short')
+        bone_shiv = Item('bone shiv', None, 'weapon', 'short')
         shotgun = Item('sawed-off shotgun', None, 'weapon', 'short')
         tactical_shotgun = Item('purple tactical shotgun', None, 'weapon', 'short')
         trident = Item('trident', None, 'weapon', 'short')
@@ -40,7 +40,7 @@ class Backpack(object):
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
                             translator.name: translator, lettuce.name: lettuce,
                             daniel.name: daniel, icicle.name: icicle,
-                            bone_pick.name: bone_pick, shotgun.name: shotgun,
+                            bone_shiv.name: bone_shiv, shotgun.name: shotgun,
                             tactical_shotgun.name: tactical_shotgun, trident.name:
                             trident, crossbow.name: crossbow, key.name: key, note.name:
                             note, photo.name: photo, gravy.name: gravy,
