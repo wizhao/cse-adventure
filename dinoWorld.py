@@ -1,6 +1,7 @@
 #Dino World
 import random
 
+
 b = None
 lives = None
 switches = False

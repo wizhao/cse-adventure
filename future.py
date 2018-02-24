@@ -1,6 +1,7 @@
 #Future
 b = None #stores backpack
 lives = None #stores num of lives
+app = None
 
 #checks number of lives
 def check_lives():
@@ -34,7 +35,17 @@ def get_answer(options):
         return get_answer(options) #return next valid response
 
 #called by main
-def run(backpack, life):
+def run(a):
+    global app
+    global b
+    app = a
+    app.update_console("im gay")
+    b = app.get_b()
+    app.update_console(str(app.get_b().has('bone shiv')))
+    start()
+    app.set_b(b)
+    app.update_console(str(app.get_b().has('bone shiv')))
+    '''
     global b
     global lives
     b = backpack #sets global backpack
@@ -42,6 +53,7 @@ def run(backpack, life):
     print "future description"
     start() #run game
     return b, lives #return the backpack and lives
+    '''
 
 #starting point
 def start():

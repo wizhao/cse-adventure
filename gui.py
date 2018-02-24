@@ -1,6 +1,7 @@
 from Tkinter import *
 import os
 from PIL import Image, ImageTk
+from backpack import Backpack
 
 
 class Application(Frame):
@@ -121,6 +122,7 @@ class Application(Frame):
         self.grid()
         self.pack_propagate(0)
         self.createWidgets()
+        self.b = Backpack()
 
     def say_hi(self):
         print "hi there, everyone!"
@@ -183,6 +185,11 @@ class Application(Frame):
             self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
             self.buttonList[i].pack()
 
+    def get_b(self):
+        return self.b
+        
+    def set_b(self, b):
+        self.b = b
 '''
     def op1(self):
         print "Option 1"
