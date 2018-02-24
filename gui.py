@@ -50,7 +50,7 @@ class Application(Frame):
 
         self.output = Text(self.outputContainer,bd=0,width=50,height=18,yscrollcommand=self.consoleScrollbar.set,state="disabled")
         self.consoleScrollbar.config(command=self.output.yview)
-        self.output.tag_config("g",foreground="green")
+        self.output.tag_config("g",foreground="darkgreen")
         self.output.tag_config("r",foreground="red")
         self.output.tag_config("wrap",wrap=WORD)
         self.output.pack()
