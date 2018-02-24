@@ -1,4 +1,6 @@
 from backpack import Backpack
+from  gui import Application
+from Tkinter import *
 import dinoWorld
 import atlantis
 import warWorld
@@ -9,6 +11,16 @@ import postApocWorld
 b = Backpack()
 lives = 5
 count = 0
+
+root = Tk()
+root.resizable(width=False, height=False)
+app = Application(master=root)
+
+app.master.title("My Almost Do-Nothing Application")
+
+
+app.mainloop()
+root.destroy()
 
 def select(options):
     print "\n"

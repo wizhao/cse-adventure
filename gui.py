@@ -2,6 +2,7 @@ from Tkinter import *
 import os
 from PIL import Image, ImageTk
 
+
 class Application(Frame):
     def createWidgets(self):
         title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\titleBanner.png").convert("RGBA").resize((800,100)))
@@ -162,12 +163,4 @@ class Application(Frame):
 
 
 
-root = Tk()
-root.resizable(width=False, height=False)
-app = Application(master=root)
 
-app.master.title("My Almost Do-Nothing Application")
-
-
-app.mainloop()
-root.destroy()
