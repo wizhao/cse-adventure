@@ -288,6 +288,7 @@ class Application(Frame):
 
 
 #comment out everything below when not testing
+'''
 root = Tk()
 root.resizable(width=False, height=False)
 app = Application(master=root)
@@ -297,3 +298,4 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
 app.mainloop()
 root.destroy()
+'''

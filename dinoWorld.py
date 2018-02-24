@@ -53,7 +53,6 @@ def op1_1():
     
 def op1_2():
     global chest
-    app.update_console('chest: ' + str(chest))
     if (chest==False):
         app.update_console( 'The worn-down chest opens with a creaking sound, revealing: ')
         loot = random.randint(0,3)
@@ -70,6 +69,7 @@ def op1_2():
             app.update_console( 'Gravy!\n', tag="g")
             b.add("Gravy")
         chest = True  
+        app.set_b(b)
     else:
         app.update_console('This chest has already been opened.\n')
     op1()
@@ -93,6 +93,7 @@ def op1_3_1():
     app.add_life(-1)
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n','g')
     b.add('Key')
+    app.set_b(b)
     darkRoom = True
     op1()
     
@@ -103,6 +104,7 @@ def op1_3_2():
     app.add_life(-1)
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n', tag='g')
     b.add('Key')
+    app.set_b(b)
     darkRoom = True
     op1()
     
@@ -111,6 +113,7 @@ def op1_3_3():
     app.update_console( 'You successfully make it to the other side of the room without getting hurt', tag="g")
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n', tag='g')
     b.add('Key')
+    app.set_b(b)
     darkRoom = True
     op1()
         
@@ -122,6 +125,7 @@ def op2():
         if (b.get_items('weapon') != []):
             app.update_console( 'You take out your ' + random.choice(b.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
             b.add('Skull')
+            app.set_b(b)
             tRex = True
         else:
             app.update_console( 'However, you don\'t want to attack it without some sort of weapon.\n')
@@ -164,6 +168,7 @@ def op3_3():
     if (campfire == False):
         app.update_console( 'You find coal in the campfire\n')
         b.add('Coal')
+        app.set_b(b)
         campfire = True
     else:
         app.update_console( 'You find nothing else in the campfire.\n')
