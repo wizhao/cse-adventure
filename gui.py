@@ -55,7 +55,7 @@ class Application(Frame):
         self.output.pack()
         self.output.bind('<<Modified>>', self.callback)
 
-        '''test inputs
+        '''#test inputs
         self.update_console("Welcome to Osu")
         self.update_console("Welcome to Osu x2")
         self.update_console("Welcome to Osu x3 ")
@@ -76,6 +76,21 @@ class Application(Frame):
         self.buttonFrame = Frame(height=250,width=400,bd=2,padx=5,pady=5)
         self.dropgun = Button(self.buttonFrame,text="Drop Selected Item",command=self.drop_item)
         self.dropgun.pack()
+
+        self.option0 = Button(self.buttonFrame,text="")
+        self.option1 = Button(self.buttonFrame,text="")
+        self.option2 = Button(self.buttonFrame,text="")
+        self.option3 = Button(self.buttonFrame,text="")
+        self.option4 = Button(self.buttonFrame,text="")
+        self.option5 = Button(self.buttonFrame,text="")
+        self.option6 = Button(self.buttonFrame,text="")
+        self.option7 = Button(self.buttonFrame,text="")
+        self.option8 = Button(self.buttonFrame,text="")
+        self.option9 = Button(self.buttonFrame,text="")
+        self.buttonList = [self.option0,self.option1,self.option2,self.option3,self.option4,self.option5,self.option6,self.option7,self.option8,self.option9]
+        for buton in self.buttonList:
+            buton.pack_forget()
+
 
         self.buttonFrame.grid(row=2,sticky=N+S+E+W)
 
@@ -160,3 +175,33 @@ class Application(Frame):
         self.pic_disp.config(image=photo)
         self.pic_disp.currentImage = photo
         self.caption.set(picinfo[1])
+
+    def update_buttons(self, buttonList):
+        for buton in self.buttonList:
+            buton.pack_forget()
+        for i in range(len(buttonList)):
+            self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
+            self.buttonList[i].pack()
+
+'''
+    def op1(self):
+        print "Option 1"
+
+    def op2(self):
+        print "Option 2"
+
+    def op3(self):
+        print "Option 3"
+
+
+#comment out everything below when not testing
+root = Tk()
+root.resizable(width=False, height=False)
+app = Application(master=root)
+
+app.master.title("My Almost Do-Nothing Application")
+
+app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.op3)]))
+app.mainloop()
+root.destroy()
+'''
