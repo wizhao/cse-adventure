@@ -154,7 +154,7 @@ class Application(Frame):
         self.output.insert(END,prefix + message,(tag,"wrap"))
         self.output.config(state="disabled")
 
-    def update_canvas(self, picname,caption=""):
+    def update_canvas(self, picname,caption="\n\n"):
         picname = os.getcwd() + "\\assets\\" + picname
         photo = ImageTk.PhotoImage(Image.open(picname))
         self.pic_disp.config(image=photo)
