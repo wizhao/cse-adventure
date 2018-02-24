@@ -95,6 +95,12 @@ class Backpack(object):
         else:
             return False
 
+    def get_item(self,name):
+        if name in self.contents:
+            return self.contents[name]
+        else:
+            return Item()
+
 #b = Backpack()
 #b.add('key')
 #b.add('armor')

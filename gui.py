@@ -21,9 +21,12 @@ class Application(Frame):
         self.itemScrollbar = Scrollbar(self.itemContainer)
 
         self.itemList = Listbox(self.itemContainer,yscrollcommand=self.itemScrollbar.set,activestyle="none")
+
+        '''#test values
         for i in range(4):
             for x in ["A","DI","TH","YA",""]:
                 self.itemList.insert(END,x)
+        '''
 
         self.itemScrollbar.config(command=self.itemList.yview)
         self.itemScrollbar.pack(side=RIGHT,fill=Y)
@@ -140,15 +143,17 @@ class Application(Frame):
             cancel.pack(side=LEFT,padx=5)
 
     def update_items(self):
-        pass
+        self.itemList.delete(0, END)
+        for item in self.b.contents:
+            self.itemList.insert(END, self.b.contents[item].name)
 
     def onselect(self,evt):
         if not self.lost:
-            self.update_canvas(("itemGeneric.png","A caption."))
             w = evt.widget
             index = int(w.curselection()[0])
             value = w.get(index)
             self.update_console('You selected the %s' % (value))
+            self.show_item(self.b.get_item(value))
             self.dropgun.grid_forget()
             self.dropgun.grid(row=5,column=0,sticky=E,padx=5,pady=5)
 
@@ -157,7 +162,8 @@ class Application(Frame):
         self.dropgun.grid_forget()
 
     def drop_item(self):
-        self.update_console("You dropped the %s. It can be found in the hub." % (self.itemList.get(ACTIVE)))
+        self.update_console("You dropped the %s and sent it to the hub." % (self.itemList.get(ACTIVE)))
+        self.b.put_in_storage(self.itemList.get(ACTIVE))
         self.itemList.delete(ACTIVE)
         self.dropgun.grid_forget()
         self.update_canvas(self.currentLocation)
@@ -219,6 +225,7 @@ class Application(Frame):
 
     def set_b(self, b):
         self.b = b
+        self.update_items()
 
 
 
@@ -234,15 +241,19 @@ class Application(Frame):
         self.pack_propagate(0)
         self.createWidgets()
         self.b = Backpack()
-'''
+
     def op1(self):
         print "Option 1"
+        self.b.add("Portal Gun")
+        self.update_items()
 
     def op2(self):
         print "Option 2"
+        self.update_console(str(self.b.storage))
 
     def op3(self):
         print "Option 3"
+        self.game_over()
 
 
 #comment out everything below when not testing
@@ -255,4 +266,3 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
 app.mainloop()
 root.destroy()
-'''
