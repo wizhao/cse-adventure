@@ -2,6 +2,7 @@ from item import Item
 
 class Backpack(object):
     def __init__(self):
+        self.itemLimit = 12
         portal_gun = Item('Portal Gun', None, 'tool')
         ray_gun = Item('Ray Gun', None, 'weapon', 'long')
         translator = Item('Dolphin Translator', None, 'tool')
@@ -85,9 +86,12 @@ class Backpack(object):
                 names.append(key)
         return names
     '''
+
+    '''
     def list_items(self):
         for key, value in self.contents.iteritems():
             print key
+    '''
 
     def has(self, name):
         if name in self.contents:

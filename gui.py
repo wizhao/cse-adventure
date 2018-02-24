@@ -6,7 +6,7 @@ from backpack import Backpack
 
 class Application(Frame):
     def createWidgets(self):
-        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\titleBanner.png").convert("RGBA").resize((800,100)))
+        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\titleBanner2.png").convert("RGBA").resize((800,100)))
         titleBanner = Label(width=800,height=100,image=title)
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
@@ -15,7 +15,7 @@ class Application(Frame):
         self.itemFrame = Frame(height=250,width=400,padx=5,pady=5)
         self.itemContainer = Frame(self.itemFrame,bd=2,relief=SUNKEN)
         self.itemContainer.pack(fill=BOTH,expand=1)
-        Label(self.itemContainer,text="Items").pack(fill=X)
+        Label(self.itemContainer,textvariable=self.itemCount).pack(fill=X)
 
 
         self.itemScrollbar = Scrollbar(self.itemContainer)
@@ -167,6 +167,11 @@ class Application(Frame):
         self.itemList.delete(ACTIVE)
         self.dropgun.grid_forget()
         self.update_canvas(self.currentLocation)
+        self.update_itemCount()
+
+
+    def pull_out(self):
+        pass
 
     def callback(self,evt):
         self.output.see(END)
@@ -222,31 +227,55 @@ class Application(Frame):
         self.wipe_buttons()
         self.lost = True
 
+    '''
     def get_b(self):
         return self.b
 
     def set_b(self, b):
         self.b = b
         self.update_items()
+    '''
 
+    def update_itemCount(self):
+        self.itemCount.set("Items (" + str(len(self.b.contents)) + "/" + str(self.b.itemLimit) + ")")
 
+    def add_item(self,name):
+        if len(self.b.contents) < self.b.itemLimit:
+            self.b.add(name)
+            self.update_items()
+            self.update_itemCount()
+        else:
+            update_console("You do not have enough space for that.",tag="r")
+            update_console("Drop an item to make room for it.")
+
+    def remove_item(self,name):
+        self.b.remove(name)
+        self.update_itemCount()
+
+    def get_items(self,category):
+        return self.b.get_items(category)
+
+    def has_item(self,name):
+        return self.b.has(name)
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
+        self.b = Backpack()
         self.lost = False
         self.lives = IntVar()
         self.lives.set(5)
+        self.itemCount = StringVar()
+        self.itemCount.set("Items (0/" + str(self.b.itemLimit) + ")")
         self.caption = StringVar()
         self.currentLocation = ("title.png","Bottom Text")
         self.caption.set(self.currentLocation[1])
         self.grid()
         self.pack_propagate(0)
         self.createWidgets()
-        self.b = Backpack()
-'''
+
     def op1(self):
         print "Option 1"
-        self.b.add("Portal Gun")
+        self.add_item("Portal Gun")
         self.update_items()
 
     def op2(self):
@@ -268,4 +297,3 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
 app.mainloop()
 root.destroy()
-'''
