@@ -205,12 +205,14 @@ class Application(Frame):
             buton.grid_forget()
 
     def add_life(self,amt=1):
-        newcount = self.lives + amt
+        newcount = self.lives.get() + amt
         self.lives.set(newcount)
-        if self.lives < 1:
+        if self.lives.get() <= 0:
             self.game_over()
-        elif self.lives == 1:
+        elif self.lives.get() == 1:
             self.lifecount.config(foreground="red")
+        else:
+            self.lifecount.config(foreground="black")
 
     def game_over(self,mes=""):
         if len(mes) > 0:
@@ -241,7 +243,7 @@ class Application(Frame):
         self.pack_propagate(0)
         self.createWidgets()
         self.b = Backpack()
-
+'''
     def op1(self):
         print "Option 1"
         self.b.add("Portal Gun")
@@ -266,3 +268,4 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
 app.mainloop()
 root.destroy()
+'''
