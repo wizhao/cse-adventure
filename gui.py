@@ -76,7 +76,7 @@ class Application(Frame):
         '''Buttons Section'''
         self.buttonFrame = Frame(height=250,width=400,bd=2,padx=5,pady=5)
         self.dropgun = Button(self.buttonFrame,text="Drop Selected Item",command=self.drop_item)
-        self.dropgun.pack()
+        self.dropgun.pack(side=LEFT,padx=5)
 
         self.option0 = Button(self.buttonFrame,text="")
         self.option1 = Button(self.buttonFrame,text="")
@@ -148,7 +148,7 @@ class Application(Frame):
         #self.caption.set(value)
         self.update_console('You selected the %s' % (value))
         self.dropgun.pack_forget()
-        self.dropgun.pack()
+        self.dropgun.pack(side=LEFT,padx=5)
 
     def deselect_item(self,evt):
         self.update_canvas(self.currentLocation)
@@ -158,6 +158,7 @@ class Application(Frame):
         self.update_console("Dropped %s" % (self.itemList.get(ACTIVE)))
         self.itemList.delete(ACTIVE)
         self.dropgun.pack_forget()
+        self.update_canvas(self.currentLocation)
 
     def callback(self,evt):
         self.output.see(END)
@@ -183,14 +184,18 @@ class Application(Frame):
             buton.pack_forget()
         for i in range(len(buttonList)):
             self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
-            self.buttonList[i].pack()
+            self.buttonList[i].pack(side=LEFT,padx=5,pady=5)
 
+
+<<<<<<< HEAD
     def get_b(self):
         return self.b
         
     def set_b(self, b):
         self.b = b
 '''
+=======
+>>>>>>> aed95386e30d8b279acedc4f894567c59afbc1f4
     def op1(self):
         print "Option 1"
 
@@ -211,4 +216,3 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.op3)]))
 app.mainloop()
 root.destroy()
-'''
