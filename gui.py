@@ -76,7 +76,7 @@ class Application(Frame):
         '''Buttons Section'''
         self.buttonFrame = Frame(height=250,width=400,bd=2,padx=5,pady=5)
         self.dropgun = Button(self.buttonFrame,text="Drop Selected Item",command=self.drop_item)
-        self.dropgun.pack(side=LEFT,padx=5)
+
 
         self.option0 = Button(self.buttonFrame,text="")
         self.option1 = Button(self.buttonFrame,text="")
@@ -90,8 +90,10 @@ class Application(Frame):
         self.option9 = Button(self.buttonFrame,text="")
         self.buttonList = [self.option0,self.option1,self.option2,self.option3,self.option4,self.option5,self.option6,self.option7,self.option8,self.option9]
         for buton in self.buttonList:
-            buton.pack_forget()
+            buton.grid_forget()
 
+        self.buttonFrame.columnconfigure(0,minsize=195,weight=1)
+        self.buttonFrame.columnconfigure(1,minsize=195,weight=1)
 
         self.buttonFrame.grid(row=2,sticky=N+S+E+W)
 
@@ -106,6 +108,9 @@ class Application(Frame):
 
         self.QUIT.pack(side=LEFT)
 
+        Label(self.toolbar,text="Lives: ",bg="lightgray").pack(side=LEFT)
+        self.lifecount = Label(self.toolbar,textvariable=self.lives,bg="lightgray")
+        self.lifecount.pack(side=LEFT)
 
         self.hi_there = Button(self.toolbar)
         self.hi_there["text"] = "Hello"
@@ -116,6 +121,9 @@ class Application(Frame):
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
+        self.lost = False
+        self.lives = IntVar()
+        self.lives.set(5)
         self.caption = StringVar()
         self.currentLocation = ("title.png","Bottom Text")
         self.caption.set(self.currentLocation[1])
@@ -128,36 +136,40 @@ class Application(Frame):
         print "hi there, everyone!"
 
     def confirm_quit(self):
-        cquit = Toplevel(width=400,height=100)
-        cquit.title("Confirm Quit")
-        mes = Message(cquit, width=400,text="Are you sure you want to quit? We LITERALLY don't have a save feature.")
-        mes.pack()
+        if self.lost:
+            self.quit()
+        else:
+            cquit = Toplevel(width=400,height=100)
+            cquit.title("Confirm Quit")
+            mes = Message(cquit, width=400,text="Are you sure you want to quit? We LITERALLY don't have a save feature.")
+            mes.pack()
 
-        button_container = Frame(cquit,pady=5)
-        button_container.pack(side=BOTTOM)
-        confirm = Button(button_container,text="Yea, your game sucks",fg="white",bg="red",command=self.quit)
-        cancel = Button(button_container,text="Nah im good",command=cquit.destroy)
-        confirm.pack(side=LEFT,padx=5)
-        cancel.pack(side=LEFT,padx=5)
+            button_container = Frame(cquit,pady=5)
+            button_container.pack(side=BOTTOM)
+            confirm = Button(button_container,text="Yea, your game sucks",fg="white",bg="red",command=self.quit)
+            cancel = Button(button_container,text="Nah im good",command=cquit.destroy)
+            confirm.pack(side=LEFT,padx=5)
+            cancel.pack(side=LEFT,padx=5)
 
     def onselect(self,evt):
-        self.update_canvas(("itemGeneric.png","A caption."))
-        w = evt.widget
-        index = int(w.curselection()[0])
-        value = w.get(index)
-        #self.caption.set(value)
-        self.update_console('You selected the %s' % (value))
-        self.dropgun.pack_forget()
-        self.dropgun.pack(side=LEFT,padx=5)
+        if not self.lost:
+            self.update_canvas(("itemGeneric.png","A caption."))
+            w = evt.widget
+            index = int(w.curselection()[0])
+            value = w.get(index)
+            #self.caption.set(value)
+            self.update_console('You selected the %s' % (value))
+            self.dropgun.grid_forget()
+            self.dropgun.grid(row=5,column=0,sticky=E,padx=5,pady=5)
 
     def deselect_item(self,evt):
         self.update_canvas(self.currentLocation)
         self.dropgun.pack_forget()
 
     def drop_item(self):
-        self.update_console("Dropped %s" % (self.itemList.get(ACTIVE)))
+        self.update_console("You dropped the %s. It can be found in the hub." % (self.itemList.get(ACTIVE)))
         self.itemList.delete(ACTIVE)
-        self.dropgun.pack_forget()
+        self.dropgun.grid_forget()
         self.update_canvas(self.currentLocation)
 
     def callback(self,evt):
@@ -180,17 +192,37 @@ class Application(Frame):
         self.caption.set(picinfo[1])
 
     def update_buttons(self, buttonList):
-        for buton in self.buttonList:
-            buton.pack_forget()
+        self.wipe_buttons()
         for i in range(len(buttonList)):
             self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
-            self.buttonList[i].pack(side=LEFT,padx=5,pady=5)
+            r = int(i / 2.0)
+            c = 0 if i % 2 == 0 else 1
+            stick = E if c == 0 else W
+            self.buttonList[i].grid(row=r,column=c,padx=5,pady=5,sticky=stick)
 
+    def wipe_buttons(self):
+        for buton in self.buttonList:
+            buton.grid_forget()
 
+    def add_life(self,amt=1):
+        newcount = self.lives + amt
+        self.lives.set(newcount)
+        if self.lives < 1:
+            self.game_over()
+        elif self.lives == 1:
+            self.lifecount.config(foreground="red")
+
+    def game_over(self,mes=""):
+        if len(mes) > 0:
+            self.update_console(mes)
+        self.update_console("You lose! Game over.",tag="r")
+        self.itemList.config(state="disabled")
+        self.wipe_buttons()
+        self.lost = True
 
     def get_b(self):
         return self.b
-        
+
     def set_b(self, b):
         self.b = b
 '''
@@ -211,7 +243,7 @@ app = Application(master=root)
 
 app.master.title("My Almost Do-Nothing Application")
 
-app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.op3)]))
+app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
 app.mainloop()
 root.destroy()
 '''
