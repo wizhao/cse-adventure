@@ -11,13 +11,6 @@ class Application(Frame):
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
 
-        '''Picture Section'''
-        self.pic_container = Frame(height=300,width=400,padx=5,pady=5)
-        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\title.png")))
-        self.update_canvas(self.currentLocation)
-        self.pic_disp.pack()
-        self.pic_container.grid(row=1,column=1,sticky=NE)
-
         '''Items Section'''
         self.itemFrame = Frame(height=250,width=400,padx=5,pady=5)
         self.itemContainer = Frame(self.itemFrame,bd=2,relief=SUNKEN)
@@ -41,14 +34,14 @@ class Application(Frame):
         self.itemFrame.grid(row=2,column=1,sticky=N+S+E+W)
 
         '''Console Section'''
-        self.outputFrame = Frame(height=250,width=400,padx=5,pady=5)
+        self.outputFrame = Frame(height=300,width=400,padx=5,pady=5)
         self.outputContainer = Frame(self.outputFrame,bd=2,relief=SUNKEN)
         self.outputContainer.pack(fill=BOTH,expand=1)
 
         self.consoleScrollbar = Scrollbar(self.outputContainer)
         self.consoleScrollbar.pack(side=RIGHT, fill=Y)
 
-        self.output = Text(self.outputContainer,bd=0,width=50,height=18,yscrollcommand=self.consoleScrollbar.set,state="disabled")
+        self.output = Text(self.outputContainer,bd=0,width=50,height=19,yscrollcommand=self.consoleScrollbar.set,state="disabled")
         self.consoleScrollbar.config(command=self.output.yview)
         self.output.tag_config("g",foreground="darkgreen")
         self.output.tag_config("r",foreground="red")
@@ -72,6 +65,13 @@ class Application(Frame):
         #end test inputs'''
 
         self.outputFrame.grid(row=1,column=0,sticky=N+S+E+W)
+
+        '''Picture Section'''
+        self.pic_container = Frame(height=300,width=400,padx=5,pady=5)
+        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\title.png")))
+        self.update_canvas(self.currentLocation)
+        self.pic_disp.pack(fill=BOTH)
+        self.pic_container.grid(row=1,column=1,sticky=N+S+E+W)
 
         '''Buttons Section'''
         self.buttonFrame = Frame(height=250,width=400,bd=2,padx=5,pady=5)
@@ -119,18 +119,6 @@ class Application(Frame):
         self.hi_there.pack(side=RIGHT)
 
 
-    def __init__(self, master=None):
-        Frame.__init__(self, master)
-        self.lost = False
-        self.lives = IntVar()
-        self.lives.set(5)
-        self.caption = StringVar()
-        self.currentLocation = ("title.png","Bottom Text")
-        self.caption.set(self.currentLocation[1])
-        self.grid()
-        self.pack_propagate(0)
-        self.createWidgets()
-        self.b = Backpack()
 
     def say_hi(self):
         print "hi there, everyone!"
@@ -151,20 +139,22 @@ class Application(Frame):
             confirm.pack(side=LEFT,padx=5)
             cancel.pack(side=LEFT,padx=5)
 
+    def update_items(self):
+        pass
+
     def onselect(self,evt):
         if not self.lost:
             self.update_canvas(("itemGeneric.png","A caption."))
             w = evt.widget
             index = int(w.curselection()[0])
             value = w.get(index)
-            #self.caption.set(value)
             self.update_console('You selected the %s' % (value))
             self.dropgun.grid_forget()
             self.dropgun.grid(row=5,column=0,sticky=E,padx=5,pady=5)
 
     def deselect_item(self,evt):
         self.update_canvas(self.currentLocation)
-        self.dropgun.pack_forget()
+        self.dropgun.grid_forget()
 
     def drop_item(self):
         self.update_console("You dropped the %s. It can be found in the hub." % (self.itemList.get(ACTIVE)))
@@ -190,6 +180,10 @@ class Application(Frame):
         self.pic_disp.config(image=photo)
         self.pic_disp.currentImage = photo
         self.caption.set(picinfo[1])
+
+    def show_item(self,item):
+        picinfo = ("Items\\" + item.picture, item.caption)
+        self.update_canvas(picinfo)
 
     def update_buttons(self, buttonList):
         self.wipe_buttons()
@@ -225,6 +219,21 @@ class Application(Frame):
 
     def set_b(self, b):
         self.b = b
+
+
+
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.lost = False
+        self.lives = IntVar()
+        self.lives.set(5)
+        self.caption = StringVar()
+        self.currentLocation = ("title.png","Bottom Text")
+        self.caption.set(self.currentLocation[1])
+        self.grid()
+        self.pack_propagate(0)
+        self.createWidgets()
+        self.b = Backpack()
 '''
     def op1(self):
         print "Option 1"
