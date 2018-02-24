@@ -187,15 +187,13 @@ class Application(Frame):
             self.buttonList[i].pack(side=LEFT,padx=5,pady=5)
 
 
-<<<<<<< HEAD
+
     def get_b(self):
         return self.b
         
     def set_b(self, b):
         self.b = b
 '''
-=======
->>>>>>> aed95386e30d8b279acedc4f894567c59afbc1f4
     def op1(self):
         print "Option 1"
 
@@ -216,3 +214,4 @@ app.master.title("My Almost Do-Nothing Application")
 app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.op3)]))
 app.mainloop()
 root.destroy()
+'''
