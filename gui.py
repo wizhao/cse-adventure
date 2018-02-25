@@ -225,6 +225,10 @@ class Application(Frame):
         self.output.insert(END,prefix + message,(tag,"wrap"))
         self.output.config(state="disabled")
 
+    def change_location(self, picinfo):
+        self.currentLocation = picinfo
+        self.update_canvas(picinfo)
+
     def update_canvas(self, picinfo):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
         photo = ImageTk.PhotoImage(Image.open(picname))
@@ -263,6 +267,7 @@ class Application(Frame):
         if len(mes) > 0:
             self.update_console(mes)
         self.update_console("You lose! Game over.",tag="r")
+        self.change_location(("gameOver.png","You get nothing. You lose! Good day sir!"))
         self.itemList.config(state="disabled")
         self.wipe_buttons()
         self.lost = True
@@ -280,13 +285,20 @@ class Application(Frame):
         self.itemCount.set("Items (" + str(len(self.b.contents)) + "/" + str(self.b.itemLimit) + ")")
 
     def add_item(self,name):
-        if len(self.b.contents) < self.b.itemLimit:
+        if len(self.b.contents) < self.b.itemLimit and name not in self.b.storage:
             self.b.add(name)
             self.update_items()
             self.update_itemCount()
-        else:
+        elif len(self.b.contents) < self.b.itemLimit:
             update_console("You do not have enough space for that.",tag="r")
             update_console("Drop an item to make room for it.")
+        elif name not in self.b.storage:
+            update_console("You already have this item!",tag="r")
+            update_console("Retrieve it from the hub.")
+        else:
+            update_console("Oops! Something unexpected happened.",tag="r")
+            update_console("Tell the bois if you see this.")
+
 
     def remove_item(self,name):
         self.b.remove(name)
@@ -296,7 +308,7 @@ class Application(Frame):
         return self.b.get_items(category)
 
     def has_item(self,name):
-        return self.b.has(name)
+        return self.b.has(name) and name in self.b.storage
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
