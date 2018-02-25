@@ -15,7 +15,7 @@ class Application(Frame):
         self.itemFrame = Frame(height=250,width=400,padx=5,pady=5)
         self.itemContainer = Frame(self.itemFrame,bd=2,relief=SUNKEN)
         self.itemContainer.pack(fill=BOTH,expand=1)
-        Label(self.itemContainer,textvariable=self.itemCount).pack(fill=X)
+        Label(self.itemContainer,textvariable=self.itemCount,font=("Arial",14)).pack(fill=X)
 
 
         self.itemScrollbar = Scrollbar(self.itemContainer)
