@@ -3,7 +3,7 @@ from item import Item
 class Backpack(object):
     def __init__(self):
         self.itemLimit = 12
-        portal_gun = Item('Portal Gun', None, 'tool')
+        portal_gun = Item('Portal Gun', None, 'tool',"portalGun.png",False,"You need that to get around, silly!")
         ray_gun = Item('Ray Gun', None, 'weapon')
         translator = Item('Dolphin Translator', None, 'tool')
         lettuce = Item('Lettuce', None, 'food')
@@ -39,6 +39,7 @@ class Backpack(object):
         tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","food","tendies.png")
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
+        card = Item("ID Card","A government ID card, used for top-level access.","important","card.png")
 
 
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,

@@ -211,12 +211,14 @@ class Application(Frame):
 
         pullout.grab_set()
 
+
+
     def callback(self,evt):
         self.output.see(END)
         self.output.edit_modified(0)
 
     def update_console(self,message,nl=True,tag=""):
-        if not self.lost:
+        if not self.lost and len(message) > 0:
             self.output.config(state="normal")
             prefix = ""
             if nl:
@@ -226,15 +228,12 @@ class Application(Frame):
 
     def change_location(self, picinfo,default="misc\\landscapeGeneric.png"):
         self.currentLocation = picinfo
-        self.update_canvas(picinfo, default)
+        self.update_canvas(picinfo,backup=default)
 
-    def update_canvas(self, picinfo, backup=''):
+    def update_canvas(self, picinfo,backup=""):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
         try:
             photo = ImageTk.PhotoImage(Image.open(picname))
-            self.pic_disp.config(image=photo)
-            self.pic_disp.currentImage = photo
-            self.caption.set(picinfo[1])
         except IOError:
             try:
                 photo = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\" + backup))
@@ -246,7 +245,6 @@ class Application(Frame):
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
-        print picinfo
         self.update_canvas(picinfo,backup="Items\\itemGeneric.png")
 
     def update_buttons(self, buttonList):

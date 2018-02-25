@@ -8,6 +8,8 @@ app = None
 entered = False
 digged = False
 grenades = False
+saved = False
+givenID = False
 
 #called by main
 def run(a):
@@ -92,17 +94,38 @@ def op2(msg="You enter the military dugout. Military commanders crowd around a t
 def op2_1():
     global grenades
     if not grenades:
+        app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
         app.update_console("You find a few grenades lying around near the bottom.")
         app.update_console("You carefully stash them, hoping the officers didn't notice.",tag="g")
+        grenades = True
     else:
-        app.update_console("There doesn't seem to be anything insignificant enough to steal.")
-    app.update_buttons([ ("Back", op2)])
+        app.change_location(("warWorld2_1_1.png","There\'s nothing to take."),default=mainpic)
+        app.update_console("There doesn't seem to be anything else insignificant enough to steal.")
+    app.update_buttons([ ("Back", lambda: op2(msg="")) ])
 
 def op2_2():
-    pass
+    global saved
+    global givenID
+    if not saved:
+        app.update_console("The officer yells at you for disobeying orders, and commands you to leave the dugout.")
+    elif saved and not givenID:
+        app.update_console("You ask for a SuperLieutenant Chalmers in the crowd. The same officer who yelled at you before looks at you, infuriated.\n")
+        app.update_console("\"If you\'re back here again one more--\"")
+        app.update_console("The lost girl you saved runs out from behind you and embraces her father, finally reunited. Superlieutenant Chalmers is speechless.\n")
+        app.update_console("\"But how did you-- That city--")
+        app.update_console("After he calms down, you tell him all about your portal gun, your quest, and why you're here.")
+        app.update_console("SuperLieutenant Chalmers tells you about a secret meeting room in the city, where top secret government research is being done.")
+        app.update_console("He gives you an ID card that allows entrance as well as the location of the room.",tag="g")
+        app.add_item("ID Card")
+        givenID = True
+    else:
+        app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck.")
+    app.update_buttons([ ("Back",lambda: op2(msg="")) ])
+
+
 
 def op2_3():
-    pass
+    app.change_location()
 
 #option 3
 def op3():
