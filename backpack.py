@@ -19,7 +19,6 @@ class Backpack(object):
         photo = Item('Jisoo Photo', None, 'tool')
         gravy = Item('Gravy', None, 'food')
         mms = Item('M&Ms', None, 'food')
-        armor = Item('Armor', None, 'tool')
         skis = Item('Skis', None, 'tool')
         parka = Item('Parka', None, 'tool')
         coal = Item('Coal', None, 'tool')
@@ -46,7 +45,7 @@ class Backpack(object):
                             tactical_shotgun.name: tactical_shotgun, trident.name:
                             trident, crossbow.name: crossbow, key.name: key, note.name:
                             note, photo.name: photo, gravy.name: gravy,
-                            mms.name: mms, armor.name: armor, skis.name: skis,
+                            mms.name: mms, skis.name: skis,
                             parka.name: parka, coal.name: coal,
                             human_meat.name: human_meat, skull.name: skull, uranium.name: uranium,
                             bomb.name: bomb, necklace.name: necklace, device.name: device,
