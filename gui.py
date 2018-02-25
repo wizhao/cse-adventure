@@ -287,9 +287,8 @@ class Application(Frame):
         print "Option 3"
         self.pull_out()
 
-
-#comment out everything below when not testing
 '''
+#comment out everything below when not testing
 root = Tk()
 root.resizable(width=False, height=False)
 app = Application(master=root)
