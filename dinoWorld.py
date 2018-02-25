@@ -1,4 +1,5 @@
 #Dino World
+from Tkinter import *
 import random
 import hub
 
@@ -67,13 +68,12 @@ def op1_2():
         if (loot == 3):
             app.update_console( 'Gravy!\n', tag="g")
             app.add_item("Gravy")
-        chest = True
-
+        chest = True  
+        app.update_buttons([('Back', op1)])
     else:
         app.update_console('This chest has already been opened.\n')
-    op1()
-
-
+        app.update_buttons([('Back', op1)])
+    
 def op1_3():
     global lives
     global darkRoom
@@ -82,8 +82,8 @@ def op1_3():
         app.update_buttons([('Walk', op1_3_1), ('Crawl', op1_3_2), ('Hug the wall', op1_3_3), ('Back', op1)])
     else:
         app.update_console( 'You decide there\'s nothing left for you downstairs\n')
-        op1()
-
+        app.update_buttons([('Back', op1)])
+    
 
 def op1_3_1():
     global darkRoom
@@ -92,7 +92,8 @@ def op1_3_1():
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n','g')
     app.add_item('Key')
     darkRoom = True
-    op1()
+
+    app.update_buttons([('Back', op1)])
 
 def op1_3_2():
     global darkRoom
@@ -102,7 +103,7 @@ def op1_3_2():
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n', tag='g')
     app.add_item('Key')
     darkRoom = True
-    op1()
+    app.update_buttons([('Back', op1)])
 
 def op1_3_3():
     global darkRoom
@@ -110,7 +111,7 @@ def op1_3_3():
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n', tag='g')
     app.add_item('Key')
     darkRoom = True
-    op1()
+    app.update_buttons([('Back', op1)])
 
 #change to short range weapon when functional
 def op2():
@@ -121,10 +122,13 @@ def op2():
             app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
             app.add_item('Skull')
             tRex = True
+            app.update_buttons([('Back', start)])
         else:
             app.update_console( 'However, you don\'t want to attack it without some sort of weapon.\n')
+            app.update_buttons([('Back', start)])
     else:
         app.update_console('You have already killed the T-Rex')
+        app.update_buttons([('Back', start)])
     start()
 
 def op3():
@@ -139,7 +143,7 @@ def op3():
 
 def op3_1():
     app.update_console( 'You find nothing in the first tent.\n')
-    op3()
+    app.update_buttons([('Back', op3)])
 def op3_2():
     global lives
     global raptor
@@ -157,8 +161,8 @@ def op3_2():
         raptor = True
     else:
         app.update_console( 'The tent is now empty after the raptor left\n')
-    op3()
-
+    app.update_buttons([('Back', op3)])
+    
 def op3_3():
     global campfire
     if (campfire == False):
@@ -167,11 +171,11 @@ def op3_3():
         campfire = True
     else:
         app.update_console( 'You find nothing else in the campfire.\n')
-    op3()
+    app.update_buttons([('Back', op3)])
 def op3_4():
     global necklace
     app.update_console( 'You hand the seashell necklace over to the man, and, as he promised, he gifts you a green power crystal.\n', tag='g')
-    app.add_item('Green Crystal')
     app.remove_item('Seashell Necklace')
+    app.add_item('Green Crystal')
     necklace = True
-    op3()
+    app.update_buttons([('Back', op3)])

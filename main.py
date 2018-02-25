@@ -22,7 +22,6 @@ def start():
     app.update_buttons([('Atlantis', lambda: atlantis.run(app)), ('Future', lambda: future.run(app)), ("Post-Apocalyptic World", lambda: postApocWorld.run(app)), ("Dino World", lambda: dinoWorld.run(app)), ('War World', lambda: warWorld.run(app)), ('Ice World', lambda: iceWorld.run(app))])
     #app.consoleScrollbar.set(0)
     app.output.yview_moveto(0.25)
-    app.add_item('Oxygen Tank')
 
 app.master.title("Dimensions")
 
