@@ -184,7 +184,7 @@ def op2_3():
 
 #option 3
 def op3(msg="You arrive at the city. The people seem to be tense from the war going on."):
-    app.change_location("warworld3.png","The city.")
+    app.change_location(("warworld3.png","The city."))
     app.update_console(msg)
     choices = [ ("Dark Alleys" , op3_1) , ("Hospital" , op3_2) ]
     if givenID:
@@ -196,12 +196,12 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
     def find_rock():
         global rock
         if not rock:
-            app.change_location("warworld3_1_1.png","You found a special rock.")
+            app.change_location(("warworld3_1_1.png","You found a special rock."))
             app.update_console("You find a strange rock in the trash!",tag="g")
             app.add_item("Rock")
             rock = True
         else:
-            app.change_location("warworld3_1_2.png","Just trash.")
+            app.change_location(("warworld3_1_2.png","Just trash."))
             app.update_console("There's nothing useful in the trash.")
         app.update_buttons([ ("Back", lambda: op3(msg="")) ])
     def explore():
