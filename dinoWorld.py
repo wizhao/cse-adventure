@@ -30,14 +30,17 @@ def op1():
     app.update_buttons([ ('Switches', op1_1) , ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
 
 def op1_1():
+    global switches
     def minigame ():
         def exit_puzzle():
+            global switches
             code_in = str(var_1.get()) + str(var_2.get()) + str(var_3.get()) + str(var_4.get()) + str(var_5.get()) + str(var_6.get()) + str(var_7.get()) + str(var_8.get())
             if code_in == "01000101":
                 app.update_console("A part of the wall retracts, revealing a bone shiv and some chicken tendies.",tag="g")
                 app.add_item("Bone Shiv")
                 app.add_item("Chicken Tendies")
                 switches = True
+                op1()
             else:
                 app.update_console("Nothing happened.")
             game.destroy()
@@ -159,12 +162,12 @@ def op1_2():
         if (loot == 3):
             app.update_console( 'Gravy!\n', tag="g")
             app.add_item("Gravy")
-        chest = True  
+        chest = True
         app.update_buttons([('Back', op1)])
     else:
         app.update_console('This chest has already been opened.\n')
         app.update_buttons([('Back', op1)])
-    
+
 def op1_3():
     global lives
     global darkRoom
@@ -174,7 +177,7 @@ def op1_3():
     else:
         app.update_console( 'You decide there\'s nothing left for you downstairs\n')
         app.update_buttons([('Back', op1)])
-    
+
 
 def op1_3_1():
     global darkRoom
@@ -253,7 +256,7 @@ def op3_2():
     else:
         app.update_console( 'The tent is now empty after the raptor left\n')
     app.update_buttons([('Back', op3)])
-    
+
 def op3_3():
     global campfire
     if (campfire == False):
