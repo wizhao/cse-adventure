@@ -6,7 +6,7 @@ from backpack import Backpack
 
 class Application(Frame):
     def createWidgets(self):
-        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner3.png").convert("RGBA").resize((800,100)))
+        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner2.png").convert("RGBA").resize((800,100)))
         titleBanner = Label(width=800,height=100,image=title)
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
@@ -211,8 +211,6 @@ class Application(Frame):
 
         pullout.grab_set()
 
-
-
     def callback(self,evt):
         self.output.see(END)
         self.output.edit_modified(0)
@@ -226,24 +224,30 @@ class Application(Frame):
             self.output.insert(END,prefix + message,(tag,"wrap"))
             self.output.config(state="disabled")
 
-    def change_location(self, picinfo):
+    def change_location(self, picinfo,default="misc\\landscapeGeneric.png"):
         self.currentLocation = picinfo
-        self.update_canvas(picinfo)
+        self.update_canvas(picinfo, default)
 
-    def update_canvas(self, picinfo):
+    def update_canvas(self, picinfo, backup=''):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
-        self.caption.set(picinfo[1])
         try:
             photo = ImageTk.PhotoImage(Image.open(picname))
             self.pic_disp.config(image=photo)
             self.pic_disp.currentImage = photo
+            self.caption.set(picinfo[1])
         except IOError:
-            print 'Error showing image: ' + picname
+            try:
+                photo = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\" + backup))
+            except IOError:
+                photo = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\landscapeGeneric.png"))
+        self.pic_disp.config(image=photo)
+        self.pic_disp.currentImage = photo
+        self.caption.set(picinfo[1])
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
         print picinfo
-        self.update_canvas(picinfo)
+        self.update_canvas(picinfo,backup="Items\\itemGeneric.png")
 
     def update_buttons(self, buttonList):
         self.wipe_buttons()
