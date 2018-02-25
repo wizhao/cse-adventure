@@ -119,13 +119,13 @@ def op2_2():
         app.add_item("ID Card")
         givenID = True
     else:
-        app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck.")
+        app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck on your journey.")
     app.update_buttons([ ("Back",lambda: op2(msg="")) ])
 
 
 
 def op2_3():
-    app.change_location()
+    app.change_location(("warWorld2_3.png","A map of the current location."),default=mainpic)
 
 #option 3
 def op3():
