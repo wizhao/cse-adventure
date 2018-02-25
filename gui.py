@@ -232,10 +232,13 @@ class Application(Frame):
 
     def update_canvas(self, picinfo):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
-        photo = ImageTk.PhotoImage(Image.open(picname))
-        self.pic_disp.config(image=photo)
-        self.pic_disp.currentImage = photo
-        self.caption.set(picinfo[1])
+        try:
+            photo = ImageTk.PhotoImage(Image.open(picname))
+            self.pic_disp.config(image=photo)
+            self.pic_disp.currentImage = photo
+            self.caption.set(picinfo[1])
+        except IOError:
+            pass
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
