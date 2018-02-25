@@ -10,6 +10,7 @@ digged = False
 grenades = False
 saved = False
 givenID = False
+quested = True
 
 #called by main
 def run(a):
@@ -125,7 +126,55 @@ def op2_2():
 
 
 def op2_3():
-    app.change_location(("warWorld2_3.png","A map of the current location."),default=mainpic)
+    global saved
+    global quested
+    app.change_location(("warWorld2_3.png","A map of the current encampment."),default=mainpic)
+    choices = []
+    app.update_console("You see a map showing the surroundings. There's a city that looks like it was recently captured by the enemy.")
+    if quested and not saved:
+        app.update_console("That's the city that SuperLieutenant Chalmers lost his daughter in!")
+        app.update_console("Your portal gun can bypass enemy lines, but it will still be a long and dangerous trek. You should bring some food with you and some form of weapon.")
+        choices.append( ("Go!",journey) )
+    choices.append( ("Back", lambda: op2(msg="")) )
+    app.update_buttons(choices)
+    def journey():
+        def trek(has_weapon):
+            global saved
+            if not has_weapon:
+                if random.randint(1,10) > 9:
+                    app.update_console("Luckily, you find the lost girl on the first day!",tag="g")
+                    saved = True
+                else:
+                    app.update_console("After several days of sneaking very carefully to avoid being seen, you couldn\'t find the lost girl.")
+            else:
+                app.update_console("You search the occupied city very quickly, and in one day you find the lost girl.",tag="g")
+                saved = True
+            chance = 8
+            if not has_weapon:
+                chance = 2
+            if random.randint(1,10) <= chance:
+                app.update_console("On your way back, a soldier spots you and fires at you just as you're about to escape. Luckily, he missed, and you jump through the portal with the lost girl unscathed.")
+            else:
+                if has_weapon:
+                    fight = "In a heated battle, you finally disable the soldier with your " + app.b.get_items("weapon")[random.randInt(0,len(app.b.get_items("weapon"))-1)] + " and get away with the girl."
+                else:
+                    fight = "In a heated fistfight, you finally disable the soldier and get away."
+                app.update_console("On your way back, a soldier spots you and lunges at you. " + fight)
+                app.add_life( -1 if has_weapon else -2)
+                app.update_console("(" + ("-1" if has_weapon else "-2") + " life)")
+                op2_2()
+
+        if len(app.get_items("food")) > 0:
+            if len(app.get_items("weapon")) <= 0:
+                app.update_console("You have no weapon. Are you still sure you want to go?")
+                app.update_buttons([ ("YOLO",trek(False)) , ("Nah", lambda:op2(msg="")) ])
+            else:
+                trek(True)
+        else:
+            app.update_controls("You have no food. You won't be able to last so long behind enemy lines.")
+            app.update_buttons([ ("Back" , lambda: op2(msg="")) ])
+
+
 
 #option 3
 def op3():
