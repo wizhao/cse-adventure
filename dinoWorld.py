@@ -125,26 +125,6 @@ def op1_1():
         app.update_console("You have already collected the loot in the section under the switches.")
         app.update_buttons([ ("Back", op1) ])
 
-
-
-    '''
-    global switches
-    #global b
-    if (switches==False):
-        print 'The eight switches seem to be placed in a random order. If only you had a code that could tell you the right order to put them in.'
-        ans = raw_input('> ')
-        print '\n'
-        if (ans == '01000101'):
-            print ('Correct combination! A part of the wall retracts and a bone shiv is dispensed!\n')
-            app.add_item("Bone Shiv")
-            switches = True
-        else:
-            print ('That combination does nothing.\n')
-    else:
-        print 'You have already seen the switches.\n'
-    op1()
-    '''
-
 def op1_2():
     global chest
     if (chest==False):
@@ -207,7 +187,6 @@ def op1_3_3():
     darkRoom = True
     app.update_buttons([('Back', op1)])
 
-#change to short range weapon when functional
 def op2():
     global tRex
     if (tRex == False):
@@ -226,6 +205,7 @@ def op2_1():
     app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
     app.add_item('Skull')
     tRex = True
+    app.update_buttons([('Back', start)])
 
 def op3():
     global necklace
@@ -246,7 +226,7 @@ def op3_2():
     if (raptor == False):
         app.update_console( 'A baby raptor jumps out of the tent and starts attacking you!',tag="r")
         if (app.get_items('weapon') != []):
-            app.update_console( 'You kill the raptor with your ' + random.choice(app.get_items('weapon')) + '.')
+            app.update_console( 'You kill the raptor with your ' + random.choice(app.get_items('weapon')) + '.\n')
         else:
             chance = random.randint(0,1)
             if (chance == 0):
