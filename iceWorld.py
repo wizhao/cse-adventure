@@ -1,19 +1,14 @@
 #Ice World
 import hub
 
-b = None #stores backpack
-lives = None #stores num of lives
 app = None
 
 #called by main
 def run(a):
     global app
-    global b
     app = a
-    b = app.get_b()
     app.update_console('description')
     start()
-    app.set_b(b)
 
 #starting point
 def start():
