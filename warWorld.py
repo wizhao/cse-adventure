@@ -3,14 +3,15 @@ from Tkinter import *
 import random
 import hub
 
-mainpic = "warWorld\\warWorld.png"
+mainpic = "warWorld.png"
 app = None
 entered = False
 digged = False
 grenades = False
 saved = False
 givenID = False
-quested = True
+quested = False
+thug = False
 
 #called by main
 def run(a):
@@ -153,16 +154,19 @@ def op2_3():
             if not has_weapon:
                 chance = 2
             if random.randint(1,10) <= chance:
-                app.update_console("On your way back, a soldier spots you and fires at you just as you're about to escape. Luckily, he missed, and you jump through the portal with the lost girl unscathed.")
+                app.update_console("On your way back, a soldier spots you and fires at you just as you're about to escape. Luckily, he missed, and you jump through the portal unscathed.")
             else:
                 if has_weapon:
-                    fight = "In a heated battle, you finally disable the soldier with your " + app.b.get_items("weapon")[random.randInt(0,len(app.b.get_items("weapon"))-1)] + " and get away with the girl."
+                    fight = "In a heated battle, you finally disable the soldier with your " + app.b.get_items("weapon")[random.randInt(0,len(app.b.get_items("weapon"))-1)] + " and get away."
                 else:
                     fight = "In a heated fistfight, you finally disable the soldier and get away."
                 app.update_console("On your way back, a soldier spots you and lunges at you. " + fight)
                 app.add_life( -1 if has_weapon else -2)
                 app.update_console("(" + ("-1" if has_weapon else "-2") + " life)")
-                op2_2()
+                if saved:
+                    op2_2()
+                else:
+                    op2()
 
         if len(app.get_items("food")) > 0:
             if len(app.get_items("weapon")) <= 0:
@@ -174,8 +178,70 @@ def op2_3():
             app.update_controls("You have no food. You won't be able to last so long behind enemy lines.")
             app.update_buttons([ ("Back" , lambda: op2(msg="")) ])
 
-
-
 #option 3
-def op3():
-    pass
+def op3(msg="You arrive at the city. The people seem to be tense from the war going on."):
+    app.change_location("warworld3.png","The city.")
+    app.update_console(msg)
+    choices = [ ("Dark Alleys" , op3_1) , ("Hospital" , op3_2) ]
+    if givenID:
+        choices.append (("Secret Meeting Room" , op3_3))
+    choices.append (("Leave" , start))
+    app.update_buttons(options)
+
+def op3_1():
+    app.change_location("warworld3_1.png","A dark alley.")
+    app.update_console("There is a dark alley, with some trash bags near you. What do you do?")
+    app.update_buttons([ ("Search Trash",find_rock) , ("Explore the Alley",explore) , ("Back",op3(msg=""))])
+    def find_rock():
+        if not rock:
+            app.change_location("warworld3_1_1.png","You found a special rock.")
+            app.update_console("You find a strange rock in the trash!",tag="g")
+            app.add_item("Rock")
+        else:
+            app.change_location("warworld3_1_2.png","Just trash.")
+            app.update_console("There's nothing useful in the trash.")
+        app.update_buttons([ ("Back", lambda: op3(msg="")) ])
+    def explore():
+        if not thug:
+            if len(app.get_items("weapon")) > 0:
+                chance = 5
+                message = "A thug ambushes you, but you fight back with your weapon."
+            else:
+                chance = 2
+                message = "A thug ambushes you, but you fight back."
+            app.update_console(message,tag="r")
+            if random.randint(1,10) >= chance:
+                app.update_console("You lost 1 life from the fight.",tag="r")
+                app.add_life(-1)
+            app.update_console("However, you find an oxygen tank in the darkness.",tag="g")
+            app.add_item(tank)
+        else:
+            app.update_console("There's nothing in this alley.")
+        app.update_buttons([ ("Back", lambda: op3_1(msg="")) ])
+
+
+
+def op3_2(msg=):
+    global quested
+    global saved
+    app.change_location("warworld3_2.png","A busy hospital.")
+    if not saved:
+        app.update_console("When you enter the hospital, you hear a hysterical patient being calmed down by a nurse. You overhear that this is the wife of SuperLieutenant Chalmers, and that she was separated from her daughter in the city that was captured recently.")
+        quested = True
+    else:
+        app.update_console("It's a busy hospital with a lot of commotion. Better not bother them.")
+    app.update_buttons([ ("Leave" , lambda: op3(msg="")) ])
+
+def op3_3():
+    def make_trade():
+        app.update_console("You give the scientists the uranium, and in exchange, they give you the power crystal they had.",tag="g")
+        app.remove_item("uranium")
+        app.add_item("red_crystal")
+        app.update_buttons([ ("Leave", lambda: op3(msg="")) ])
+    if app.has_item("ID Card"):
+        app.change_location("warworld3_3.png","A top-secret meeting room.")
+        app.update_console("You find the secret room, and use the ID Card to enter. Inside, the scientists were expecting you. They say that they need a sample of Uranium for their research.")
+        app.update_buttons([ ("Trade Uranium",make_trade) , ("Leave", lambda: op3(msg="")) ])
+    else:
+        app.update_console("You find the secret room, but you realize you don't have the ID Card on you.")
+        app.update_buttons([ ("Leave", lambda: op3(msg="")) ])

@@ -40,6 +40,7 @@ class Backpack(object):
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
         card = Item("ID Card","A government ID card, used for top-level access.","important","card.png")
+        rock = Item("Rock","A mossy rock with some strange carvings on it.","important","rock.png")
 
 
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
