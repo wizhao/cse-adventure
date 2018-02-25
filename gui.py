@@ -71,7 +71,7 @@ class Application(Frame):
 
         '''Picture Section'''
         self.pic_container = Frame(height=300,width=400,padx=5,pady=5)
-        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\title.png")))
+        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,wraplength=390,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\title.png")))
         self.update_canvas(self.currentLocation)
         self.pic_disp.pack(fill=BOTH)
         self.pic_container.grid(row=1,column=1,sticky=N+S+E+W)
@@ -155,7 +155,7 @@ class Application(Frame):
             index = int(w.curselection()[0])
             value = w.get(index)
             self.update_console('You selected the %s' % (value))
-            self.show_item(self.b.get_item(value))
+            self.show_item(self.b.get_item(" ".join(value.split(" ")[:-1])))
             self.dropgun.grid_forget()
             self.dropgun.grid(row=5,column=0,sticky=E,padx=5,pady=5)
 
@@ -239,6 +239,7 @@ class Application(Frame):
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
+        print picinfo
         self.update_canvas(picinfo)
 
     def update_buttons(self, buttonList):
@@ -322,7 +323,7 @@ class Application(Frame):
         self.itemCount = StringVar()
         self.itemCount.set("Items (0/" + str(self.b.itemLimit) + ")")
         self.caption = StringVar()
-        self.currentLocation = ("misc\\title.png","Bottom Text")
+        self.currentLocation = ("misc\\title.png","A strange, desolate, world.")
         self.caption.set(self.currentLocation[1])
         self.grid()
         self.pack_propagate(0)

@@ -26,15 +26,15 @@ def op1():
     app.update_console( 'A man wearing a bucket as a helmet walks up to you and shouts: "WELCOME TO THE THUNDERDOME! Today you will face off against the next challenger: ' + challenger + '!"\n')
     app.update_console( 'To fight, you will roll two six-sided dice to determine if you lose. A loss will make you lose a life, but a win will let you gain another. Winning also can get you other sweet rewards.')
     if (challenger == 'Daniel the Dauntless' and app.has_item('Jisoo Photo')):
-        app.update_console('Daniel the Dauntless is distracted by your photo of Jisoo, so you only need higher than a 3 to win')
+        app.update_console('Daniel the Dauntless is distracted by your photo of Jisoo, so you only need higher than a 3 to win.\n')
         app.update_buttons([("Play", lambda: op1_1(3, challenger)), ("Back", start)])
     elif (app.get_items('weapon') != []):
-        app.update_console( 'Since you have a weapon, you will need to roll higher than a 7 to win.')
+        app.update_console( 'Since you have a weapon, you will need to roll higher than a 7 to win.\n')
         app.update_buttons([("Play", lambda: op1_1(7, challenger)), ("Back", start)])
     else:
-        app.update_console( 'Since you don\'t have a weapon, you will need to roll higher than a 9 to win.')
+        app.update_console( 'Since you don\'t have a weapon, you will need to roll higher than a 9 to win.\n')
         app.update_buttons([("Play", lambda: op1_1(9, challenger)), ("Back", start)])
-        
+
 #option 1: suboption 1
 def op1_1(minRoll, challenger):
     roll1 = random.randint(1,6)
@@ -46,11 +46,11 @@ def op1_1(minRoll, challenger):
             app.update_console( 'Despite ' + challenger + '\'s brute force and dexterity, you are able to knock them down with your ' + random.choice(app.get_items('weapon')) + ' with grace. (+1 life)', tag='g')
             loot = random.randint(0, 9)
             if (loot < 5):
-                if (not app.add_item('Human Meat')):
+                if (not app.has_item('Human Meat')):
                     app.update_console( 'For your victory, you recieve some human meat.', tag='g')
                     app.add_item('Human Meat')
             if (loot == 6):
-                if (not app.add_item('Crossbow')):
+                if (not app.has_item('Crossbow')):
                     app.update_console( 'For your victory, you recieve a crossbow!', tag='g')
                     app.add_item('Crossbow')
             app.add_life(1)
@@ -90,9 +90,9 @@ def op1_1(minRoll, challenger):
             app.update_console(challenger + ', despite being distracted by Jisoo, ' + challenger + 'is able to knock you out. (-1 life)', tag='r')
             app.add_life(-1)
     app.update_console( 'You can always try your hand at the THUNDERDOME again.\n')
-    app.update_buttons([('Back', op1)])
-        
-#option 2    
+    app.update_buttons([('Back', start)])
+
+#option 2
 def op2():
     app.update_console('Upon entering the area, you see three vehicles: an off-road jeep, a monster truck, and a formula one racer. Which vehicle to you check?\n')
     app.update_buttons([('Jeep', op2_1), ('Monster Truck', op2_2), ('Formula One Racer', op2_3), ('Back', start)])

@@ -227,7 +227,7 @@ def op2():
 def op3():
     global necklace
     if (necklace == False):
-        app.update_console( 'At the abandoned campsite, you see a shaggy man with a wispy beard. The insane-looking man tells you that he has a power crystal to give you if you get him a **Seashell Necklace**. You decide to trust the man\'s word.')
+        app.update_console( 'At the abandoned campsite, you see a shaggy man with a wispy beard. The insane-looking man tells you that he has a power crystal to give you if you get him a seashell necklace. You decide to trust the man\'s word.')
     app.update_console( 'Throughout the rest of the campsite, you see two tents and a campfire. What do you do?\n')
     if (app.has_item('Seashell Necklace')):
         app.update_buttons([('Search first tent', op3_1), ('Search second tent', op3_2), ('Search campfire', op3_3), ('Back', start), ('Give necklace', op3_4)])
@@ -259,7 +259,7 @@ def op3_2():
 def op3_3():
     global campfire
     if (campfire == False):
-        app.update_console( 'You find coal in the campfire\n',tag="g")
+        app.update_console( 'You find coal in the campfire!\n',tag="g")
         app.add_item('Coal')
         campfire = True
     else:

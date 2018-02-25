@@ -4,16 +4,16 @@ class Backpack(object):
     def __init__(self):
         self.itemLimit = 12
         portal_gun = Item('Portal Gun', None, 'tool')
-        ray_gun = Item('Ray Gun', None, 'weapon', 'long')
+        ray_gun = Item('Ray Gun', None, 'weapon')
         translator = Item('Dolphin Translator', None, 'tool')
         lettuce = Item('Lettuce', None, 'food')
         daniel = Item('Steamed Hams and Macaroni', None, 'food')
         icicle = Item('Icicle', None, 'tool')
-        bone_shiv = Item('Bone Shiv', None, 'weapon', 'short')
-        shotgun = Item('Sawed-off Shotgun', None, 'weapon', 'short')
-        tactical_shotgun = Item('Purple Tactical Shotgun', None, 'weapon', 'short')
-        trident = Item('Trident', None, 'weapon', 'short')
-        crossbow = Item('Crossbow', None, 'weapon', 'long')
+        bone_shiv = Item('Bone Shiv', None, 'weapon')
+        shotgun = Item('Sawed-off Shotgun', None, 'weapon')
+        tactical_shotgun = Item('Purple Tactical Shotgun', None, 'weapon')
+        trident = Item('Trident', None, 'weapon')
+        crossbow = Item('Crossbow', None, 'weapon')
         key = Item('Key', 'It looks very complicated, and it\'s intricate almost to a microscopic level. Whoever left this in Dino World did not come from there.', 'tool')
         note = Item('Note', 'The note reads: "The password is 01000101" (Hint: Dino World)', 'tool')
         photo = Item('Jisoo Photo', None, 'tool')
@@ -36,7 +36,7 @@ class Backpack(object):
         purple_crystal = Item('Purple Crystal', None, 'crystal')
         orange_crystal = Item('Orange Crystal', None, 'crystal')
         tank = Item('Oxygen Tank', None, 'tool')
-        tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","tool")
+        tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","food")
 
 
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
@@ -97,8 +97,7 @@ class Backpack(object):
     def has(self, name):
         if name in self.contents:
             return True
-        else:
-            return False
+        return False
 
     def get_item(self,name):
         if name in self.contents:
