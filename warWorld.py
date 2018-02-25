@@ -36,7 +36,7 @@ def start():
 
 
 #option 1
-def op1(msg="You move up to the gruesome front lines. Your shoes are soaked, the gunshots are deafening, and it smells horrible. Between the soldiers resting and firing, there is no joy to be seen anywhere. What do you do?"):
+def op1(msg="You move up to the gruesome front lines. Your shoes are soaked, the gunshots are deafening, and it smells horrible. Between the soldiers resting and firing, there is no joy to be seen anywhere. What do you do?\n"):
     app.change_location(("warWorld1.png","The gruesome front lines."),default=mainpic)
     if msg != "":
         app.update_console(msg)
@@ -77,16 +77,16 @@ def op1_3():
     if not digged:
         if app.has_item("Shovel"):
             app.change_location(("op1_3()","The trenches are less agonizing to walk around now!"),default=mainpic)
-            app.update_console("After some hard work, you manage to dig out most of the mud and slush in the trenches, exposing the more solid dirt underneath.",tag="g")
+            app.update_console("After some hard work, you manage to dig out most of the mud and slush in the trenches, exposing the more solid dirt underneath.\n",tag="g")
             digged = True
         else:
-            app.update_console("You notice the thick mud in the trenches that soaks your feet. If only you had a shovel to clear it.")
+            app.update_console("You notice the thick mud in the trenches that soaks your feet. If only you had a shovel to clear it.\n")
     else:
-        app.update_console("The trenches feel slightly more comfortable after your work.")
+        app.update_console("The trenches feel slightly more comfortable after your work.\n")
     app.update_buttons([ ("Back",lambda: op1(msg="")) ])
 
 #option 2
-def op2(msg="You enter the military dugout. Military commanders crowd around a table, discussing tactics. What do you do?"):
+def op2(msg="You enter the military dugout. Military commanders crowd around a table, discussing tactics. What do you do?\n"):
     app.change_location(("warWorld2.png","Military commanders are discussing tactics."),default=mainpic)
     app.update_console(msg)
     app.update_buttons([ ("Look at Weapon Rack" , op2_1) , ("Talk to Official", op2_2) , ("Look at Map", op2_3) , ("Back" , start) ])
@@ -96,12 +96,20 @@ def op2_1():
     if not grenades:
         app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
         app.update_console("You find a few grenades lying around near the bottom.")
+<<<<<<< HEAD
         app.update_console("You carefully stash them, hoping the officers didn't notice.",tag="g")
         grenades = True
     else:
         app.change_location(("warWorld2_1_1.png","There\'s nothing to take."),default=mainpic)
         app.update_console("There doesn't seem to be anything else insignificant enough to steal.")
     app.update_buttons([ ("Back", lambda: op2(msg="")) ])
+=======
+        app.update_console("You carefully stash them, hoping the officers didn't notice.\n",tag="g")
+        app.add_item('Grenades')
+    else:
+        app.update_console("There doesn't seem to be anything insignificant enough to steal.\n")
+    app.update_buttons([ ("Back", op2)])
+>>>>>>> 05eb59948e3dd2367bbc55ea6842d972de1bd4bd
 
 def op2_2():
     global saved

@@ -6,7 +6,7 @@ from backpack import Backpack
 
 class Application(Frame):
     def createWidgets(self):
-        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner2.png").convert("RGBA").resize((800,100)))
+        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner3.png").convert("RGBA").resize((800,100)))
         titleBanner = Label(width=800,height=100,image=title)
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
@@ -290,7 +290,7 @@ class Application(Frame):
     '''
 
     def update_itemCount(self):
-        self.itemCount.set("Items (" + str(len(self.b.contents)) + "/" + str(self.b.itemLimit) + ")")
+        self.itemCount.set("Backpack (" + str(len(self.b.contents)) + "/" + str(self.b.itemLimit) + ")")
 
     def add_item(self,name):
         if len(self.b.contents) < self.b.itemLimit and name not in self.b.storage:
@@ -326,7 +326,7 @@ class Application(Frame):
         self.lives = IntVar()
         self.lives.set(5)
         self.itemCount = StringVar()
-        self.itemCount.set("Items (0/" + str(self.b.itemLimit) + ")")
+        self.itemCount.set("Backpack (0/" + str(self.b.itemLimit) + ")")
         self.caption = StringVar()
         self.currentLocation = ("misc\\title.png","A strange, desolate, world.")
         self.caption.set(self.currentLocation[1])
