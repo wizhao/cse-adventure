@@ -1,4 +1,5 @@
 #Dino World
+from Tkinter import *
 import random
 import hub
 
