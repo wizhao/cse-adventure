@@ -141,11 +141,13 @@ class Application(Frame):
             cancel = Button(button_container,text="Nah im good",command=cquit.destroy)
             confirm.pack(side=LEFT,padx=5)
             cancel.pack(side=LEFT,padx=5)
+            cquit.grab_set()
 
     def update_items(self):
         self.itemList.delete(0, END)
         for item in self.b.contents:
-            self.itemList.insert(END, self.b.contents[item].name)
+            self.itemList.insert(END, self.b.contents[item].name + " (" + self.b.contents[item].ilk + ")")
+        self.update_itemCount()
 
     def onselect(self,evt):
         if not self.lost:
@@ -162,17 +164,54 @@ class Application(Frame):
         self.dropgun.grid_forget()
 
     def drop_item(self):
-        self.update_console("You dropped the %s and sent it to the hub." % (self.itemList.get(ACTIVE)))
-        self.b.put_in_storage(self.itemList.get(ACTIVE))
+        self.update_console("You dropped the %s and sent it to the hub." % (" ".join(self.itemList.get(ACTIVE).split(" ")[:-1])))
+        self.b.put_in_storage(" ".join(self.itemList.get(ACTIVE).split(" ")[:-1]))
         self.itemList.delete(ACTIVE)
         self.dropgun.grid_forget()
         self.update_canvas(self.currentLocation)
         self.update_itemCount()
 
-
     def pull_out(self):
-        self.pullout = Toplevel()
-        Label(text="Select the items you wish to bring to your backpack:").pack()
+        pullout = Toplevel(width=400,height=300,padx=10,pady=10)
+        pullout.title("Withdraw Items")
+        Label(pullout,text="Select the items you wish to bring to your backpack:").pack(fill=X,expand=1)
+        list_container = Frame(pullout)
+        list_container.pack(fill=X,expand=1)
+        scrollbar = Scrollbar(list_container)
+        scrollbar.pack(side=RIGHT,fill=Y)
+        stored = Listbox(list_container,selectmode=EXTENDED,yscrollcommand=scrollbar.set)
+
+        for i in self.b.storage:
+            stored.insert(END,str(self.b.storage[i].name + " (" + self.b.storage[i].ilk + ")"))
+        stored.pack(side=LEFT, fill=X, expand=1)
+        scrollbar.config(command=stored.yview)
+
+        def withdraw():
+            amt = map(int, stored.curselection())
+            if len(amt) + len(self.b.contents) <= self.b.itemLimit:
+                for i in amt:
+                    itemname = " ".join(stored.get(i).split(" ")[:-1])
+                    self.b.get_from_storage(itemname)
+                    self.update_console("Retrieved the " + itemname,tag="g")
+                self.update_items()
+                pullout.destroy()
+            else:
+                notif = Toplevel(width=400)
+                notif.title("TMI")
+                Message(notif,aspect=500,text="You selected too many items. They won't fit in your backpack.").pack(side=TOP,fill=X,expand=1)
+                Button(notif,text="Ok",command=notif.destroy).pack(side=TOP,padx=10,pady=10)
+                notif.grab_set()
+
+        button_container = Frame(pullout,pady=5,height=50)
+        button_container.pack(side=BOTTOM)
+        confirm = Button(button_container,text="Confirm",command= withdraw,padx=5)
+        back = Button(button_container,text="Back",command=pullout.destroy,padx=5)
+        confirm.pack(side=LEFT)
+        back.pack(side=LEFT)
+
+        pullout.grab_set()
+
+
 
     def callback(self,evt):
         self.output.see(END)
@@ -277,11 +316,16 @@ class Application(Frame):
     def op1(self):
         print "Option 1"
         self.add_item("Portal Gun")
+        self.add_item("Purple Tactical Shotgun")
+        self.add_item("Lettuce")
+        self.add_item("Jisoo Photo")
+
         self.update_items()
 
     def op2(self):
         print "Option 2"
         self.update_console(str(self.b.storage))
+        self.add_item("Steamed Hams and Macaroni")
 
     def op3(self):
         print "Option 3"
@@ -295,7 +339,7 @@ app = Application(master=root)
 
 app.master.title("My Almost Do-Nothing Application")
 
-app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.game_over)]))
+app.after(1000,app.update_buttons([("Option 1",app.op1) , ("Option 2",app.op2) , ("Option 3",app.op3)]))
 app.mainloop()
 root.destroy()
 '''
