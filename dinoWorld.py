@@ -2,7 +2,6 @@
 from Tkinter import *
 import random
 import hub
-import winsound
 
 lives = None
 app = None
@@ -19,7 +18,6 @@ def run(a):
     global app
     global b
     app = a
-    winsound.PlaySound('assets\\sounds\\portal.wav', winsound.SND_FILENAME)
     app.update_console('You enter the Dino World and are transported into a thick jungle filled with beautiful flora and fauna.')
     start()
 
