@@ -6,7 +6,7 @@ from backpack import Backpack
 
 class Application(Frame):
     def createWidgets(self):
-        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\titleBanner2.png").convert("RGBA").resize((800,100)))
+        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner2.png").convert("RGBA").resize((800,100)))
         titleBanner = Label(width=800,height=100,image=title)
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
@@ -71,7 +71,7 @@ class Application(Frame):
 
         '''Picture Section'''
         self.pic_container = Frame(height=300,width=400,padx=5,pady=5)
-        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\title.png")))
+        self.pic_disp = Label(self.pic_container,bd=2,relief=SUNKEN,compound=TOP,textvariable=self.caption,image=ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\title.png")))
         self.update_canvas(self.currentLocation)
         self.pic_disp.pack(fill=BOTH)
         self.pic_container.grid(row=1,column=1,sticky=N+S+E+W)
@@ -218,12 +218,13 @@ class Application(Frame):
         self.output.edit_modified(0)
 
     def update_console(self,message,nl=True,tag=""):
-        self.output.config(state="normal")
-        prefix = ""
-        if nl:
-            prefix += "\n>"
-        self.output.insert(END,prefix + message,(tag,"wrap"))
-        self.output.config(state="disabled")
+        if not self.lost:
+            self.output.config(state="normal")
+            prefix = ""
+            if nl:
+                prefix += "\n>"
+            self.output.insert(END,prefix + message,(tag,"wrap"))
+            self.output.config(state="disabled")
 
     def change_location(self, picinfo):
         self.currentLocation = picinfo
@@ -242,12 +243,13 @@ class Application(Frame):
 
     def update_buttons(self, buttonList):
         self.wipe_buttons()
-        for i in range(len(buttonList)):
-            self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
-            r = int(i / 2.0)
-            c = 0 if i % 2 == 0 else 1
-            stick = E if c == 0 else W
-            self.buttonList[i].grid(row=r,column=c,padx=5,pady=5,sticky=stick)
+        if not self.lost:
+            for i in range(len(buttonList)):
+                self.buttonList[i].config(text=buttonList[i][0],command=buttonList[i][1])
+                r = int(i / 2.0)
+                c = 0 if i % 2 == 0 else 1
+                stick = E if c == 0 else W
+                self.buttonList[i].grid(row=r,column=c,padx=5,pady=5,sticky=stick)
 
     def wipe_buttons(self):
         for buton in self.buttonList:
@@ -266,10 +268,10 @@ class Application(Frame):
     def game_over(self,mes=""):
         if len(mes) > 0:
             self.update_console(mes)
-        self.update_console("You lose! Game over.",tag="r")
-        self.change_location(("gameOver.png","You get nothing. You lose! Good day sir!"))
+        self.change_location(("misc\\gameOver.png","You get nothing. You lose! Good day sir!"))
         self.itemList.config(state="disabled")
         self.wipe_buttons()
+        self.update_console("You lose! Game over.",tag="r")
         self.lost = True
 
     '''
@@ -320,7 +322,7 @@ class Application(Frame):
         self.itemCount = StringVar()
         self.itemCount.set("Items (0/" + str(self.b.itemLimit) + ")")
         self.caption = StringVar()
-        self.currentLocation = ("title.png","Bottom Text")
+        self.currentLocation = ("misc\\title.png","Bottom Text")
         self.caption.set(self.currentLocation[1])
         self.grid()
         self.pack_propagate(0)
