@@ -17,12 +17,27 @@ def run(a):
 
 #starting point
 def start():
+    app.change_location(("postApocWorld.png","A dusty dystopia"))
     app.update_console('Within your field of view, you can see a massive glass dome, a group of off-road vehicles, and a gang of survivors. Which area do you visit first?\n')
     app.update_buttons([('Thunderdome', op1), ('Off-road Vehicles', op2), ('Gang of Survivors', op3), ('Return to Hub', lambda: hub.run(app))])
 
 #option 1
 def op1():
     challenger = random.choice(['jeff', 'Adithya the Almighty', 'Daniel the Dauntless', 'Con Hndenberg', 'Sidhu the Sadistic', 'Glasser the Graceful', 'Nelson the Nightmare'])
+    if (challenger == 'jeff'):
+        app.change_location(("jeff.png","jeff"))
+    if (challenger == 'Adithya the Almighty'):
+        app.change_location(("adithya.png","Adithya the Almighty"))
+    if (challenger == 'Daniel the Dauntless'):
+        app.change_location(("daniel.png","Daniel the Dauntless"))
+    if (challenger == 'Con Hndenberg'):
+        app.change_location(("conH.png","Con Hndenberg"))
+    if (challenger == 'Sidhu the Sadistic'):
+        app.change_location(("sidhu.png","Sidhu the Sadistic"))
+    if (challenger == 'Glasser the Graceful'):
+        app.change_location(("glasser.png","Glasser the Graceful"))
+    if (challenger == 'Nelson the Nightmare'):
+        app.change_location(("nelson.png","Nelson the Nightmare"))
     app.update_console( 'A man wearing a bucket as a helmet walks up to you and shouts: "WELCOME TO THE THUNDERDOME! Today you will face off against the next challenger: ' + challenger + '!"\n')
     app.update_console( 'To fight, you will roll two six-sided dice to determine if you lose. A loss will make you lose a life, but a win will let you gain another. Winning also can get you other sweet rewards.')
     if (challenger == 'Daniel the Dauntless' and app.has_item('Jisoo Photo')):
