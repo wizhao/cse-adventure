@@ -226,24 +226,26 @@ class Application(Frame):
             self.output.insert(END,prefix + message,(tag,"wrap"))
             self.output.config(state="disabled")
 
-    def change_location(self, picinfo):
+    def change_location(self, picinfo,default="misc\\landscapeGeneric.png"):
         self.currentLocation = picinfo
-        self.update_canvas(picinfo)
+        self.update_canvas(picinfo,backup=default)
 
-    def update_canvas(self, picinfo):
+    def update_canvas(self, picinfo,backup=""):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
         try:
             photo = ImageTk.PhotoImage(Image.open(picname))
-            self.pic_disp.config(image=photo)
-            self.pic_disp.currentImage = photo
-            self.caption.set(picinfo[1])
         except IOError:
-            pass
+            try:
+                photo = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\" + backup))
+            except IOError:
+                photo = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\landscapeGeneric.png"))
+        self.pic_disp.config(image=photo)
+        self.pic_disp.currentImage = photo
+        self.caption.set(picinfo[1])
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
-        print picinfo
-        self.update_canvas(picinfo)
+        self.update_canvas(picinfo,backup="Items\\itemGeneric.png")
 
     def update_buttons(self, buttonList):
         self.wipe_buttons()
