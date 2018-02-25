@@ -126,6 +126,7 @@ def op2_3():
             app.update_buttons([('Back', op2)])
     else:
         app.update_console('There is nothing left in this area')
+        app.update_buttons([('Back', op2)])
 def op2_3_1():
     global uranium
     food = random.choice(app.get_items('food'))
@@ -133,7 +134,7 @@ def op2_3_1():
     app.remove_item(food)
     app.update_console('You make your way to the point on the map, and once you get there, you see a vat of uranium. You decide this uranium is useful, so you take it with you for later.\n', tag='g')
     app.add_item('Uranium')
-    uranium = False
+    uranium = True
     app.update_buttons([('Back', op2)])
 
 def op3():
@@ -147,10 +148,11 @@ def op3():
             app.update_buttons([('Back', start)])
     else:
         app.update_console('You do NOT want to go back to that angry gang.\n')
+        app.update_buttons([('Back', start)])
 def op3_1():
     global gang
     app.update_console('"Wow, that\'s one impressive skull." says the gang leader. You hand him the skull and he returns to you a pendant. You take the crystal from the pendant and run away.\n')
     app.remove_item('Skull')
     app.add_item('Yellow Crystal')
     gang = True
-    start()
+    app.update_buttons([('Back', start)])

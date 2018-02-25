@@ -213,16 +213,19 @@ def op2():
     if (tRex == False):
         app.update_console( 'You decide it would be a good idea to kill this sleeping dinosaur to get its skull.')
         if (app.get_items('weapon') != []):
-            app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
-            app.add_item('Skull')
-            tRex = True
-            app.update_buttons([('Back', start)])
+            app.update_buttons([('Attack', op2_1), ('Back', start)])
         else:
             app.update_console( 'However, you don\'t want to attack it without some sort of weapon.\n')
             app.update_buttons([('Back', start)])
     else:
         app.update_console('You have already killed the T-Rex')
         app.update_buttons([('Back', start)])
+
+def op2_1():
+    global tRex
+    app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
+    app.add_item('Skull')
+    tRex = True
 
 def op3():
     global necklace

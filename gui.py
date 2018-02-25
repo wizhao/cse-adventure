@@ -6,7 +6,7 @@ from backpack import Backpack
 
 class Application(Frame):
     def createWidgets(self):
-        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner2.png").convert("RGBA").resize((800,100)))
+        title = ImageTk.PhotoImage(Image.open(os.getcwd() + "\\assets\\misc\\titleBanner3.png").convert("RGBA").resize((800,100)))
         titleBanner = Label(width=800,height=100,image=title)
         titleBanner.asset = title
         titleBanner.grid(row=0,column=0,columnspan=2)
@@ -232,13 +232,13 @@ class Application(Frame):
 
     def update_canvas(self, picinfo):
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
+        self.caption.set(picinfo[1])
         try:
             photo = ImageTk.PhotoImage(Image.open(picname))
             self.pic_disp.config(image=photo)
             self.pic_disp.currentImage = photo
-            self.caption.set(picinfo[1])
         except IOError:
-            pass
+            print 'Error showing image: ' + picname
 
     def show_item(self,item):
         picinfo = ("Items\\" + item.picture, item.caption)
