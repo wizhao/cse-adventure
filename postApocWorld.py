@@ -18,7 +18,7 @@ def run(a):
 #starting point
 def start():
     app.change_location(("postApocWorld.png","A dusty dystopia"))
-    app.update_console('Within your field of view, you can see a massive glass dome, a group of off-road vehicles, and a gang of survivors. Which area do you visit first?\n')
+    app.update_console('Within your field of view, you can see a massive metal dome, a group of off-road vehicles, and a gang of survivors. Which area do you visit first?\n')
     app.update_buttons([('Thunderdome', op1), ('Off-road Vehicles', op2), ('Gang of Survivors', op3), ('Return to Hub', lambda: hub.run(app))])
 
 #option 1
@@ -109,20 +109,24 @@ def op1_1(minRoll, challenger):
 
 #option 2
 def op2():
+    app.change_location(("postApocWorld2.png","Nice rides"))
     app.update_console('Upon entering the area, you see three vehicles: an off-road jeep, a monster truck, and a formula one racer. Which vehicle to you check?\n')
     app.update_buttons([('Jeep', op2_1), ('Monster Truck', op2_2), ('Formula One Racer', op2_3), ('Back', start)])
 
 def op2_1():
     global jisoo
     if (not jisoo):
+        app.change_location(("postApocWorld2_1jisoo.png","Cute"))
         app.update_console('You find a photo of a Korean Popstar\n')
         app.add_item('Jisoo Photo')
         jisoo = True
     else:
+        app.change_location(("postApocWorld2_1.png","Nothing left"))
         app.update_console('Nothing left to see here\n')
     app.update_buttons([('Back', op2)])
 
 def op2_2():
+    app.change_location(("postApocWorld2_2.png","Oooh a knife!"))
     app.update_console('You see a sleeping man decked out in chainmail armor asleep with a knife in his hands. Do you attempt to steal the knife?\n')
     app.update_buttons([('Steal', op2_2_1), ('Back', op2)])
 
@@ -134,16 +138,19 @@ def op2_2_1():
 def op2_3():
     global uranium
     if (not uranium):
+        app.change_location(("postApocWorld2_3map.png","Map to somewhere???"))
         app.update_console('You find a map to a distant location marked with an X on it. You know that you won\'t be able to make it that far without some food for the trip, so you must have some food before continuing.\n')
         if (app.get_items('food') != []):
             app.update_buttons([('Eat food', op2_3_1), ('Back', op2)])
         else:
             app.update_buttons([('Back', op2)])
     else:
-        app.update_console('There is nothing left in this area')
+        app.update_console('You already got the uranium')
         app.update_buttons([('Back', op2)])
+        
 def op2_3_1():
     global uranium
+    app.change_location(("postApocWorld2_3_1.png","Uranium...I'll take."))
     food = random.choice(app.get_items('food'))
     app.update_console('You eat your ' + food + ' and begin your trek')
     app.remove_item(food)
@@ -155,6 +162,7 @@ def op2_3_1():
 def op3():
     global gang
     if (not gang):
+        app.change_location(("postApocWorld3.png","A bunch of riff-raffs and hoodlums"))
         app.update_console('You walk up to the gang members and one of them starts speaking to you. "If ya wanna to be a part of our gang, yer gonna have to get yerself a skull of a dead predator." You see that they all have something around their necks: a power crystal.\n')
         if (app.has_item('Skull')):
             app.update_buttons([('Give Skull', op3_1), ('Back', start)])
@@ -166,6 +174,7 @@ def op3():
         app.update_buttons([('Back', start)])
 def op3_1():
     global gang
+    app.change_location(("postApocWorld3_1.png", "Don't wanna get on this guy's bad side...."))
     app.update_console('"Wow, that\'s one impressive skull." says the gang leader. You hand him the skull and he returns to you a pendant. You take the crystal from the pendant and run away.\n')
     app.remove_item('Skull')
     app.add_item('Yellow Crystal')
