@@ -27,12 +27,103 @@ def start():
 
 def op1():
     app.update_console('You walk into the Jungle Temple and see eight switches on the wall in front of you. To the right of that wall is a staircase, and on the left side of the room is a dilapidated chest. Where do you choose to go?\n')
-    app.update_buttons([('Switches', op1_1), ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
+    app.update_buttons([ ('Switches', op1_1) , ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
 
 def op1_1():
+    def minigame ():
+        def exit_puzzle():
+            code_in = str(var_1.get()) + str(var_2.get()) + str(var_3.get()) + str(var_4.get()) + str(var_5.get()) + str(var_6.get()) + str(var_7.get()) + str(var_8.get())
+            if code_in == "01000101":
+                app.update_console("A part of the wall retracts, revealing a bone shiv and some chicken tendies.",tag="g")
+                app.add_item("Bone Shiv")
+                app.add_item("Chicken Tendies")
+                switches = True
+            else:
+                app.update_console("Nothing happened.")
+            game.destroy()
+        game = Toplevel(width=800,height=100,padx=10,pady=10)
+        game.title("Jungle Puzzle")
+        switchArray = Frame(game)
+        switchArray.pack(fill=X,expand=1)
+        switch_1 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_1 = IntVar()
+        switch_1_disp = Label(switch_1,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_1)
+        switch_1_box = Checkbutton(switch_1,variable=var_1)
+        switch_1_disp.pack()
+        switch_1_box.pack()
+        switch_1.pack(side=LEFT)
+
+        switch_2 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_2 = IntVar()
+        switch_2_disp = Label(switch_2,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_2)
+        switch_2_box = Checkbutton(switch_2,variable=var_2)
+        switch_2_disp.pack()
+        switch_2_box.pack()
+        switch_2.pack(side=LEFT)
+
+        switch_3 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_3 = IntVar()
+        switch_3_disp = Label(switch_3,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_3)
+        switch_3_box = Checkbutton(switch_3,variable=var_3)
+        switch_3_disp.pack()
+        switch_3_box.pack()
+        switch_3.pack(side=LEFT)
+
+        switch_4 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_4 = IntVar()
+        switch_4_disp = Label(switch_4,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_4)
+        switch_4_box = Checkbutton(switch_4,variable=var_4)
+        switch_4_disp.pack()
+        switch_4_box.pack()
+        switch_4.pack(side=LEFT)
+
+        switch_5 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_5 = IntVar()
+        switch_5_disp = Label(switch_5,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_5)
+        switch_5_box = Checkbutton(switch_5,variable=var_5)
+        switch_5_disp.pack()
+        switch_5_box.pack()
+        switch_5.pack(side=LEFT)
+
+        switch_6 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_6 = IntVar()
+        switch_6_disp = Label(switch_6,pady=6,font=("Fixedsys",16,"bold"),textvariable=var_6)
+        switch_6_box = Checkbutton(switch_6,variable=var_6)
+        switch_6_disp.pack()
+        switch_6_box.pack()
+        switch_6.pack(side=LEFT)
+
+        switch_7 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_7 = IntVar()
+        switch_7_disp = Label(switch_7,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_7)
+        switch_7_box = Checkbutton(switch_7,variable=var_7)
+        switch_7_disp.pack()
+        switch_7_box.pack()
+        switch_7.pack(side=LEFT)
+
+        switch_8 = Frame(switchArray,bd=2,relief=SUNKEN,padx=20,pady=5)
+        var_8 = IntVar()
+        switch_8_disp = Label(switch_8,pady=5,font=("Fixedsys",16,"bold"),textvariable=var_8)
+        switch_8_box = Checkbutton(switch_8,variable=var_8)
+        switch_8_disp.pack()
+        switch_8_box.pack()
+        switch_8.pack(side=LEFT)
+
+        button_container = Frame(game,pady=10)
+        Button(button_container,text="Done",command=exit_puzzle).pack()
+        button_container.pack(side=BOTTOM)
+
+        game.grab_set()
+
     if not switches:
         app.update_console("The eight switches seem to be placed in a random order. If only you had a code that could tell you the right order to put them in.")
-        app.update_buttons([ ("Enter a Code", app.minigame) , ("Back", op1)])
+        app.update_buttons([ ("Enter a Code", minigame) , ("Back", op1)])
+    else:
+        app.update_console("You have already collected the loot in the section under the switches.")
+        app.update_buttons([ ("Back", op1) ])
+
+
+
     '''
     global switches
     #global b
