@@ -22,10 +22,12 @@ def run(a):
     start()
 
 def start():
+    app.change_location(("dinoWorld.png","A lush forest with an anciet spirit."))
     app.update_console('To your left you see a towering stone temple, in the distance, you see a sleeping T-Rex, and to your right, you see an abandoned campsite. Which way do you turn?\n')
     app.update_buttons([('Jungle Temple', op1), ('Sleeping T-Rex', op2), ('Abandoned Campsite', op3), ('Return to Hub', lambda: hub.run(app))])
 
 def op1():
+    app.change_location(("dinoWorld1.png","A stony jungle temple"))
     app.update_console('You walk into the Jungle Temple and see eight switches on the wall in front of you. To the right of that wall is a staircase, and on the left side of the room is a dilapidated chest. Where do you choose to go?\n')
     app.update_buttons([ ('Switches', op1_1) , ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
 
@@ -36,6 +38,7 @@ def op1_1():
             global switches
             code_in = str(var_1.get()) + str(var_2.get()) + str(var_3.get()) + str(var_4.get()) + str(var_5.get()) + str(var_6.get()) + str(var_7.get()) + str(var_8.get())
             if code_in == "01000101":
+                app.change_location(("dinoWorld1_1win.png","You got the code!"))
                 app.update_console("A part of the wall retracts, revealing a bone shiv and some chicken tendies.",tag="g")
                 app.add_item("Bone Shiv")
                 app.add_item("Chicken Tendies")
@@ -119,14 +122,17 @@ def op1_1():
         game.grab_set()
 
     if not switches:
+        app.change_location(("dinoWorld1_1.png","What do they do?"))
         app.update_console("The eight switches seem to be placed in a random order. If only you had a code that could tell you the right order to put them in.")
         app.update_buttons([ ("Enter a Code", minigame) , ("Back", op1)])
     else:
+        app.change_location(("dinoWorld1_1win.png","You got the code!"))
         app.update_console("You have already collected the loot in the section under the switches.")
         app.update_buttons([ ("Back", op1) ])
 
 def op1_2():
     global chest
+    app.change_location(("dinoWorld1_2.png","This chest is in bad shape"))
     if (chest==False):
         app.update_console( 'The worn-down chest opens with a creaking sound, revealing: ')
         loot = random.randint(0,3)
@@ -152,6 +158,7 @@ def op1_3():
     global lives
     global darkRoom
     if (darkRoom == False):
+        app.change_location(("dinoWorld1_3.png","You can't see anything!"))
         app.update_console( 'You descend the stairs and find a very dark room. You believe that there could be something useful in this room. You decide to search for a lightswitch. Do you...\n')
         app.update_buttons([('Walk', op1_3_1), ('Crawl', op1_3_2), ('Hug the wall', op1_3_3), ('Back', op1)])
     else:
@@ -160,16 +167,17 @@ def op1_3():
 
 
 def op1_3_1():
+    app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     app.update_console( 'You try walking but unfortunately hit a few traps on the floor to the lightswitch. (-1 life)', tag="r")
     app.add_life(-1)
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n','g')
     app.add_item('Key')
     darkRoom = True
-
     app.update_buttons([('Back', op1)])
 
 def op1_3_2():
+    app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     global lives
     app.update_console( 'You try crawling but unfortunately hit a few traps on the floor to the lightswtich. (-1 life)', tag="r")
@@ -180,6 +188,7 @@ def op1_3_2():
     app.update_buttons([('Back', op1)])
 
 def op1_3_3():
+    app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     app.update_console( 'You successfully make it to the other side of the room without getting hurt', tag="g")
     app.update_console( 'You find the switch and see a futuristic-looking key on the ground. You pick up the key and put it in your backpack.\n', tag='g')
@@ -190,6 +199,7 @@ def op1_3_3():
 def op2():
     global tRex
     if (tRex == False):
+        app.change_location(("dinoWorld2.png","He looks so peaceful"))
         app.update_console( 'You decide it would be a good idea to kill this sleeping dinosaur to get its skull.')
         if (app.get_items('weapon') != []):
             app.update_buttons([('Attack', op2_1), ('Back', start)])
@@ -197,11 +207,13 @@ def op2():
             app.update_console( 'However, you don\'t want to attack it without some sort of weapon.\n')
             app.update_buttons([('Back', start)])
     else:
+        app.change_location(("dinoWorld2dead.png","He looks so dead"))
         app.update_console('You have already killed the T-Rex')
         app.update_buttons([('Back', start)])
 
 def op2_1():
     global tRex
+    app.change_location(("dinoWorld2dead.png","He looks so dead"))
     app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
     app.add_item('Skull')
     tRex = True
@@ -209,6 +221,7 @@ def op2_1():
 
 def op3():
     global necklace
+    app.change_location(("dinoWorld3.png","Is anyone here?"))
     if (necklace == False):
         app.update_console( 'At the abandoned campsite, you see a shaggy man with a wispy beard. The insane-looking man tells you that he has a power crystal to give you if you get him a seashell necklace. You decide to trust the man\'s word.')
     app.update_console( 'Throughout the rest of the campsite, you see two tents and a campfire. What do you do?\n')
@@ -218,12 +231,14 @@ def op3():
         app.update_buttons([('Search first tent', op3_1), ('Search second tent', op3_2), ('Search campfire', op3_3), ('Back', start)])
 
 def op3_1():
+    app.change_location(("dinoWorld3_1.png","Nothing"))
     app.update_console( 'You find nothing in the first tent.\n')
     app.update_buttons([('Back', op3)])
 def op3_2():
     global lives
     global raptor
     if (raptor == False):
+        app.change_location(("dinoWorld3_2.png","Ack!"))
         app.update_console( 'A baby raptor jumps out of the tent and starts attacking you!',tag="r")
         if (app.get_items('weapon') != []):
             app.update_console( 'You kill the raptor with your ' + random.choice(app.get_items('weapon')) + '.\n')
@@ -236,11 +251,13 @@ def op3_2():
                 app.update_console( 'Luckily, you are able to kill the raptor with your bare fists without a scratch.\n')
         raptor = True
     else:
+        app.change_location(("dinoWorld3_1.png","Nothing here"))
         app.update_console( 'The tent is now empty after the raptor left\n')
     app.update_buttons([('Back', op3)])
 
 def op3_3():
     global campfire
+    app.change_location(("dinoWorld3_3.png","It could burn your skin"))
     if (campfire == False):
         app.update_console( 'You find coal in the campfire!\n',tag="g")
         app.add_item('Coal')
@@ -250,6 +267,7 @@ def op3_3():
     app.update_buttons([('Back', op3)])
 def op3_4():
     global necklace
+    app.change_location(("dinoWorld3_4.png","He looks mad"))
     app.update_console( 'You hand the seashell necklace over to the man, and, as he promised, he gifts you a green power crystal.\n', tag='g')
     app.remove_item('Seashell Necklace')
     app.add_item('Green Crystal')
