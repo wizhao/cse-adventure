@@ -289,12 +289,13 @@ class Application(Frame):
             self.b.add(name)
             self.update_items()
             self.update_itemCount()
-        elif len(self.b.contents) < self.b.itemLimit:
-            update_console("You do not have enough space for that.",tag="r")
-            update_console("Drop an item to make room for it.")
-        elif name not in self.b.storage:
+        elif name in self.b.storage:
             update_console("You already have this item!",tag="r")
-            update_console("Retrieve it from the hub.")
+            update_console("You can retrieve it from the hub.")
+        elif len(self.b.contents) >= self.b.itemLimit:
+            update_console("You do not have enough space in your backpack.")
+            update_console("It was sent to your storage in the hub.")
+            self.b.put_in_storage(name)
         else:
             update_console("Oops! Something unexpected happened.",tag="r")
             update_console("Tell the bois if you see this.")
