@@ -90,7 +90,7 @@ def op1_1(minRoll, challenger):
             app.update_console(challenger + ', despite being distracted by Jisoo, ' + challenger + 'is able to knock you out. (-1 life)', tag='r')
             app.add_life(-1)
     app.update_console( 'You can always try your hand at the THUNDERDOME again.\n')
-    op1()
+    app.update_buttons([('Back', op1)])
         
 #option 2    
 def op2():
@@ -105,7 +105,7 @@ def op2_1():
         jisoo = True
     else:
         app.update_console('Nothing left to see here\n')
-    op2()
+    app.update_buttons([('Back', op2)])
 
 def op2_2():
     app.update_console('You see a sleeping man decked out in chainmail armor asleep with a knife in his hands. Do you attempt to steal the knife?\n')
@@ -114,7 +114,7 @@ def op2_2():
 def op2_2_1():
     app.update_console('The man wakes up before you can grab the knife out of his hands. He stabs you with it and falls back asleep. (-1 Life)\n', tag='r')
     app.add_life(-1)
-    op2_2()
+    app.update_buttons([('Back', op2_2)])
 
 def op2_3():
     global uranium
@@ -134,7 +134,7 @@ def op2_3_1():
     app.update_console('You make your way to the point on the map, and once you get there, you see a vat of uranium. You decide this uranium is useful, so you take it with you for later.\n', tag='g')
     app.add_item('Uranium')
     uranium = False
-    op2()
+    app.update_buttons([('Back', op2)])
 
 def op3():
     global gang
@@ -150,7 +150,7 @@ def op3():
 def op3_1():
     global gang
     app.update_console('"Wow, that\'s one impressive skull." says the gang leader. You hand him the skull and he returns to you a pendant. You take the crystal from the pendant and run away.\n')
-    app.add_item('Yellow Crystal')
     app.remove_item('Skull')
+    app.add_item('Yellow Crystal')
     gang = True
     start()

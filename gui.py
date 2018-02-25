@@ -292,15 +292,15 @@ class Application(Frame):
             self.update_items()
             self.update_itemCount()
         elif name in self.b.storage:
-            update_console("You already have this item!",tag="r")
-            update_console("You can retrieve it from the hub.")
+            self.update_console("You already have this item!",tag="r")
+            self.update_console("You can retrieve it from the hub.")
         elif len(self.b.contents) >= self.b.itemLimit:
-            update_console("You do not have enough space in your backpack.")
-            update_console("It was sent to your storage in the hub.")
+            self.update_console("You do not have enough space in your backpack.")
+            self.update_console("It was sent to your storage in the hub.")
             self.b.put_in_storage(name)
         else:
-            update_console("Oops! Something unexpected happened.",tag="r")
-            update_console("Tell the bois if you see this.")
+            self.update_console("Oops! Something unexpected happened.",tag="r")
+            self.update_console("Tell the bois if you see this.")
 
 
     def remove_item(self,name):
@@ -311,7 +311,7 @@ class Application(Frame):
         return self.b.get_items(category)
 
     def has_item(self,name):
-        return self.b.has(name) and name in self.b.storage
+        return self.b.has(name)
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
