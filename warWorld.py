@@ -96,20 +96,12 @@ def op2_1():
     if not grenades:
         app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
         app.update_console("You find a few grenades lying around near the bottom.")
-<<<<<<< HEAD
         app.update_console("You carefully stash them, hoping the officers didn't notice.",tag="g")
         grenades = True
     else:
         app.change_location(("warWorld2_1_1.png","There\'s nothing to take."),default=mainpic)
         app.update_console("There doesn't seem to be anything else insignificant enough to steal.")
     app.update_buttons([ ("Back", lambda: op2(msg="")) ])
-=======
-        app.update_console("You carefully stash them, hoping the officers didn't notice.\n",tag="g")
-        app.add_item('Grenades')
-    else:
-        app.update_console("There doesn't seem to be anything insignificant enough to steal.\n")
-    app.update_buttons([ ("Back", op2)])
->>>>>>> 05eb59948e3dd2367bbc55ea6842d972de1bd4bd
 
 def op2_2():
     global saved
