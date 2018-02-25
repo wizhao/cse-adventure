@@ -36,6 +36,7 @@ class Backpack(object):
         red_crystal = Item('Red Crystal', None, 'crystal')
         purple_crystal = Item('Purple Crystal', None, 'crystal')
         orange_crystal = Item('Orange Crystal', None, 'crystal')
+        tank = Item('Oxygen Tank', None, 'tool')
 
 
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
@@ -52,7 +53,7 @@ class Backpack(object):
                             medicine.name: medicine, yellow_crystal.name: yellow_crystal,
                             blue_crystal.name: blue_crystal, green_crystal.name: green_crystal,
                             red_crystal.name: red_crystal, purple_crystal.name: purple_crystal,
-                            orange_crystal.name: orange_crystal}
+                            orange_crystal.name: orange_crystal, tank.name: tank}
         self.contents = {}
         self.storage = {}
 
