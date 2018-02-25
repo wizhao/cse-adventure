@@ -19,17 +19,19 @@ def run(a):
     app = a
     app.update_console('You enter the Dino World and are transported into a thick jungle filled with beautiful flora and fauna.')
     start()
-    
+
 def start():
     app.update_console('To your left you see a towering stone temple, in the distance, you see a sleeping T-Rex, and to your right, you see an abandoned campsite. Which way do you turn?\n')
     app.update_buttons([('Jungle Temple', op1), ('Sleeping T-Rex', op2), ('Abandoned Campsite', op3), ('Return to Hub', lambda: hub.run(app))])
-        
+
 def op1():
     app.update_console('You walk into the Jungle Temple and see eight switches on the wall in front of you. To the right of that wall is a staircase, and on the left side of the room is a dilapidated chest. Where do you choose to go?\n')
     app.update_buttons([('Switches', op1_1), ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
-        
+
 def op1_1():
-    pass
+    if not switches:
+        app.update_console("The eight switches seem to be placed in a random order. If only you had a code that could tell you the right order to put them in.")
+        app.update_buttons([ ("Enter a Code", app.minigame) , ("Back", op1)])
     '''
     global switches
     #global b
@@ -47,7 +49,7 @@ def op1_1():
         print 'You have already seen the switches.\n'
     op1()
     '''
-    
+
 def op1_2():
     global chest
     if (chest==False):
@@ -65,13 +67,13 @@ def op1_2():
         if (loot == 3):
             app.update_console( 'Gravy!\n', tag="g")
             app.add_item("Gravy")
-        chest = True  
-        
+        chest = True
+
     else:
         app.update_console('This chest has already been opened.\n')
     op1()
-    
-    
+
+
 def op1_3():
     global lives
     global darkRoom
@@ -81,7 +83,7 @@ def op1_3():
     else:
         app.update_console( 'You decide there\'s nothing left for you downstairs\n')
         op1()
-    
+
 
 def op1_3_1():
     global darkRoom
@@ -91,7 +93,7 @@ def op1_3_1():
     app.add_item('Key')
     darkRoom = True
     op1()
-    
+
 def op1_3_2():
     global darkRoom
     global lives
@@ -101,7 +103,7 @@ def op1_3_2():
     app.add_item('Key')
     darkRoom = True
     op1()
-    
+
 def op1_3_3():
     global darkRoom
     app.update_console( 'You successfully make it to the other side of the room without getting hurt', tag="g")
@@ -109,7 +111,7 @@ def op1_3_3():
     app.add_item('Key')
     darkRoom = True
     op1()
-        
+
 #change to short range weapon when functional
 def op2():
     global tRex
@@ -124,7 +126,7 @@ def op2():
     else:
         app.update_console('You have already killed the T-Rex')
     start()
-    
+
 def op3():
     global necklace
     if (necklace == False):
@@ -156,7 +158,7 @@ def op3_2():
     else:
         app.update_console( 'The tent is now empty after the raptor left\n')
     op3()
-    
+
 def op3_3():
     global campfire
     if (campfire == False):
