@@ -171,7 +171,8 @@ class Application(Frame):
 
 
     def pull_out(self):
-        pass
+        self.pullout = Toplevel()
+        Label(text="Select the items you wish to bring to your backpack:").pack()
 
     def callback(self,evt):
         self.output.see(END)
@@ -284,7 +285,7 @@ class Application(Frame):
 
     def op3(self):
         print "Option 3"
-        self.game_over()
+        self.pull_out()
 
 
 #comment out everything below when not testing
