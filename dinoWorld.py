@@ -40,7 +40,7 @@ def op1_1():
                 app.add_item("Bone Shiv")
                 app.add_item("Chicken Tendies")
                 switches = True
-                op1()
+                app.update_buttons( [ ("Back",op1)])
             else:
                 app.update_console("Nothing happened.")
             game.destroy()
@@ -223,7 +223,6 @@ def op2():
     else:
         app.update_console('You have already killed the T-Rex')
         app.update_buttons([('Back', start)])
-    start()
 
 def op3():
     global necklace
@@ -242,7 +241,7 @@ def op3_2():
     global lives
     global raptor
     if (raptor == False):
-        app.update_console( 'A baby raptor jumps out of the tent and starts attacking you.')
+        app.update_console( 'A baby raptor jumps out of the tent and starts attacking you!',tag="r")
         if (app.get_items('weapon') != []):
             app.update_console( 'You kill the raptor with your ' + random.choice(app.get_items('weapon')) + '.')
         else:
@@ -260,7 +259,7 @@ def op3_2():
 def op3_3():
     global campfire
     if (campfire == False):
-        app.update_console( 'You find coal in the campfire\n')
+        app.update_console( 'You find coal in the campfire\n',tag="g")
         app.add_item('Coal')
         campfire = True
     else:
