@@ -9,7 +9,7 @@ class Backpack(object):
         lettuce = Item('Lettuce', None, 'food')
         daniel = Item('Steamed Hams and Macaroni', None, 'food')
         icicle = Item('Icicle', None, 'tool')
-        bone_shiv = Item('Bone Shiv', None, 'weapon')
+        bone_pick = Item('Bone Pick', None, 'tool')
         shotgun = Item('Sawed-off Shotgun', None, 'weapon')
         tactical_shotgun = Item('Purple Tactical Shotgun', None, 'weapon')
         trident = Item('Trident', None, 'weapon')
@@ -40,13 +40,16 @@ class Backpack(object):
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
         card = Item("ID Card","A government ID card, used for top-level access.","important","card.png")
-        rock = Item("Rock","A mossy rock with some strange carvings on it.","important","rock.png")
+        rock = Item("Rock","A mossy rock with some strange carvings on it.","tool","rock.png")
+        cube = Item("Ice Cube","A frozen block of Mystic Water. Tastes funny.","important","cube.png")
+        spear = Item("Ceremonial Spear","A decorated Inuit weapon, destined to kill 'The Lurker,' according to myth.","weapon","spear.png")
+        fruit = Item("Fruit","A strange fruit, picked from a strange tree. Strange.","food","fruit.png")
 
 
         self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
                             translator.name: translator, lettuce.name: lettuce,
                             daniel.name: daniel, icicle.name: icicle,
-                            bone_shiv.name: bone_shiv, shotgun.name: shotgun,
+                            bone_pick.name: bone_pick, shotgun.name: shotgun,
                             tactical_shotgun.name: tactical_shotgun, trident.name:
                             trident, crossbow.name: crossbow, key.name: key, note.name:
                             note, photo.name: photo, gravy.name: gravy,
@@ -58,7 +61,8 @@ class Backpack(object):
                             blue_crystal.name: blue_crystal, green_crystal.name: green_crystal,
                             red_crystal.name: red_crystal, purple_crystal.name: purple_crystal,
                             orange_crystal.name: orange_crystal, tank.name: tank, tendies.name: tendies,
-                            rifle.name: rifle, mre.name: mre, card.name: card, rock.name: rock}
+                            rifle.name: rifle, mre.name: mre, card.name: card, rock.name: rock, cube.name: cube,
+                            spear.name: spear, fruit.name: fruit}
         self.contents = {}
         self.storage = {}
 

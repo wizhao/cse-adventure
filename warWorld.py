@@ -223,7 +223,7 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
         else:
             app.update_console("There's nothing in this alley.")
         app.update_buttons([ ("Back", lambda: op3_1(msg="")) ])
-    app.change_location("warworld3_1.png","A dark alley.")
+    app.change_location(("warworld3_1.png","A dark alley."))
     app.update_console(msg)
     app.update_buttons([ ("Search Trash",find_rock) , ("Explore the Alley",explore) , ("Back",lambda: op3(msg="")) ])
 
@@ -233,7 +233,7 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
 def op3_2():
     global quested
     global saved
-    app.change_location("warworld3_2.png","A busy hospital.")
+    app.change_location(("warworld3_2.png","A busy hospital."))
     if not saved:
         app.update_console("When you enter the hospital, you hear a hysterical patient being calmed down by a nurse. You overhear that this is the wife of SuperLieutenant Chalmers, and that she was separated from her daughter in the city that was captured recently.")
         quested = True
@@ -253,7 +253,7 @@ def op3_3():
         else:
             app.update_console("You don't have any uranium to give!")
         app.update_buttons([ ("Back", op3_3) ])
-    app.change_location("warworld3_3.png","A top-secret meeting room.")
+    app.change_location(("warworld3_3.png","A top-secret meeting room."))
     if app.has_item("ID Card") and not traded:
         app.update_console("You find the secret room, and use the ID Card to enter. Inside, the scientists were expecting you. They say that they need a sample of Uranium for their research.")
         app.update_buttons([ ("Trade Uranium",make_trade) , ("Leave", lambda: op3(msg="")) ])
@@ -261,6 +261,6 @@ def op3_3():
         app.update_console("The scientists are hard at work, conducting research with the uranium you gave.")
         app.update_buttons([ ("Leave"), lambda: op3(msg="") ])
     else:
-        app.change_location("warworld3_3_1.png","You forgot the key!")
+        app.change_location(("warworld3_3_1.png","You forgot the key!"))
         app.update_console("You find the secret room, but you realize you don't have the ID Card on you.")
         app.update_buttons([ ("Leave", lambda: op3(msg="")) ])

@@ -39,8 +39,8 @@ def op1_1():
             code_in = str(var_1.get()) + str(var_2.get()) + str(var_3.get()) + str(var_4.get()) + str(var_5.get()) + str(var_6.get()) + str(var_7.get()) + str(var_8.get())
             if code_in == "01000101":
                 app.change_location(("dinoWorld1_1win.png","You got the code!"))
-                app.update_console("A part of the wall retracts, revealing a bone shiv and some chicken tendies.",tag="g")
-                app.add_item("Bone Shiv")
+                app.update_console("A part of the wall retracts, revealing a bone Pick and some chicken tendies.",tag="g")
+                app.add_item("Bone Pick")
                 app.add_item("Chicken Tendies")
                 switches = True
                 app.update_buttons( [ ("Back",op1)])
