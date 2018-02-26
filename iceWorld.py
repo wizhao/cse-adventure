@@ -27,7 +27,7 @@ def checkParka():
     if app.has_item("Parka"):
         pass
     else:
-        app.update_console("Without your parka, you scramble to get away from the cold.\n(-2 life)")
+        app.update_console("Without your parka, you scramble to get away from the cold.\n(-2 life)",tag="r")
         app.add_life(-2)
         hub.run(app)
 
@@ -45,7 +45,7 @@ def op1(msg="You approach a small Inuit Village. You pick up power crystal readi
     app.update_console(msg)
     app.update_buttons([ ("Visit Medicine Man",op1_1) , ("Visit Chief",op1_2) , ("Ice Cave",op1_3) , ("Back",start) ])
 
-def op1_1(msg="The medicine man greets you, and asks a favor: he needs some mystic water, but the only source is at the top of the mountain, and he's too frail."):
+def op1_1(msg="The medicine man greets you, and asks a favor: he needs some mystic water, but the only source is at the top of the mountain, and he's too frail. He adds that you will need some form of pickaxe to properly harvest it."):
     # option 1: suboption 1
     checkParka()
     app.change_location(("iceWorld1_1.png","There's lots of exotic medicines. How'd he get them?"))
