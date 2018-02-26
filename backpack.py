@@ -34,7 +34,7 @@ class Backpack(object):
         red_crystal = Item('Red Crystal', 'Powers your portal gun. From the War World', 'crystal', 'red.png')
         purple_crystal = Item('Purple Crystal', 'Powers your portal gun. From Ice World', 'crystal', 'purple.png')
         orange_crystal = Item('Orange Crystal', 'Powers your portal gun. From the future.', 'crystal', 'orange.png')
-        tank = Item('Oxygen Tank', 'Lets you breathe underwater', 'tool')
+        tank = Item('Oxygen Tank', 'Lets you breathe underwater', 'tool', 'tank.png')
         tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","food","tendies.png")
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
