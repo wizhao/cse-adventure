@@ -1,7 +1,10 @@
 from item import Item
 
 class Backpack(object):
+    # Backpack class
+
     def __init__(self):
+        # initialize object in backpack class
         self.itemLimit = 12
         portal_gun = Item('Portal Gun', None, 'tool',"portalGun.png",False,"You need that to get around, silly!")
         ray_gun = Item('Ray Gun', None, 'weapon')
@@ -67,22 +70,27 @@ class Backpack(object):
         self.storage = {}
 
     def add(self, name):
+        # add item to backpack
         self.contents[name] = self.item_list[name]
 
     def remove(self, name):
+        # remove item from backpack
         self.contents.pop(name)
 
     def put_in_storage(self, name):
+        # put item from backpack in storage
         if name in self.contents:
             self.contents.pop(name)
             self.storage[name] = self.item_list[name]
 
     def get_from_storage(self, name):
+        # get item from storage
         if name in self.storage:
             self.storage.pop(name)
             self.contents[name] = self.item_list[name]
 
     def get_items(self, category):
+        # get lsit of items from backpack based on category
         names = []
         for key, value in self.contents.iteritems():
             if value.ilk == category:
@@ -90,40 +98,22 @@ class Backpack(object):
         return names
 
     def get_items_storage(self, category):
+        # get lsit of items from storage based on category
         names = []
         for key, value in self.storage.iteritems():
             if value.ilk == category:
                 names.append(key)
         return names
-    '''
-    def get_items(self, category, subcategory):
-        names = []
-        for key, value in self.contents.iteritems():
-            if value.ilk == category and value.subilk == subcategory:
-                names.append(key)
-        return names
-    '''
-
-    '''
-    def list_items(self):
-        for key, value in self.contents.iteritems():
-            print key
-    '''
 
     def has(self, name):
+        # checks if item is in backpack
         if name in self.contents:
             return True
         return False
 
     def get_item(self,name):
+        # get specific item from backpack
         if name in self.contents:
             return self.contents[name]
         else:
             return Item()
-
-#b = Backpack()
-#b.add('key')
-#b.add('armor')
-#b.add('coal')
-#b.add('crossbow')
-#print b.get_items('weapon')

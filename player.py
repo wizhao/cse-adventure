@@ -1,13 +1,16 @@
 class Player(object):
-    #initialize object in Player class
+    #Player class
+
     def __init__(self):
+        #initialize object in Player class
         self.lives = 5
         self.chestOpened = False
 
-    #reset number of lives
+
     def set_lives(self, lives):
+        #reset number of lives
         self.lives = lives
 
-    #retrieve number of lives
     def get_lives(self):
+        #retrieve number of lives
         return self.lives
