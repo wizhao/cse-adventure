@@ -1,4 +1,5 @@
-#War World
+# methods handling operations in War World
+
 from Tkinter import *
 import random
 import hub
@@ -16,15 +17,15 @@ rock = False
 thug = False
 traded = False
 
-#called by main
 def run(a):
+    # called by main
     global app
     app = a
     app.update_console('You step out of your portal into what appears to be a trench in a warzone. You hear the distinct sounds of gunfire nearby, and the occasional explosions of artillery shells.\n')
     start()
 
-#starting point
 def start():
+    # starting point
     global entered
     app.change_location(("warWorld.png","A grim landscape in the midst of war."))
     if not entered:
@@ -38,17 +39,15 @@ def start():
         app.update_console("You see the front lines ahead of you, the dugout behind you, and a faint outline of a city far back. Where do you go?\n")
         app.update_buttons( [ ("Front Lines",op1) , ("Military Dugout",op2) , ("City",op3) , ("Return to Hub",lambda: hub.run(app)) ])
 
-
-
-#option 1
 def op1(msg="You move up to the gruesome front lines. Your shoes are soaked, the gunshots are deafening, and it smells horrible. Between the soldiers resting and firing, there is no joy to be seen anywhere. What do you do?\n"):
+    # option 1
     app.change_location(("warWorld1.png","The gruesome front lines."),default=mainpic)
     if msg != "":
         app.update_console(msg)
     app.update_buttons([ ("Go Over the Top" , op1_1) , ("Talk to Soldier" , op1_2) , ("Dig Out Trenches" , op1_3) , ("Back",start) ])
 
-#option 1: suboption 1
 def op1_1():
+    # option 1: suboption 1
     if app.has_item("Rifle"):
         app.update_console("You try to join the war effort, climbing up and over the walls of the trench and brandishing your rifle.")
         app.update_console("Shortly after climbing, a shot from the other side hits you in the torso (-1 life). What were you thinking?\n",tag="r")
@@ -58,8 +57,8 @@ def op1_1():
         app.update_console("You can't fight without your rifle!")
         op1()
 
-#option 1: suboption 2
 def op1_2():
+    # option 1: suboption 2
     app.change_location(("warWorld1_2.png","A soldier suffers on the front lines."),default=mainpic)
     global digged
     global meal
@@ -74,9 +73,8 @@ def op1_2():
         app.update_console("The soldier sits idly, occasionally taking shifts on the front line with his comrades.\n")
     app.update_buttons([ ("Back",lambda: op1(msg="")) ])
 
-
-#option 1: suboption 3
 def op1_3():
+    # option 1: suboption 3
     global digged
     if not digged:
         if app.has_item("Shovel"):
@@ -89,13 +87,14 @@ def op1_3():
         app.update_console("The trenches feel slightly more comfortable after your work.\n")
     app.update_buttons([ ("Back",lambda: op1(msg="")) ])
 
-#option 2
 def op2(msg="You enter the military dugout. Military commanders crowd around a table, discussing tactics. What do you do?\n"):
+    # option 2
     app.change_location(("warWorld2.png","Military commanders are discussing tactics."),default=mainpic)
     app.update_console(msg)
     app.update_buttons([ ("Look at Weapon Rack" , op2_1) , ("Talk to Official", op2_2) , ("Look at Map", op2_3) , ("Back" , start) ])
 
 def op2_1():
+    # option 2 suboption 1
     global grenades
     if not grenades:
         app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
@@ -109,6 +108,7 @@ def op2_1():
     app.update_buttons([ ("Back", lambda: op2(msg="")) ])
 
 def op2_2():
+    # option 2 suboption 2
     global saved
     global givenID
     if not saved:
@@ -127,9 +127,8 @@ def op2_2():
         app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck on your journey.\n")
     app.update_buttons([ ("Back",lambda: op2(msg="")) ])
 
-
-
 def op2_3():
+    # option 2 suboption 3
     def journey():
         def trek(has_weapon):
             global saved
@@ -181,10 +180,8 @@ def op2_3():
     choices.append( ("Back", lambda: op2(msg="")) )
     app.update_buttons(choices)
 
-
-
-#option 3
 def op3(msg="You arrive at the city. The people seem to be tense from the war going on.\n"):
+    # option 3
     app.change_location(("warworld3.png","The city."))
     app.update_console(msg)
     choices = [ ("Dark Alleys" , op3_1) , ("Hospital" , op3_2) ]
@@ -194,6 +191,7 @@ def op3(msg="You arrive at the city. The people seem to be tense from the war go
     app.update_buttons(choices)
 
 def op3_1(msg="There is a dark alley, with some trash bags near you. What do you do?"):
+    # option 3 suboption 1
     def find_rock():
         global rock
         if not rock:
@@ -229,10 +227,8 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
     app.update_console(msg)
     app.update_buttons([ ("Search Trash",find_rock) , ("Explore the Alley",explore) , ("Back",lambda: op3(msg="")) ])
 
-
-
-
 def op3_2():
+    # option 3 suboption 2
     global quested
     global saved
     app.change_location(("warworld3_2.png","A busy hospital."))
@@ -244,6 +240,7 @@ def op3_2():
     app.update_buttons([ ("Leave" , lambda: op3(msg="")) ])
 
 def op3_3():
+    # option 3 suboption 3
     global traded
     def make_trade():
         global traded

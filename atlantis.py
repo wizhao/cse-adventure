@@ -1,4 +1,5 @@
-#Atlantis
+# methods handling operations in Atlantis
+
 import random
 import hub
 
@@ -9,8 +10,8 @@ triton = False
 krabbyPatty = False
 shipwreck = False
 
-#called by main
 def run(a):
+    # called by main
     global app
     app = a
     if (app.has_item('Oxygen Tank')):
@@ -19,8 +20,9 @@ def run(a):
     else:
         app.update_console('You can\'t survive this world unless you have an oxygen tank', tag='r')
         hub.run(app)
-#starting point
+
 def start():
+    # starting point
     app.change_location(("atlantis.png", "Very Water-y"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You can either visit the coral reef, the city of Atlantis, or the Marinara Trench. Where would you like to go?\n')
@@ -30,8 +32,8 @@ def start():
         app.add_life(-2)
         hub.run(app)
 
-#option 1
 def op1():
+    # option 1
     if (app.has_item('Oxygen Tank')):
         if (not shark):
             app.change_location(("atlantis1.png", "Ay caramba, a shark!"))
@@ -45,8 +47,8 @@ def op1():
         app.add_life(-2)
         hub.run(app)
 
-#option 1: suboption 1
 def op1_1():
+    # option 1: suboption 1
     global shark
     if (app.has_item('Oxygen Tank')):
         if (app.get_items('weapon') != []):
@@ -72,8 +74,9 @@ def op1_1():
         app.update_console('You can\'t survive this world unless you have an oxygen tank. (-2 Lives)', tag='r')
         app.add_life(-2)
         hub.run(app)
-#option 2
+
 def op2():
+    # option 2
     app.change_location(("atlantis2.png", "A bustling underwater metropolis"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You enter the marvellous city of Atlantis and see two buildings that stand out to you: a grandiose gilded castle and a fast food restaurant. Where do you visit?\n')
@@ -84,6 +87,7 @@ def op2():
         hub.run(app)
 
 def op2_1():
+    # option 2: suboption 1
     global triton
     app.change_location(("atlantis2_1.png", "King Triton, ruler of the seas"))
     if (app.has_item('Oxygen Tank')):
@@ -102,6 +106,7 @@ def op2_1():
         hub.run(app)
 
 def op2_1_1():
+    # option 2: suboption 1 suboption 1
     global triton
     if (app.has_item('Oxygen Tank')):
         app.update_console('Triton thanks you for your generous gift and returns to you his trident.')
@@ -115,6 +120,7 @@ def op2_1_1():
         hub.run(app)
 
 def op2_2():
+    # option 2: suboption 2
     global krabbyPatty
     app.change_location(("atlantis2_2happy.png", "Most call him Eugene"))
     if (app.has_item('Oxygen Tank')):
@@ -130,6 +136,7 @@ def op2_2():
         hub.run(app)
 
 def op2_2_1():
+    # option 2: suboption 2 suboption 1
     if (app.has_item('Oxygen Tank')):
         app.update_console('Mr. Krabs hands you the Krabby Patty secret formula, but it\'s written in code! You\'re going to have to decipher it. The paper reads:')
         app.update_console('Uif tfdsfu gpsnvmb jt dsbc')
@@ -141,6 +148,7 @@ def op2_2_1():
         hub.run(app)
 
 def op2_2_1_1():
+    # option 2: suboption 2 suboption 1 suboption 1
     app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
@@ -152,6 +160,7 @@ def op2_2_1_1():
         hub.run(app)
 
 def op2_2_1_2():
+    # option 2: suboption 2 suboption 1 suboption 2
     app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
@@ -163,6 +172,7 @@ def op2_2_1_2():
         hub.run(app)
 
 def op2_2_1_3():
+    # option 2: suboption 2 suboption 1 suboption 3
     app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
@@ -174,6 +184,7 @@ def op2_2_1_3():
         hub.run(app)
 
 def op2_2_1_4():
+    # option 2: suboption 2 suboption 1 suboption 4
     app.change_location(("atlantis2_2happy.png", "Happy Eugene"))
     global krabbyPatty
     if (app.has_item('Oxygen Tank')):
@@ -186,8 +197,8 @@ def op2_2_1_4():
         app.add_life(-2)
         hub.run(app)
 
-#option 3
 def op3():
+    # option 3
     app.change_location(("atlantis3.png", "Woah, that's deep"))
     global shipwreck
     if (app.has_item('Oxygen Tank')):
@@ -206,6 +217,7 @@ def op3():
         hub.run(app)
 
 def op3_1():
+    # option: 3 suboption 1
     app.change_location(("atlantis3_1.png", "There it is!"))
     global shipwreck
     if (app.has_item('Oxygen Tank')):

@@ -1,4 +1,4 @@
-#Ice World
+# methods handling operations in Ice World
 from Tkinter import *
 import random
 import hub
@@ -11,8 +11,8 @@ located = False
 mined = False
 opened = False
 
-#called by main
 def run(a):
+    # called by main
     global app
     app = a
     if (app.has_item('Parka')):
@@ -23,6 +23,7 @@ def run(a):
         hub.run(app)
 
 def checkParka():
+    # checks if parka is in backpack
     if app.has_item("Parka"):
         pass
     else:
@@ -30,22 +31,22 @@ def checkParka():
         app.add_life(-2)
         hub.run(app)
 
-#starting point
 def start():
+    # starting point
     checkParka()
     app.change_location(("iceWorld.png","A frozen wasteland."))
     app.update_console("You see the glow of an Inuit Village, the towering outline of a mountain, and a pack of sabertooth tigers. What do you do?\n")
     app.update_buttons([ ("Village",op1) , ("Mountain",op2) , ("Sabertooth Tigers",op3) , ("Return to Hub", lambda: hub.run(app)) ])
 
-#option 1
 def op1(msg="You approach a small Inuit Village. You pick up power crystal readings somewhere by the village, but you don't know where.\n"):
+    # option 1
     checkParka()
     app.change_location(("iceWorld1.png","It's a small iglooville."))
     app.update_console(msg)
     app.update_buttons([ ("Visit Medicine Man",op1_1) , ("Visit Chief",op1_2) , ("Ice Cave",op1_3) , ("Back",start) ])
 
-#option 1: suboption 1
 def op1_1(msg="The medicine man greets you, and asks a favor: he needs some mystic water, but the only source is at the top of the mountain, and he's too frail."):
+    # option 1: suboption 1
     checkParka()
     app.change_location(("iceWorld1_1.png","There's lots of exotic medicines. How'd he get them?"))
     def make_trade():
@@ -64,8 +65,8 @@ def op1_1(msg="The medicine man greets you, and asks a favor: he needs some myst
         app.update_console(msg)
     app.update_buttons([ ("Trade Mystic Water", make_trade) , ("Back" ,lambda: op1(msg="")) ])
 
-#option 1: suboption 2
 def op1_2():
+    # option 1: suboption 2
     checkParka()
     global rescued
     global climbed
@@ -90,6 +91,7 @@ def op1_2():
 
 
 def op1_3():
+    # option 1: suboption 3
     checkParka()
     global located
     global opened
@@ -108,13 +110,14 @@ def op1_3():
         app.update_console("There is nothing but an empty cave here.\n")
     app.update_buttons([ ("Back",lambda: op1(msg="")) ])
 
-#option 2
 def op2():
+    # option 2
     checkParka()
     app.update_console("You stand at the foot of a towering mountain. You realize that you will need a lot of food to get to the top.\n")
     app.update_buttons([ ("Climb",op2_1) , ("Back", start) ])
 
 def op2_1():
+    # option 2 section 1
     checkParka()
     global climbed
     def mine():
@@ -134,6 +137,7 @@ def op2_1():
         app.update_buttons([ ("Come Down", leave) ])
 
     def leave():
+        # leaves world
         eated = random.choice(app.get_items("food"))
         app.update_console("You've made it to the bottom. On your journey you ate your " + eated + ".")
         app.remove_item(eated)
@@ -155,6 +159,7 @@ def op2_1():
         app.update_buttons([ ("Back",op2) ])
 
 def op3():
+    # option 3
     checkParka()
     if not rescued:
         app.change_location(("iceWorld3.png","Wow, they're getting merk'd!"))
@@ -166,6 +171,7 @@ def op3():
         app.update_buttons([ ("Back", start) ])
 
 def op3_1():
+    # option 3 suboption 1
     checkParka()
     global rescued
     if len(app.get_items("weapon")) > 0:
