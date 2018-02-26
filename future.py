@@ -43,7 +43,7 @@ def op1_1():
     global mayor
     food = random.choice(app.get_items('food'))
     while (food == 'Soylent'):
-        food = random.choice(app.get_item('food'))
+        food = random.choice(app.get_items('food'))
     app.remove_item(food)
     app.update_console('The mayor tastes your ' + food + ' and his eyes light up. He thanks you immensely for your gratitude. He gives you a trendy parka as a reward.\n', tag='g')
     app.add_item('Parka')
