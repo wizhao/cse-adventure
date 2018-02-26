@@ -1,3 +1,5 @@
+# class handling Item methods and attributes
+
 class Item(object):
 #Item class
 

@@ -1,3 +1,5 @@
+# class handling Player methods and attributes
+
 class Player(object):
     #Player class
 

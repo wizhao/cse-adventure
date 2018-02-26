@@ -1,3 +1,5 @@
+# class methods and attributes handled by GUI
+
 from Tkinter import *
 import os
 from PIL import Image, ImageTk
@@ -121,12 +123,12 @@ class Application(Frame):
 
         self.hi_there.pack(side=RIGHT)
 
-
-
     def say_hi(self):
+        # prints hi statement
         print "hi there, everyone!"
 
     def confirm_quit(self):
+        # quits GUI
         if self.lost:
             self.quit()
         else:
@@ -144,12 +146,14 @@ class Application(Frame):
             cquit.grab_set()
 
     def update_items(self):
+        # updates items in GUI window
         self.itemList.delete(0, END)
         for item in self.b.contents:
             self.itemList.insert(END, self.b.contents[item].name + " (" + self.b.contents[item].ilk + ")")
         self.update_itemCount()
 
     def onselect(self,evt):
+        # enables selection of items
         if not self.lost:
             w = evt.widget
             index = int(w.curselection()[0])
@@ -160,10 +164,12 @@ class Application(Frame):
             self.dropgun.grid(row=5,column=0,sticky=E,padx=5,pady=5)
 
     def deselect_item(self,evt):
+        # disables selection of items
         self.update_canvas(self.currentLocation)
         self.dropgun.grid_forget()
 
     def drop_item(self):
+        # drops items from list
         self.update_console("You dropped the %s and sent it to the hub." % (" ".join(self.itemList.get(ACTIVE).split(" ")[:-1])))
         self.b.put_in_storage(" ".join(self.itemList.get(ACTIVE).split(" ")[:-1]))
         self.itemList.delete(ACTIVE)
@@ -172,6 +178,7 @@ class Application(Frame):
         self.update_itemCount()
 
     def pull_out(self):
+        # pulls items from list
         pullout = Toplevel(width=400,height=300,padx=10,pady=10)
         pullout.title("Withdraw Items")
         Label(pullout,text="Select the items you wish to bring to your backpack:").pack(fill=X,expand=1)
@@ -211,13 +218,13 @@ class Application(Frame):
 
         pullout.grab_set()
 
-
-
     def callback(self,evt):
+        # calls items from list
         self.output.see(END)
         self.output.edit_modified(0)
 
     def update_console(self,message,nl=True,tag=""):
+        # updates console with new information
         if not self.lost and len(message) > 0:
             self.output.config(state="normal")
             prefix = ""
@@ -227,10 +234,12 @@ class Application(Frame):
             self.output.config(state="disabled")
 
     def change_location(self, picinfo,default="misc\\landscapeGeneric.png"):
+        # changes location of image in display
         self.currentLocation = picinfo
         self.update_canvas(picinfo,backup=default)
 
     def update_canvas(self, picinfo,backup=""):
+        # updates canvas with image in display
         picname = os.getcwd() + "\\assets\\" + picinfo[0]
         try:
             photo = ImageTk.PhotoImage(Image.open(picname))
@@ -244,10 +253,12 @@ class Application(Frame):
         self.caption.set(picinfo[1])
 
     def show_item(self,item):
+        # displays image from folder
         picinfo = ("Items\\" + item.picture, item.caption)
         self.update_canvas(picinfo,backup="Items\\itemGeneric.png")
 
     def update_buttons(self, buttonList):
+        # update buttons with new level
         self.wipe_buttons()
         if not self.lost:
             for i in range(len(buttonList)):
@@ -258,10 +269,12 @@ class Application(Frame):
                 self.buttonList[i].grid(row=r,column=c,padx=5,pady=5,sticky=stick)
 
     def wipe_buttons(self):
+        # delete all buttons from window
         for buton in self.buttonList:
             buton.grid_forget()
 
     def add_life(self,amt=1):
+        # add life to count in window
         newcount = self.lives.get() + amt
         self.lives.set(newcount)
         if self.lives.get() <= 0:
@@ -272,6 +285,7 @@ class Application(Frame):
             self.lifecount.config(foreground="black")
 
     def win(self):
+        # add winning scene in GUI window
         self.change_location(("misc\\winner.png","Home, sweet home :)"))
         self.itemList.config(state="disabled")
         self.wipe_buttons()
@@ -281,6 +295,7 @@ class Application(Frame):
         self.lost = True
 
     def game_over(self,mes=""):
+        # add game over scene in GUI window
         if len(mes) > 0:
             self.update_console(mes)
         self.change_location(("misc\\gameOver.png","You get nothing. You lose! Good day sir!"))
@@ -299,9 +314,11 @@ class Application(Frame):
     '''
 
     def update_itemCount(self):
+        # update item count in backpack
         self.itemCount.set("Backpack (" + str(len(self.b.contents)) + "/" + str(self.b.itemLimit) + ")")
 
     def add_item(self,name):
+        # add item to backpack from GUI window
         if len(self.b.contents) < self.b.itemLimit and name not in self.b.storage:
             self.b.add(name)
             self.update_items()
@@ -319,16 +336,20 @@ class Application(Frame):
 
 
     def remove_item(self,name):
+        # remove item from backpack in GUI window
         self.b.remove(name)
         self.update_itemCount()
 
     def get_items(self,category):
+        # get the items in backpack from GUI window
         return self.b.get_items(category)
 
     def has_item(self,name):
+        # check if backpack has item from GUI window
         return self.b.has(name)
 
     def __init__(self, master=None):
+        # initialize GUI window
         Frame.__init__(self, master)
         self.b = Backpack()
         self.lost = False
@@ -344,6 +365,7 @@ class Application(Frame):
         self.createWidgets()
 
     def op1(self):
+        # option 1
         print "Option 1"
         self.add_item("Portal Gun")
         self.add_item("Purple Tactical Shotgun")
@@ -353,11 +375,13 @@ class Application(Frame):
         self.update_items()
 
     def op2(self):
+        # option 2
         print "Option 2"
         self.update_console(str(self.b.storage))
         self.add_item("Steamed Hams and Macaroni")
 
     def op3(self):
+        # option 3
         print "Option 3"
         self.pull_out()
 

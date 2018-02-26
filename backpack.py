@@ -1,3 +1,5 @@
+# class handling Backpack methods and attributes
+
 from item import Item
 
 class Backpack(object):
