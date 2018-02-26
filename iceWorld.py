@@ -134,16 +134,13 @@ def op2_1():
         app.update_buttons([ ("Come Down", leave) ])
 
     def leave():
-        eated = []
-        for i in range(2):
-            eated.append(app.get_items("food")[i])
-        app.update_console("You've made it to the bottom. On your journey you ate your " + eated[0] + " and " + eated[1] + ".")
-        app.remove_item(eated[0])
-        app.remove_item(eated[1])
+        eated = app.get_items("food")[random.choice(app.get_items("food"))]
+        app.update_console("You've made it to the bottom. On your journey you ate your " + eated + ".")
+        app.remove_item(eated)
         checkParka()
         app.update_buttons([('Back', op1)])
 
-    if len(app.get_items("food")) >= 2:
+    if len(app.get_items("food")) > 0:
         app.update_console("After a long, arduous hike, you finally make it to the top of the mountain. There is a single tree and a frozen lake.")
         if not climbed:
             app.change_location("iceWorld2_1.png","You did it!")
@@ -154,6 +151,8 @@ def op2_1():
             app.change_location("iceWorld2_1_1.png","You did it!")
         app.update_buttons([ ("Harvest Mystic Water",mine) , ("Come Down",leave) ])
     else:
+        app.update_console("You don't have enough food for the journey.")
+        app.update_buttons([ ("Back",op2) ])
 
 def op3():
     checkParka()
