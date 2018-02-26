@@ -1,4 +1,5 @@
-#Dino World
+# methods handling operation in Dino World
+
 from Tkinter import *
 import random
 import hub
@@ -15,6 +16,7 @@ campfire = False
 necklace = False
 
 def run(a):
+    # called by main
     global app
     global b
     app = a
@@ -22,16 +24,19 @@ def run(a):
     start()
 
 def start():
+    # starting point
     app.change_location(("dinoWorld.png","A lush forest with an anciet spirit."))
     app.update_console('To your left you see a towering stone temple, in the distance, you see a sleeping T-Rex, and to your right, you see an abandoned campsite. Which way do you turn?\n')
     app.update_buttons([('Jungle Temple', op1), ('Sleeping T-Rex', op2), ('Abandoned Campsite', op3), ('Return to Hub', lambda: hub.run(app))])
 
 def op1():
+    # option 1
     app.change_location(("dinoWorld1.png","A stony jungle temple"))
     app.update_console('You walk into the Jungle Temple and see eight switches on the wall in front of you. To the right of that wall is a staircase, and on the left side of the room is a dilapidated chest. Where do you choose to go?\n')
     app.update_buttons([ ('Switches', op1_1) , ('Chest', op1_2), ('Staircase', op1_3), ('Back', start)])
 
 def op1_1():
+    # option 1 suboption 1
     global switches
     def minigame ():
         def exit_puzzle():
@@ -131,6 +136,7 @@ def op1_1():
         app.update_buttons([ ("Back", op1) ])
 
 def op1_2():
+    # option 1 suboption 2
     global chest
     app.change_location(("dinoWorld1_2.png","This chest is in bad shape"))
     if (chest==False):
@@ -155,6 +161,7 @@ def op1_2():
         app.update_buttons([('Back', op1)])
 
 def op1_3():
+    # option 1 suboption 3
     global lives
     global darkRoom
     if (darkRoom == False):
@@ -167,6 +174,7 @@ def op1_3():
 
 
 def op1_3_1():
+    # option 1 suboption 3 suboption 1
     app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     app.update_console( 'You try walking but unfortunately hit a few traps on the floor to the lightswitch. (-1 life)', tag="r")
@@ -177,6 +185,7 @@ def op1_3_1():
     app.update_buttons([('Back', op1)])
 
 def op1_3_2():
+    # option 1 suboption 3 suboption 2
     app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     global lives
@@ -188,6 +197,7 @@ def op1_3_2():
     app.update_buttons([('Back', op1)])
 
 def op1_3_3():
+    # option 1 suboption 3 suboption 3
     app.change_location(("dinoWorld1_3_X.png","What a strange key..."))
     global darkRoom
     app.update_console( 'You successfully make it to the other side of the room without getting hurt', tag="g")
@@ -197,6 +207,7 @@ def op1_3_3():
     app.update_buttons([('Back', op1)])
 
 def op2():
+    # option 2
     global tRex
     if (tRex == False):
         app.change_location(("dinoWorld2.png","He looks so peaceful"))
@@ -212,6 +223,7 @@ def op2():
         app.update_buttons([('Back', start)])
 
 def op2_1():
+    # option 2 suboption 1
     global tRex
     app.change_location(("dinoWorld2dead.png","He looks so dead"))
     app.update_console( 'You take out your ' + random.choice(app.get_items('weapon')) + ' and attack the dinosaur, killing it. You recieved its skull as a reward.\n', tag='g')
@@ -220,6 +232,7 @@ def op2_1():
     app.update_buttons([('Back', start)])
 
 def op3():
+    # option 3
     global necklace
     app.change_location(("dinoWorld3.png","Is anyone here?"))
     if (necklace == False):
@@ -231,10 +244,13 @@ def op3():
         app.update_buttons([('Search first tent', op3_1), ('Search second tent', op3_2), ('Search campfire', op3_3), ('Back', start)])
 
 def op3_1():
+    # option 3 suboption 1
     app.change_location(("dinoWorld3_1.png","Nothing"))
     app.update_console( 'You find nothing in the first tent.\n')
     app.update_buttons([('Back', op3)])
+
 def op3_2():
+    # option 3 suboption 2
     global lives
     global raptor
     if (raptor == False):
@@ -256,6 +272,7 @@ def op3_2():
     app.update_buttons([('Back', op3)])
 
 def op3_3():
+    # option 3 suboption 3
     global campfire
     app.change_location(("dinoWorld3_3.png","It could burn your skin"))
     if (campfire == False):
@@ -265,7 +282,9 @@ def op3_3():
     else:
         app.update_console( 'You find nothing else in the campfire.\n')
     app.update_buttons([('Back', op3)])
+
 def op3_4():
+    # option 3 suboption 4
     global necklace
     app.change_location(("dinoWorld3_4.png","He looks mad"))
     app.update_console( 'You hand the seashell necklace over to the man, and, as he promised, he gifts you a green power crystal.\n', tag='g')

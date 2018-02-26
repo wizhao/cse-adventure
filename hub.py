@@ -1,3 +1,5 @@
+# methods in hub world
+
 import dinoWorld
 import atlantis
 import warWorld
@@ -6,6 +8,7 @@ import future
 import postApocWorld
 
 def run(app):
+    # ran line in console and buttons from worlds
     if len(app.get_items("crystal")) + len(app.b.get_items_storage("crystal")) >= 6:
         app.win()
     app.change_location(("misc\\hub.png","A quiet, gateway world, open to various dimensions."))
