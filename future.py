@@ -20,11 +20,13 @@ def run(a):
 
 def start():
     # starting point
+    app.change_location(("future.png", "How terribly futuristic"))
     app.update_console('You enter the busy city and see what appear to be a city hall, a research department, and a hospital wing. Which area you do inspect?\n')
     app.update_buttons([('City Hall', op1), ('Tech Research Department', op2), ('Hospital Wing', op3), ('Return to Hub', lambda: hub.run(app))])
 
 def op1():
     # option 1
+    app.change_location(("future1.png", "Your friendly neighborhood mayor."))
     global mayor
     if (not mayor):
         app.update_console('The mayor of the city greets you with a polite handshake. You converse and he starts to complain about the food in the future. He says he would give anything to taste food that isn\'t a bland soup like their food.\n')
@@ -50,11 +52,13 @@ def op1_1():
 
 def op2():
     # option 2
+    app.change_location(("future2.png", "A gorgeous facility, indeed."))
     app.update_console('The research building has a grand facility where you can see a group of scientists discussing their work, and suspicious door\n')
     app.update_buttons([('Talk to Scientists', op2_1), ('Door', op2_2), ('Back', start)])
 
 def op2_1():
     # option 2 suboption 1
+    app.change_location(("future2_1.png", "Nerds"))
     global scientists
     if (not scientists):
         app.update_console('The scientists show you their new invention: a device that lets you go to the bottom of the ocean, withstanding all the immense pressure. In order to get yourself one of these, you must make a donation to their weapons department. Or... you could just steal it...\n')
@@ -78,14 +82,17 @@ def op2_1_1():
 
 def op2_1_2():
     # option 2 suboption 1 suboption 2
+    
     global scientists
     global criminal
     chance = random.randint(0, 9)
     if (criminal):
+        app.change_location(("future2_1_2.png", "The Slammer"))
         app.update_console('The scientists recognize you by your earlier encounter and call over the security drones again. They take you back to the federal prison cell.', tag='r')
         app.update_console('Since you apparently haven\'t learned your lesson, you have to escape again.\n')
         app.update_buttons([('Escape', op2_1_2_1)])
     elif (chance < 7):
+        app.change_location(("future2_1_2.png", "The Slammer"))
         app.update_console('The scientists catch you trying to steal a device and yell "SECURITY!" Two massive drones fly from the air, grab you, and bring you to the federal prison.', tag='r')
         app.update_console('Now that you\'re in prison, you\'ll have to try to escape.\n')
         app.update_buttons([('Escape', op2_1_2_1)])
@@ -109,6 +116,7 @@ def op2_1_2_1():
 
 def op2_2():
     # option 2 suboption 2
+    app.change_location(("future2_2.png", "A Very Cool Door"))
     global door
     if (not door):
         app.update_console('You try to open the suspicious door, but it appears to be locked.\n')
@@ -132,6 +140,7 @@ def op2_2_1():
 
 def op3():
     # option 3
+    app.change_location(("future3.png", "Wow, she\'s beautiful."))
     global hospital
     if (not hospital):
         app.update_console('You begin talking to one of the doctors in the medical research wing. She tells you that the research department is looking to perform tests on herbal medicine, but they can\'t seem to find it anywhere. They are offering a reward of a power crystal\n')
