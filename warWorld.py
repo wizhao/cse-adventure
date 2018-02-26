@@ -49,7 +49,6 @@ def op1(msg="You move up to the gruesome front lines. Your shoes are soaked, the
 #option 1: suboption 1
 def op1_1():
     if app.has_item("Rifle"):
-        app.change_location(("warWorld1_1.png","What are you doing?"),default=mainpic)
         app.update_console("You try to join the war effort, climbing up and over the walls of the trench and brandishing your rifle.")
         app.update_console("Shortly after climbing, a shot from the other side hits you in the torso (-1 life). What were you thinking?\n",tag="r")
         app.add_life(-1)
@@ -217,8 +216,9 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
             if random.randint(1,10) >= chance:
                 app.update_console("You lost 1 life from the fight.",tag="r")
                 app.add_life(-1)
-            app.update_console("However, you find an oxygen tank in the darkness.",tag="g")
+            app.update_console("However, you find an oxygen tank and a shovel in the darkness.",tag="g")
             app.add_item("Oxygen Tank")
+            app.add_item("Shovel")
             thug = True
         else:
             app.update_console("There's nothing in this alley.")

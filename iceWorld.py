@@ -151,6 +151,7 @@ def op2_1():
         else:
             app.change_location("iceWorld2_1_1.png","You did it!")
         app.update_buttons([ ("Harvest Mystic Water",mine) , ("Come Down",leave) ])
+    else:
 
 def op3():
     checkParka()
