@@ -42,6 +42,7 @@ class Backpack(object):
         tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","food","tendies.png")
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
+        shovel = Item("Shovel","A foldable shovel.","tool","shovel.png")
         card = Item("ID Card","A government ID card, used for top-level access.","important","card.png")
         rock = Item("Rock","A mossy rock with some strange carvings on it.","tool","rock.png")
         cube = Item("Ice Cube","A frozen block of Mystic Water. Tastes funny.","important","cube.png")
