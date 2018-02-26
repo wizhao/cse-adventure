@@ -8,9 +8,9 @@ class Backpack(object):
     def __init__(self):
         # initialize object in backpack class
         self.itemLimit = 12
-        ray_gun = Item('Ray Gun', 'Revive me!', 'weapon')
-        translator = Item('Dolphin Translator', 'Used to speak with your undersea mammal friends', 'tool')
-        lettuce = Item('Lettuce', 'Number 15, Burger King Foot Lettuce. The last thing you want in your Burger King burger is someone\'s foot fungus, but apparently, it might be what you get.', 'food')
+        ray_gun = Item('Ray Gun', 'Revive me!', 'weapon',"raygun.png")
+        translator = Item('Dolphin Translator', 'Used to speak with your undersea mammal friends', 'tool',"translator.png")
+        lettuce = Item('Lettuce', 'Number 15, Burger King Foot Lettuce. The last thing you want in your Burger King burger is someone\'s foot fungus, but apparently, it might be what you get.', 'food',"lettuce.png")
         daniel = Item('Steamed Hams and Macaroni', 'At this time of year, at this time day, in this part of the country, localized entirely inside your kitchen', 'food')
         bone_pick = Item('Bone Pick', 'I am a dwarf, and I\'m digging a hole.', 'tool')
         trident = Item('Trident', 'From the hands of Triton himself, it glows with St. Elmo\'s fire', 'weapon')

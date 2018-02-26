@@ -251,7 +251,7 @@ def op3_3():
             traded = True
         else:
             app.update_console("You don't have any uranium to give!\n")
-        app.update_buttons([ ("Back", op3) ])
+        app.update_buttons([ ("Back", op3_3) ])
     app.change_location(("warworld3_3.png","A top-secret meeting room."))
     if app.has_item("ID Card") and not traded:
         app.update_console("You find the secret room, and use the ID Card to enter. Inside, the scientists were expecting you. They say that they need a sample of Uranium for their research.\n")
