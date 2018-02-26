@@ -28,7 +28,7 @@ def op1():
     global mayor
     if (not mayor):
         app.update_console('The mayor of the city greets you with a polite handshake. You converse and he starts to complain about the food in the future. He says he would give anything to taste food that isn\'t a bland soup like their food.\n')
-        if (app.get_items('food') != []):
+        if (app.get_items('food') != [] and app.get_items('food') != ['Soylent']):
             app.update_buttons([('Give Some Food', op1_1), ('Back', start)])
         else:
             app.update_buttons([('Back', start)])
@@ -40,6 +40,8 @@ def op1_1():
     # option 1: suboption 1
     global mayor
     food = random.choice(app.get_items('food'))
+    while (food == 'Soylent'):
+        food = random.choice(app.get_item('food'))
     app.remove_item(food)
     app.update_console('The mayor tastes your ' + food + ' and his eyes light up. He thanks you immensely for your gratitude. He gives you a trendy parka as a reward.\n', tag='g')
     app.add_item('Parka')
@@ -124,6 +126,7 @@ def op2_2_1():
     app.update_console('You open the door and find a closet with a ray gun and a dolphin translator. You pick them up and store them in your backpack.\n', tag='g')
     app.add_item('Ray Gun')
     app.add_item('Dolphin Translator')
+    app.add_item('Soylent')
     door = True
     app.update_buttons([('Back', op2)])
 

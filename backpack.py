@@ -45,6 +45,8 @@ class Backpack(object):
         spear = Item("Ceremonial Spear","A decorated Inuit weapon, destined to kill 'The Lurker,' according to myth.","weapon","spear.png")
         fruit = Item("Fruit","A strange fruit, picked from a strange tree. Strange.","food","fruit.png")
         fry = Item("Fry", "Yum, seat fries", "food", "fry.png")
+        sfs = Item("Shark Fin Soup", 'Cruel, but delicious', "food", "sfs.png")
+        soylent = Item('Soylent', 'A day\'s meal in one cup', 'food', 'soylent.png')
 
 
         self.item_list = {ray_gun.name: ray_gun,
@@ -61,7 +63,8 @@ class Backpack(object):
                             red_crystal.name: red_crystal, purple_crystal.name: purple_crystal,
                             orange_crystal.name: orange_crystal, tank.name: tank, tendies.name: tendies,
                             rifle.name: rifle, mre.name: mre, shovel.name: shovel, card.name: card,
-                            rock.name: rock, cube.name: cube, spear.name: spear, fruit.name: fruit}
+                            rock.name: rock, cube.name: cube, spear.name: spear, fruit.name: fruit,
+                            fry.name: fry, sfs.name: sfs, soylent.name: soylent}
         self.contents = {}
         self.storage = {}
 

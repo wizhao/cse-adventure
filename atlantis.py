@@ -55,7 +55,8 @@ def op1_1():
             chance = random.randint(0,1)
             if (chance == 0):
                 app.change_location(("atlantis1dead.png", "The mighty shark has been dethroned"))
-                app.update_console('You successfully kill the shark with your ' + random.choice(app.get_items('weapon')) + '. You get nothing.\n')
+                app.update_console('You successfully kill the shark with your ' + random.choice(app.get_items('weapon')) + '. You get shark fin soup.\n', tag='g')
+                app.add_item('Shark Fin Soup')
                 shark = True
             else:
                 app.update_console('The shark bites you. (-1 Life)\n', tag='r')
@@ -64,7 +65,8 @@ def op1_1():
             chance = random.randint(0,9)
             if (chance == 9):
                 app.change_location(("atlantis1dead.png", "The mighty shark has been dethroned"))
-                app.update_console('You successfully punch the shark to death. You get nothing.\n')
+                app.update_console('You successfully punch the shark to death. You get shark fin soup.\n', tag='g')
+                app.add_item('Shark Fin Soup')
                 shark = True
             else:
                 app.update_console('The shark bites you. (-1 Life)\n', tag='r')
