@@ -312,7 +312,7 @@ class Application(Frame):
         elif len(self.b.contents) >= self.b.itemLimit:
             self.update_console("You do not have enough space in your backpack.",tag="r")
             self.update_console("It was sent to your storage in the hub.")
-            self.b.put_in_storage(name)
+            self.b.add_to_storage(name)
         else:
             self.update_console("Oops! Something unexpected happened.",tag="r")
             self.update_console("Tell the bois if you see this.")

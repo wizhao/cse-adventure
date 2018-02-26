@@ -67,6 +67,9 @@ class Backpack(object):
     def remove(self, name):
         self.contents.pop(name)
 
+    def add_to_storage(self,name):
+        self.storage[name] = self.item_list[name]
+
     def put_in_storage(self, name):
         if name in self.contents:
             self.contents.pop(name)
