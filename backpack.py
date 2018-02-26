@@ -56,8 +56,8 @@ class Backpack(object):
                             blue_crystal.name: blue_crystal, green_crystal.name: green_crystal,
                             red_crystal.name: red_crystal, purple_crystal.name: purple_crystal,
                             orange_crystal.name: orange_crystal, tank.name: tank, tendies.name: tendies,
-                            rifle.name: rifle, mre.name: mre, card.name: card, rock.name: rock, cube.name: cube,
-                            spear.name: spear, fruit.name: fruit}
+                            rifle.name: rifle, mre.name: mre, shovel.name: shovel, card.name: card,
+                            rock.name: rock, cube.name: cube, spear.name: spear, fruit.name: fruit}
         self.contents = {}
         self.storage = {}
 
