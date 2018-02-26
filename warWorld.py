@@ -8,6 +8,7 @@ app = None
 entered = False
 digged = False
 grenades = False
+meal = False
 saved = False
 givenID = False
 quested = False
@@ -34,7 +35,7 @@ def start():
         entered = True
         op1()
     else:
-        app.update_console("You see the front lines ahead of you, the dugout behind you, and a faint outline of a city far back. Where do you go?")
+        app.update_console("You see the front lines ahead of you, the dugout behind you, and a faint outline of a city far back. Where do you go?\n")
         app.update_buttons( [ ("Front Lines",op1) , ("Military Dugout",op2) , ("City",op3) , ("Return to Hub",lambda: hub.run(app)) ])
 
 
@@ -79,7 +80,7 @@ def op1_3():
     global digged
     if not digged:
         if app.has_item("Shovel"):
-            app.change_location(("op1_3()","The trenches are less agonizing to walk around now!"),default=mainpic)
+            app.change_location(("warWorld1_3.png","The trenches are less agonizing to walk around now!"),default=mainpic)
             app.update_console("After some hard work, you manage to dig out most of the mud and slush in the trenches, exposing the more solid dirt underneath.\n",tag="g")
             digged = True
         else:
@@ -100,6 +101,7 @@ def op2_1():
         app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
         app.update_console("You find a few grenades lying around near the bottom.")
         app.update_console("You carefully stash them, hoping the officers didn't notice.",tag="g")
+        app.add_item("Grenades")
         grenades = True
     else:
         app.change_location(("warWorld2_1_1.png","There\'s nothing to take."),default=mainpic)

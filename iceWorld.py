@@ -134,7 +134,7 @@ def op2_1():
         app.update_buttons([ ("Come Down", leave) ])
 
     def leave():
-        eated = app.get_items("food")[random.choice(app.get_items("food"))]
+        eated = random.choice(app.get_items("food"))
         app.update_console("You've made it to the bottom. On your journey you ate your " + eated + ".")
         app.remove_item(eated)
         checkParka()
@@ -176,5 +176,5 @@ def op3_1():
         rescued = True
         app.update_buttons([ ("Continue",lambda: op1(msg="You help the hunters to the nearby village, where they are tended to.")) ])
     else:
-        app.update_console("It'll be suicide going in without a weapon!")
+        app.update_console("It'll be suicide going in without a weapon!\n")
         app.update_buttons([ ("Run",start) ])
