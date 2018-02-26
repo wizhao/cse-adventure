@@ -23,6 +23,7 @@ def run(a):
 
 def start():
     # starting point
+    app.change_location(("atlantis.png", "Very Water-y"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You can either visit the coral reef, the city of Atlantis, or the Marinara Trench. Where would you like to go?\n')
         app.update_buttons([('Coral Reef', op1), ('City of Atlantis', op2), ('Marinara Trench', op3), ('Return to Hub', lambda: hub.run(app))])
@@ -35,9 +36,11 @@ def op1():
     # option 1
     if (app.has_item('Oxygen Tank')):
         if (not shark):
+            app.change_location(("atlantis1.png", "Ay caramba, a shark!"))
             app.update_console('You see a shark in the coral reef. Do you want to fight it?\n')
             app.update_buttons([('Fight', op1_1), ('Back', start)])
         else:
+            app.change_location(("atlantis1dead.png", "The mighty shark has been dethroned"))
             app.update_console('There\'s nothing left in the coral reef to see\n')
     else:
         app.update_console('You can\'t survive this world unless you have an oxygen tank. (-2 Lives)', tag='r')
@@ -51,7 +54,9 @@ def op1_1():
         if (app.get_items('weapon') != []):
             chance = random.randint(0,1)
             if (chance == 0):
-                app.update_console('You successfully kill the shark with your ' + random.choice(app.get_items('weapon')) + '. You get nothing.\n')
+                app.change_location(("atlantis1dead.png", "The mighty shark has been dethroned"))
+                app.update_console('You successfully kill the shark with your ' + random.choice(app.get_items('weapon')) + '. You get shark fin soup.\n', tag='g')
+                app.add_item('Shark Fin Soup')
                 shark = True
             else:
                 app.update_console('The shark bites you. (-1 Life)\n', tag='r')
@@ -59,7 +64,9 @@ def op1_1():
         else:
             chance = random.randint(0,9)
             if (chance == 9):
-                app.update_console('You successfully punch the shark to death. You get nothing.\n')
+                app.change_location(("atlantis1dead.png", "The mighty shark has been dethroned"))
+                app.update_console('You successfully punch the shark to death. You get shark fin soup.\n', tag='g')
+                app.add_item('Shark Fin Soup')
                 shark = True
             else:
                 app.update_console('The shark bites you. (-1 Life)\n', tag='r')
@@ -72,6 +79,7 @@ def op1_1():
 
 def op2():
     # option 2
+    app.change_location(("atlantis2.png", "A bustling underwater metropolis"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You enter the marvellous city of Atlantis and see two buildings that stand out to you: a grandiose gilded castle and a fast food restaurant. Where do you visit?\n')
         app.update_buttons([('Gilded Castle', op2_1), ('Fast Food Place', op2_2), ('Back', start)])
@@ -83,6 +91,7 @@ def op2():
 def op2_1():
     # option 2: suboption 1
     global triton
+    app.change_location(("atlantis2_1.png", "King Triton, ruler of the seas"))
     if (app.has_item('Oxygen Tank')):
         if (not triton):
             app.update_console('You travel through the diamond-encrusted doorway and find a merman sitting on a throne with a shiny crown placed neatly on his head. You walk up to the merman and he tells you to kneel before him. He tells you his name is King Triton and that he is in need of a dolphin translator to speak with the wildlife. He offers a grand prize of his trident if you succed in bringing it to him.\n')
@@ -115,12 +124,13 @@ def op2_1_1():
 def op2_2():
     # option 2: suboption 2
     global krabbyPatty
+    app.change_location(("atlantis2_2happy.png", "Most call him Eugene"))
     if (app.has_item('Oxygen Tank')):
         if (not krabbyPatty):
             app.update_console('A crab walking on his hind legs walks up to you and says: "Ahoy, laddy! Welcome to the Krusty Krab! Err... Unfortunately, our fry cook, Spongebob, is out for today, and our restaurant is really busy. Do you think you could make a Krabby Patty for us? I\'ll pay ya with my daughter Pearl\'s nice seashell necklace!"\n')
             app.update_buttons([('Sure!', op2_2_1), ('Back', op2)])
         else:
-            app.update_console('You see their regular fry cook, Spongebob, has arrived, and he says to you, "Good morning! Isn\'t it the best day ever!"\n')
+            app.update_console('Eugene Krabs is very happy."\n')
             app.update_buttons([('Back', start)])
     else:
         app.update_console('You can\'t survive this world unless you have an oxygen tank. (-2 Lives)', tag='r')
@@ -141,6 +151,7 @@ def op2_2_1():
 
 def op2_2_1_1():
     # option 2: suboption 2 suboption 1 suboption 1
+    app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
         app.add_life(-1)
@@ -152,6 +163,7 @@ def op2_2_1_1():
 
 def op2_2_1_2():
     # option 2: suboption 2 suboption 1 suboption 2
+    app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
         app.add_life(-1)
@@ -163,6 +175,7 @@ def op2_2_1_2():
 
 def op2_2_1_3():
     # option 2: suboption 2 suboption 1 suboption 3
+    app.change_location(("atlantis2_2sad.png", "Sad Eugene"))
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "That\'s not the secret formula! Yer fired! (-1 Life)\n', tag='r')
         app.add_life(-1)
@@ -174,6 +187,7 @@ def op2_2_1_3():
 
 def op2_2_1_4():
     # option 2: suboption 2 suboption 1 suboption 4
+    app.change_location(("atlantis2_2happy.png", "Happy Eugene"))
     global krabbyPatty
     if (app.has_item('Oxygen Tank')):
         app.update_console('You show the burger to Mr. Krabs. He takes a bite and says: "Great job, lad! You made a perfect Krabby Patty! Here\'s a nice seashell necklace fer ya!\n', tag='g')
@@ -187,6 +201,7 @@ def op2_2_1_4():
 
 def op3():
     # option 3
+    app.change_location(("atlantis3.png", "Woah, that's deep"))
     global shipwreck
     if (app.has_item('Oxygen Tank')):
         if (not shipwreck):
@@ -197,6 +212,7 @@ def op3():
                 app.update_buttons([('Back', start)])
         else:
             app.update_console('There is nothing left in the trench.')
+            app.update_buttons([('Back', start)])
     else:
         app.update_console('You can\'t survive this world unless you have an oxygen tank. (-2 Lives)', tag='r')
         app.add_life(-2)
@@ -204,6 +220,7 @@ def op3():
 
 def op3_1():
     # option: 3 suboption 1
+    app.change_location(("atlantis3_1.png", "There it is!"))
     global shipwreck
     if (app.has_item('Oxygen Tank')):
         app.update_console('You put on your deep-sea diving device, travel all the way down to the bottom of the ocean, and enter the abandoned shipwreck. Stuck between the floorboards, you find a power crystal and put it in your backpack. However, your deep-sea diving device is used up, so you must throw it away.', tag='g')

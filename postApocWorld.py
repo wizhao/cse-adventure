@@ -119,8 +119,9 @@ def op2_1():
     global jisoo
     if (not jisoo):
         app.change_location(("postApocWorld2_1jisoo.png","Cute"))
-        app.update_console('You find a photo of a Korean Popstar\n')
+        app.update_console('You find a photo of a Korean Popstar and a french fry under the seat\n')
         app.add_item('Jisoo Photo')
+        app.add_item('Fry')
         jisoo = True
     else:
         app.change_location(("postApocWorld2_1.png","Nothing left"))

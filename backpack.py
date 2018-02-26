@@ -16,7 +16,6 @@ class Backpack(object):
         trident = Item('Trident', 'From the hands of Triton himself, it glows with St. Elmo\'s fire', 'weapon')
         crossbow = Item('Crossbow', 'The layman\'s sniper rifle', 'weapon')
         key = Item('Key', 'It looks very complicated, and it\'s intricate almost to a microscopic level. Whoever left this in Dino World did not come from there.', 'tool')
-        note = Item('Note', 'The note reads: "The password is 01000101" (Hint: Dino World)', 'tool')
         photo = Item('Jisoo Photo', 'A photo of a beautiful Korean Popstar', 'tool')
         gravy = Item('Gravy', 'Cookin\' with your mom in the kitchen, makin\' blueberry muffins.', 'food')
         mms = Item('M&Ms', 'Uhh...summa lumma dooma lama you assumin\' imma human', 'food')
@@ -41,18 +40,20 @@ class Backpack(object):
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
         shovel = Item("Shovel","A foldable shovel.","tool","shovel.png")
         card = Item("ID Card","A government ID card, used for top-level access.","important","card.png")
-        rock = Item("Rock","A mossy rock with some strange carvings on it.","tool","rock.png")
+        rock = Item("Rock","A mossy rock with some strange carvings on it. It says 01000101.","tool","rock.png")
         cube = Item("Ice Cube","A frozen block of Mystic Water. Tastes funny.","important","cube.png")
         spear = Item("Ceremonial Spear","A decorated Inuit weapon, destined to kill 'The Lurker,' according to myth.","weapon","spear.png")
         fruit = Item("Fruit","A strange fruit, picked from a strange tree. Strange.","food","fruit.png")
+        fry = Item("Fry", "Yum, seat fries", "food", "fry.png")
+        sfs = Item("Shark Fin Soup", 'Cruel, but delicious', "food", "sfs.png")
+        soylent = Item('Soylent', 'A day\'s meal in one cup', 'food', 'soylent.png')
 
 
         self.item_list = {ray_gun.name: ray_gun,
                             translator.name: translator, lettuce.name: lettuce,
                             daniel.name: daniel,
                             bone_pick.name: bone_pick, trident.name:
-                            trident, crossbow.name: crossbow, key.name: key, note.name:
-                            note, photo.name: photo, gravy.name: gravy,
+                            trident, crossbow.name: crossbow, key.name: key, photo.name: photo, gravy.name: gravy,
                             mms.name: mms,
                             parka.name: parka, coal.name: coal,
                             human_meat.name: human_meat, skull.name: skull, uranium.name: uranium,
@@ -62,7 +63,8 @@ class Backpack(object):
                             red_crystal.name: red_crystal, purple_crystal.name: purple_crystal,
                             orange_crystal.name: orange_crystal, tank.name: tank, tendies.name: tendies,
                             rifle.name: rifle, mre.name: mre, shovel.name: shovel, card.name: card,
-                            rock.name: rock, cube.name: cube, spear.name: spear, fruit.name: fruit}
+                            rock.name: rock, cube.name: cube, spear.name: spear, fruit.name: fruit,
+                            fry.name: fry, sfs.name: sfs, soylent.name: soylent}
         self.contents = {}
         self.storage = {}
 
