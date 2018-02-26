@@ -71,7 +71,7 @@ def op1_2():
         app.add_item("MRE")
         meal = True
     else:
-        app.update_console("The soldier sits idly, occasionally taking shifts on the front line with his comrades.")
+        app.update_console("The soldier sits idly, occasionally taking shifts on the front line with his comrades.\n")
     app.update_buttons([ ("Back",lambda: op1(msg="")) ])
 
 
@@ -100,31 +100,35 @@ def op2_1():
     if not grenades:
         app.change_location(("warWorld2_1.png","Free grenades. What a steal!"),default=mainpic)
         app.update_console("You find a few grenades lying around near the bottom.")
+<<<<<<< HEAD
         app.update_console("You carefully stash them, hoping the officers didn't notice.",tag="g")
         app.add_item("Grenades")
+=======
+        app.update_console("You carefully stash them, hoping the officers didn't notice.\n",tag="g")
+>>>>>>> 2a5ce164f2c0858cec435acd1f84a5c15e87c103
         grenades = True
     else:
         app.change_location(("warWorld2_1_1.png","There\'s nothing to take."),default=mainpic)
-        app.update_console("There doesn't seem to be anything else insignificant enough to steal.")
+        app.update_console("There doesn't seem to be anything else insignificant enough to steal.\n")
     app.update_buttons([ ("Back", lambda: op2(msg="")) ])
 
 def op2_2():
     global saved
     global givenID
     if not saved:
-        app.update_console("The officer yells at you for disobeying orders, and commands you to leave the dugout.")
+        app.update_console("The officer yells at you for disobeying orders, and commands you to leave the dugout.\n")
     elif saved and not givenID:
         app.update_console("You ask for a SuperLieutenant Chalmers in the crowd. The same officer who yelled at you before looks at you, infuriated.\n")
         app.update_console("\"If you\'re back here again one more--\"")
         app.update_console("The lost girl you saved runs out from behind you and embraces her father, finally reunited. Superlieutenant Chalmers is speechless.\n")
-        app.update_console("\"But how did you-- That city--")
+        app.update_console("\"But how did you-- That city--\"")
         app.update_console("After he calms down, you tell him all about your portal gun, your quest, and why you're here.")
         app.update_console("SuperLieutenant Chalmers tells you about a secret meeting room in the city, where top secret government research is being done.")
-        app.update_console("He gives you an ID card that allows entrance as well as the location of the room.",tag="g")
+        app.update_console("He gives you an ID card that allows entrance as well as the location of the room.\n",tag="g")
         app.add_item("ID Card")
         givenID = True
     else:
-        app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck on your journey.")
+        app.update_console("SuperLieutenant Chalmers warmly greets you, and wishes you good luck on your journey.\n")
     app.update_buttons([ ("Back",lambda: op2(msg="")) ])
 
 
@@ -135,10 +139,10 @@ def op2_3():
             global saved
             if not has_weapon:
                 if random.randint(1,10) > 9:
-                    app.update_console("Luckily, you find the lost girl on the first day!",tag="g")
+                    app.update_console("Luckily, you find the lost girl on the first day!\n",tag="g")
                     saved = True
                 else:
-                    app.update_console("After several days of sneaking very carefully to avoid being seen, you couldn\'t find the lost girl.")
+                    app.update_console("After several days of sneaking very carefully to avoid being seen, you couldn\'t find the lost girl.\n")
             else:
                 app.update_console("You search the occupied city very quickly, and in one day you find the lost girl.",tag="g")
                 saved = True
@@ -162,7 +166,7 @@ def op2_3():
         if len(app.get_items("food")) > 0:
             if len(app.get_items("weapon")) <= 0:
                 app.update_console("You have no weapon. Are you still sure you want to go?")
-                app.update_buttons([ ("YOLO",trek(False)) , ("Nah", lambda:op2(msg="")) ])
+                app.update_buttons([ ("YOLO", lambda: trek(False)) , ("Nah", lambda:op2(msg="")) ])
             else:
                 trek(True)
         else:
@@ -176,7 +180,7 @@ def op2_3():
     app.update_console("You see a map showing the surroundings. There's a city that looks like it was recently captured by the enemy.")
     if quested and not saved:
         app.update_console("That's the city that SuperLieutenant Chalmers lost his daughter in!")
-        app.update_console("Your portal gun can bypass enemy lines, but it will still be a long and dangerous trek. You should bring some food with you and some form of weapon.")
+        app.update_console("Your portal gun can bypass enemy lines, but it will still be a long and dangerous trek. You should bring some food with you and some form of weapon.\n")
         choices.append( ("Go!",journey) )
     choices.append( ("Back", lambda: op2(msg="")) )
     app.update_buttons(choices)
@@ -198,12 +202,12 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
         global rock
         if not rock:
             app.change_location(("warworld3_1_1.png","You found a special rock."))
-            app.update_console("You find a strange rock in the trash!",tag="g")
+            app.update_console("You find a strange rock in the trash!\n",tag="g")
             app.add_item("Rock")
             rock = True
         else:
             app.change_location(("warworld3_1_2.png","Just trash."))
-            app.update_console("There's nothing useful in the trash.")
+            app.update_console("There's nothing useful in the trash\n.")
         app.update_buttons([ ("Back", lambda: op3(msg="")) ])
     def explore():
         global thug
@@ -218,12 +222,12 @@ def op3_1(msg="There is a dark alley, with some trash bags near you. What do you
             if random.randint(1,10) >= chance:
                 app.update_console("You lost 1 life from the fight.",tag="r")
                 app.add_life(-1)
-            app.update_console("However, you find an oxygen tank and a shovel in the darkness.",tag="g")
+            app.update_console("However, you find an oxygen tank and a shovel in the darkness.\n",tag="g")
             app.add_item("Oxygen Tank")
             app.add_item("Shovel")
             thug = True
         else:
-            app.update_console("There's nothing in this alley.")
+            app.update_console("There's nothing in this alley.\n")
         app.update_buttons([ ("Back", lambda: op3_1(msg="")) ])
     app.change_location(("warworld3_1.png","A dark alley."))
     app.update_console(msg)
@@ -237,10 +241,10 @@ def op3_2():
     global saved
     app.change_location(("warworld3_2.png","A busy hospital."))
     if not saved:
-        app.update_console("When you enter the hospital, you hear a hysterical patient being calmed down by a nurse. You overhear that this is the wife of SuperLieutenant Chalmers, and that she was separated from her daughter in the city that was captured recently.")
+        app.update_console("When you enter the hospital, you hear a hysterical patient being calmed down by a nurse. You overhear that this is the wife of SuperLieutenant Chalmers, and that she was separated from her daughter in the city that was captured recently.\n")
         quested = True
     else:
-        app.update_console("It's a busy hospital with a lot of commotion. Better not bother them.")
+        app.update_console("It's a busy hospital with a lot of commotion. Better not bother them.\n")
     app.update_buttons([ ("Leave" , lambda: op3(msg="")) ])
 
 def op3_3():
@@ -248,21 +252,21 @@ def op3_3():
     def make_trade():
         global traded
         if app.has_item("Uranium"):
-            app.update_console("You give the scientists the uranium, and in exchange, they give you the power crystal they had.",tag="g")
+            app.update_console("You give the scientists the uranium, and in exchange, they give you the power crystal they had.\n",tag="g")
             app.remove_item("Uranium")
             app.add_item("Red Crystal")
             traded = True
         else:
-            app.update_console("You don't have any uranium to give!")
+            app.update_console("You don't have any uranium to give!\n")
         app.update_buttons([ ("Back", op3_3) ])
     app.change_location(("warworld3_3.png","A top-secret meeting room."))
     if app.has_item("ID Card") and not traded:
-        app.update_console("You find the secret room, and use the ID Card to enter. Inside, the scientists were expecting you. They say that they need a sample of Uranium for their research.")
+        app.update_console("You find the secret room, and use the ID Card to enter. Inside, the scientists were expecting you. They say that they need a sample of Uranium for their research.\n")
         app.update_buttons([ ("Trade Uranium",make_trade) , ("Leave", lambda: op3(msg="")) ])
     elif traded:
-        app.update_console("The scientists are hard at work, conducting research with the uranium you gave.")
+        app.update_console("The scientists are hard at work, conducting research with the uranium you gave.\n")
         app.update_buttons([ ("Leave"), lambda: op3(msg="") ])
     else:
         app.change_location(("warworld3_3_1.png","You forgot the key!"))
-        app.update_console("You find the secret room, but you realize you don't have the ID Card on you.")
+        app.update_console("You find the secret room, but you realize you don't have the ID Card on you.\n")
         app.update_buttons([ ("Leave", lambda: op3(msg="")) ])
