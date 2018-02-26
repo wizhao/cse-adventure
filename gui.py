@@ -338,6 +338,7 @@ class Application(Frame):
     def remove_item(self,name):
         # remove item from backpack in GUI window
         self.b.remove(name)
+        self.update_items()
         self.update_itemCount()
 
     def get_items(self,category):
