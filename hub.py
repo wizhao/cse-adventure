@@ -6,6 +6,8 @@ import future
 import postApocWorld
 
 def run(app):
+    if len(app.get_items("crystal")) + len(app.b.get_items_storage("crystal")) >= 6:
+        app.win()
     app.change_location(("misc\\hub.png","A quiet, gateway world, open to various dimensions."))
     app.update_console('You arrive at the hub. Large arrays of portals swirl lazily.\n\nChoose a world to visit:\n')
     app.update_buttons([('Atlantis', lambda: atlantis.run(app)), ('Future', lambda: future.run(app)),

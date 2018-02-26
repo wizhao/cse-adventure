@@ -88,6 +88,13 @@ class Backpack(object):
             if value.ilk == category:
                 names.append(key)
         return names
+
+    def get_items_storage(self, category):
+        names = []
+        for key, value in self.storage.iteritems():
+            if value.ilk == category:
+                names.append(key)
+        return names
     '''
     def get_items(self, category, subcategory):
         names = []

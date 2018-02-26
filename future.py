@@ -97,7 +97,7 @@ def op2_1_2_1():
         app.add_life(-1)
         app.update_buttons([('Escape', op2_1_2_1)])
     else:
-        app.update_console('You successfully break out of your jail cell and sneak past your captors.\n')
+        app.update_console('You successfully break out of your jail cell and sneak past your captors.\n',tag="g")
         app.update_buttons([('Back', op2)])
 
 def op2_2():

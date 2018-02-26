@@ -152,27 +152,27 @@ def op2_1():
             app.change_location("iceWorld2_1_1.png","You did it!")
         app.update_buttons([ ("Harvest Mystic Water",mine) , ("Come Down",leave) ])
 
-    def op3():
-        checkParka()
-        if not rescued:
-            app.change_location(("iceWorld3.png","Wow, they're getting merk'd!"))
-            app.update_console("You see a group of hunters fighting a pack of sabertooth tigers! You should go and help them if you have a weapon!")
-            app.update_buttons([ ("Help",op3_1) , ("Leave",lambda: start(msg="")) ])
-        else:
-            app.change_location(("iceWorld3_2.png","The hunters greet you."))
-            app.update_console("The notice you, but they're too preoccupied with hunting.")
-            app.update_buttons([ ("Leave",lambda: start(msg="")) ])
+def op3():
+    checkParka()
+    if not rescued:
+        app.change_location(("iceWorld3.png","Wow, they're getting merk'd!"))
+        app.update_console("You see a group of hunters fighting a pack of sabertooth tigers! You should go and help them if you have a weapon!")
+        app.update_buttons([ ("Help",op3_1) , ("Leave",lambda: start(msg="")) ])
+    else:
+        app.change_location(("iceWorld3_2.png","The hunters greet you."))
+        app.update_console("The notice you, but they're too preoccupied with hunting.")
+        app.update_buttons([ ("Leave",lambda: start(msg="")) ])
 
-    def op3_1():
-        checkParka()
-        global rescued
-        if len(app.get_items("weapon")) > 0:
-            app.update_console("You run in and fight off the tigers with your " + app.get_items("weapon")[0] + ".")
-            if random.randint(1,3) == 1:
-                app.update_console("One of the sabertooths got a good swipe on you (-1 life).",tag="r")
-                app.add_life(-1)
-            rescued = True
-            app.update_buttons([ ("Continue",lambda: op1(msg="You help the hunters to the nearby village, where they are tended to.")) ])
-        else:
-            app.update_console("It'll be suicide going in without a weapon!")
-            app.update_buttons([ ("Run",start) ])
+def op3_1():
+    checkParka()
+    global rescued
+    if len(app.get_items("weapon")) > 0:
+        app.update_console("You run in and fight off the tigers with your " + app.get_items("weapon")[0] + ".")
+        if random.randint(1,3) == 1:
+            app.update_console("One of the sabertooths got a good swipe on you (-1 life).",tag="r")
+            app.add_life(-1)
+        rescued = True
+        app.update_buttons([ ("Continue",lambda: op1(msg="You help the hunters to the nearby village, where they are tended to.")) ])
+    else:
+        app.update_console("It'll be suicide going in without a weapon!")
+        app.update_buttons([ ("Run",start) ])

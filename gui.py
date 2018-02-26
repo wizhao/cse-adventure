@@ -271,6 +271,15 @@ class Application(Frame):
         else:
             self.lifecount.config(foreground="black")
 
+    def win(self):
+        self.change_location(("misc\\winner.png","Home, sweet home :)"))
+        self.itemList.config(state="disabled")
+        self.wipe_buttons()
+        self.update_console("After assembling all 6 of the crystals, you step through the new home portal, and let out a sigh of relief as you end up in front of your house. You can finally rest now.")
+        self.update_console("Congratulations! You just beat Dimensions!\n",tag="g")
+        self.update_console("Credits:\nBill Zhao\nZachary Colucci\nAdithya Paramasivam\n\nThanks for Playing!")
+        self.lost = True
+
     def game_over(self,mes=""):
         if len(mes) > 0:
             self.update_console(mes)
