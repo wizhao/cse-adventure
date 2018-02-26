@@ -143,7 +143,7 @@ def op2_1():
     if len(app.get_items("food")) > 0:
         app.update_console("After a long, arduous hike, you finally make it to the top of the mountain. There is a single tree and a frozen lake.")
         if not climbed:
-            app.change_location("iceWorld2_1.png","You did it!")
+            app.change_location(("iceWorld2_1.png","You did it!"))
             app.update_console("You pick the single fruit from the tree, and stash it.",tag="g")
             app.add_item("Fruit")
             climbed = True

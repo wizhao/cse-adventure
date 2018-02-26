@@ -184,7 +184,7 @@ def op2_3():
 
 
 #option 3
-def op3(msg="You arrive at the city. The people seem to be tense from the war going on."):
+def op3(msg="You arrive at the city. The people seem to be tense from the war going on.\n"):
     app.change_location(("warworld3.png","The city."))
     app.update_console(msg)
     choices = [ ("Dark Alleys" , op3_1) , ("Hospital" , op3_2) ]
