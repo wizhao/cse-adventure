@@ -3,39 +3,34 @@ from item import Item
 class Backpack(object):
     def __init__(self):
         self.itemLimit = 12
-        portal_gun = Item('Portal Gun', None, 'tool',"portalGun.png",False,"You need that to get around, silly!")
-        ray_gun = Item('Ray Gun', None, 'weapon')
-        translator = Item('Dolphin Translator', None, 'tool')
-        lettuce = Item('Lettuce', None, 'food')
-        daniel = Item('Steamed Hams and Macaroni', None, 'food')
-        icicle = Item('Icicle', None, 'tool')
-        bone_pick = Item('Bone Pick', None, 'tool')
-        shotgun = Item('Sawed-off Shotgun', None, 'weapon')
-        tactical_shotgun = Item('Purple Tactical Shotgun', None, 'weapon')
-        trident = Item('Trident', None, 'weapon')
-        crossbow = Item('Crossbow', None, 'weapon')
+        ray_gun = Item('Ray Gun', 'Revive me!', 'weapon')
+        translator = Item('Dolphin Translator', 'Used to speak with your undersea mammal friends', 'tool')
+        lettuce = Item('Lettuce', 'Number 15, Burger King Foot Lettuce. The last thing you want in your Burger King burger is someone\'s foot fungus, but apparently, it might be what you get.', 'food')
+        daniel = Item('Steamed Hams and Macaroni', 'At this time of year, at this time day, in this part of the country, localized entirely inside your kitchen', 'food')
+        bone_pick = Item('Bone Pick', 'I am a dwarf, and I\'m digging a hole.', 'tool')
+        trident = Item('Trident', 'From the hands of Triton himself, it glows with St. Elmo\'s fire', 'weapon')
+        crossbow = Item('Crossbow', 'The layman\'s sniper rifle', 'weapon')
         key = Item('Key', 'It looks very complicated, and it\'s intricate almost to a microscopic level. Whoever left this in Dino World did not come from there.', 'tool')
         note = Item('Note', 'The note reads: "The password is 01000101" (Hint: Dino World)', 'tool')
-        photo = Item('Jisoo Photo', None, 'tool')
-        gravy = Item('Gravy', None, 'food')
-        mms = Item('M&Ms', None, 'food')
-        skis = Item('Skis', None, 'tool')
-        parka = Item('Parka', None, 'tool')
-        coal = Item('Coal', None, 'tool')
-        human_meat = Item('Human Meat', None, 'food')
-        skull = Item('Skull', None, 'important')
-        uranium = Item('Uranium', None, 'important')
-        grenade = Item('Grenades', None, 'important')
-        necklace = Item('Seashell Necklace', None, 'important')
-        device = Item('Deep-sea Diving Device', None, 'important')
-        medicine = Item('Herbal Medicine', None, 'important')
-        yellow_crystal = Item('Yellow Crystal', None, 'crystal')
-        blue_crystal = Item('Blue Crystal', None, 'crystal')
-        green_crystal = Item('Green Crystal', None, 'crystal')
-        red_crystal = Item('Red Crystal', None, 'crystal')
-        purple_crystal = Item('Purple Crystal', None, 'crystal')
-        orange_crystal = Item('Orange Crystal', None, 'crystal')
-        tank = Item('Oxygen Tank', None, 'tool')
+        photo = Item('Jisoo Photo', 'A photo of a beautiful Korean Popstar', 'tool')
+        gravy = Item('Gravy', 'Cookin\' with your mom in the kitchen, makin\' blueberry muffins.', 'food')
+        mms = Item('M&Ms', 'Uhh...summa lumma dooma lama you assumin\' imma human', 'food')
+        parka = Item('Parka', 'Protects you from the cold frost', 'tool')
+        coal = Item('Coal', 'It might do something if you believe in it', 'tool')
+        human_meat = Item('Human Meat', 'Nothing satisfies you more than the meat of your fallen brethren', 'food')
+        skull = Item('Skull', 'A massive T-Rex skull, good for decorating your car', 'important')
+        uranium = Item('Uranium', 'A green glowy stick', 'important')
+        grenade = Item('Grenades', 'Kablam!', 'important')
+        necklace = Item('Seashell Necklace', 'Makes the wearer instantly beautiful', 'important')
+        device = Item('Deep-sea Diving Device', 'Helps get to those tough to reach places!', 'important')
+        medicine = Item('Herbal Medicine', 'Good for the heart and soul' , 'important')
+        yellow_crystal = Item('Yellow Crystal', 'Powers your portal gun' , 'crystal')
+        blue_crystal = Item('Blue Crystal', 'Powers your portal gun', 'crystal')
+        green_crystal = Item('Green Crystal', 'Powers your portal gun', 'crystal')
+        red_crystal = Item('Red Crystal', 'Powers your portal gun', 'crystal')
+        purple_crystal = Item('Purple Crystal', 'Powers your portal gun', 'crystal')
+        orange_crystal = Item('Orange Crystal', 'Powers your portal gun', 'crystal')
+        tank = Item('Oxygen Tank', 'Lets you breathe underwater', 'tool')
         tendies = Item("Chicken Tendies","A 4-pack of chicken tenders. It reminds you of your past school lunches.","food","tendies.png")
         rifle = Item("Rifle","A wooden, bolt-action rifle. Battle-Scarred quality.","weapon","rifle.png")
         mre = Item("MRE","Meal, ready-to-eat. Doesn't taste very good, but at least it won't spoil.","food","mre.png")
@@ -47,14 +42,13 @@ class Backpack(object):
         fruit = Item("Fruit","A strange fruit, picked from a strange tree. Strange.","food","fruit.png")
 
 
-        self.item_list = {portal_gun.name: portal_gun, ray_gun.name: ray_gun,
+        self.item_list = {ray_gun.name: ray_gun,
                             translator.name: translator, lettuce.name: lettuce,
-                            daniel.name: daniel, icicle.name: icicle,
-                            bone_pick.name: bone_pick, shotgun.name: shotgun,
-                            tactical_shotgun.name: tactical_shotgun, trident.name:
+                            daniel.name: daniel,
+                            bone_pick.name: bone_pick, trident.name:
                             trident, crossbow.name: crossbow, key.name: key, note.name:
                             note, photo.name: photo, gravy.name: gravy,
-                            mms.name: mms, skis.name: skis,
+                            mms.name: mms,
                             parka.name: parka, coal.name: coal,
                             human_meat.name: human_meat, skull.name: skull, uranium.name: uranium,
                             grenade.name: grenade, necklace.name: necklace, device.name: device,
