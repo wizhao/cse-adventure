@@ -24,7 +24,7 @@ class Backpack(object):
         human_meat = Item('Human Meat', 'Nothing satisfies you more than the meat of your fallen brethren', 'food')
         skull = Item('Skull', 'A massive T-Rex skull, good for decorating your car', 'important')
         uranium = Item('Uranium', 'A green glowy stick', 'important')
-        grenade = Item('Grenades', 'Kablam!', 'important')
+        grenade = Item('Grenades', 'Kablam!', 'tool')
         necklace = Item('Seashell Necklace', 'Makes the wearer instantly beautiful', 'important')
         device = Item('Deep-sea Diving Device', 'Helps get to those tough to reach places!', 'important')
         medicine = Item('Herbal Medicine', 'Good for the heart and soul' , 'important')
