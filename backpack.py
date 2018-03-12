@@ -21,7 +21,7 @@ class Backpack(object):
         mms = Item('M&Ms', 'Uhh...summa lumma dooma lama you assumin\' imma human', 'food',"mms.png")
         parka = Item('Parka', 'Protects you from the cold frost', 'tool',"parka.png")
         coal = Item('Coal', 'It might do something if you believe in it', 'tool',"coal.png")
-        human_meat = Item('Human Meat', 'Nothing satisfies you more than the meat of your fallen brethren', 'food',"human.png")
+        spam = Item('Spam', 'Nothing satisfies you more than the meat of your fallen brethren', 'food',"spam.png")
         skull = Item('Skull', 'A massive T-Rex skull, good for decorating your car', 'important',"skull.png")
         uranium = Item('Uranium', 'A green glowy stick', 'important',"uranium.png")
         grenade = Item('Grenades', 'Kablam!', 'important',"grenades.png")
@@ -56,7 +56,7 @@ class Backpack(object):
                             trident, crossbow.name: crossbow, key.name: key, photo.name: photo, gravy.name: gravy,
                             mms.name: mms,
                             parka.name: parka, coal.name: coal,
-                            human_meat.name: human_meat, skull.name: skull, uranium.name: uranium,
+                            spam.name: spam, skull.name: skull, uranium.name: uranium,
                             grenade.name: grenade, necklace.name: necklace, device.name: device,
                             medicine.name: medicine, yellow_crystal.name: yellow_crystal,
                             blue_crystal.name: blue_crystal, green_crystal.name: green_crystal,

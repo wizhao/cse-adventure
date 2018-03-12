@@ -62,9 +62,9 @@ def op1_1(minRoll, challenger):
             app.update_console( 'Despite ' + challenger + '\'s brute force and dexterity, you are able to knock them down with your ' + random.choice(app.get_items('weapon')) + ' with grace. (+1 life)', tag='g')
             loot = random.randint(0, 9)
             if (loot < 5):
-                if (not app.has_item('Human Meat')):
-                    app.update_console( 'For your victory, you recieve some human meat.', tag='g')
-                    app.add_item('Human Meat')
+                if (not app.has_item('Spam')):
+                    app.update_console( 'For your victory, you recieve some Spam.', tag='g')
+                    app.add_item('Spam')
             if (loot == 6):
                 if (not app.has_item('Crossbow')):
                     app.update_console( 'For your victory, you recieve a crossbow!', tag='g')
@@ -78,9 +78,9 @@ def op1_1(minRoll, challenger):
             app.update_console( 'To the shock of the audience, you pummel down ' + challenger + ' with your bare fists. (+1 life)', tag='g')
             loot = random.randint(0, 9)
             if (loot < 5):
-                if (not app.has_item('Human Meat')):
-                    app.update_console( 'For your victory, you recieve some human meat.', tag='g')
-                    app.add_item('Human Meat')
+                if (not app.has_item('Spam')):
+                    app.update_console( 'For your victory, you recieve some Spam.', tag='g')
+                    app.add_item('Spam')
             if (loot == 6):
                 if (not app.has_item('Crossbow')):
                     app.update_console( 'For your victory, you recieve a crossbow!', tag='g')
@@ -94,9 +94,9 @@ def op1_1(minRoll, challenger):
             app.update_console('Because of his distraction, you beat ' + challenger + ' with your bare hands. (+1 life)', tag='g')
             loot = random.randint(0, 9)
             if (loot < 5):
-                if (not app.has_item('Human Meat')):
-                    app.update_console( 'For your victory, you recieve some human meat.', tag='g')
-                    app.add_item('Human Meat')
+                if (not app.has_item('Spam')):
+                    app.update_console( 'For your victory, you recieve some Spam.', tag='g')
+                    app.add_item('Spam')
             if (loot == 6):
                 if (not app.has_item('Crossbow')):
                     app.update_console( 'For your victory, you recieve a crossbow!', tag='g')
